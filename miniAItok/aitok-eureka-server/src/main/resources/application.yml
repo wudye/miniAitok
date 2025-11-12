@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: aitok-service
+
+
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30  # 客户端心跳间隔（默认30秒）
+    lease-expiration-duration-in-seconds: 90  # 服务失效时间（默认90秒）
+  client:
+    register-with-eureka: false  # 是否注册自己（单节点时设为false）
+    fetch-registry: false  # 是否从Eureka拉取注册表（单节点时设为false）
+    service-url:
+#      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Eureka Server 地址
+  server:
+    enable-self-preservation: true  # 是否开启自我保护模式（默认true）
+    eviction-interval-timer-in-ms: 60000  # 清理无效节点的间隔（默认60秒）

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: grpc-application
+  config:
+    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
+      password: ${CONFIG_SERVER_PASSWORD:123456789}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+
+#grpc:
+#  # gRPC 客户端配置，对应 GrpcChannelsProperties 配置类的映射
+#  client:
+#    user-service:
+#      negotiation-type: plaintext
+
+
+
+grpc:
+  client:
+    user-service:
+      address: static://127.0.0.1:50051
+      negotiation-type: plaintext

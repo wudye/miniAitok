@@ -1,0 +1,86 @@
+server:
+  port: 8001
+#  tomcat:
+#    accesslog:
+#      enabled: true
+#      directory: logs
+#      pattern: "%t %a \"%r\" %s %b %D"
+#      prefix: access_log
+#      suffix: .log
+
+spring:
+  application:
+    name: config-server
+  security:
+    user:
+      name: admin
+      password: 123456789
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-repo
+        encrypt:
+          enabled: false # if true, should confure spring security chain
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  sleuth:
+#    sampler:
+#      probability: 0.1   # 生产按需调整为较低采样率（0.0-1.0）
+
+#  简短结论：0.1 表示采样率 10%，1 表示采样率 100%（所有请求都会生成并发送 trace）。主要差别和影响：
+#  数据量与开销：100% 会产生大约 10 倍的数据量（例如 1,000 请求/分钟 → 100 traces/min 与 1,000 traces/min），导致网络、CPU、内存和 Zipkin 存储负担显著增加。
+#  成本与性能：更多的带宽和存储成本，应用端和 Zipkin 端的处理延迟与资源占用都会上升，可能影响系统稳定性。
+#  可观测性 vs 噪声：100% 便于调试和完整回放请求链路；但生产环境下会产生大量噪声，难以聚焦重要问题。
+#  隐私与安全：采集更多 trace 意味着可能记录更多敏感信息，风险增加。
+#  适用场景：将 1 用于本地、测试或短期故障排查；在生产环境优先使用较低采样（例如 0.01–0.1）或基于流量/错误率的自适应采样。
+
+
+#spring:
+#  application:
+#    name: config-server
+#  security:
+#    user:
+#      name: admin
+#      password: 123456789
+#  profiles:
+#      active: git
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/your-username/config-repo.git  # GitHub 仓库地址
+#          search-paths: '{application}'  # 可选：指定子目录
+#          username: your-username        # 可选：GitHub 用户名
+#          password: your-pat-or-token   # 可选：PAT 或密码（私有仓库需要）
+#          default-label: main
+#          clone-on-start: true          # 可选：启动时克隆仓库
+#      encrypt:
+#        enabled: false
+
+
+
+# config server 不作为 eureka client 注册自己
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,httptrace,metrics
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: user-service
+  config:
+    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
+      password: ${CONFIG_SERVER_PASSWORD:123456789}
+
+
+grpc:
+  server:
+    port: 50051   # 固定 gRPC 端口，方便被其他服务发现
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    metadataMap:
+      grpcPort: 50051
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+
+
+server:
+  port: 8081 # Web Server 随机端口
