@@ -10,6 +10,10 @@
     </parent>
 
     <artifactId>aitok-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>aitok-service-member</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

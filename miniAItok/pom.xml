@@ -26,7 +26,8 @@
         <module>aitok-common</module>
         <module>aitok-tools</module>
         <module>aitok-starter</module>
-        <module>aitok-modal</module>
+        <module>practice-demo-module</module>
+        <module>aitok-model</module>
     </modules>
 
     <properties>

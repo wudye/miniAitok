@@ -1,0 +1,88 @@
+jwt:
+  secret: bXlTdXBlclNlY3JldEtleU15U3VwZXJTZWNyZXRLZXkzMg==
+
+server:
+  port: 8008
+
+
+spring:
+  application:
+    name: gateway
+  config:
+    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
+      password: ${CONFIG_SERVER_PASSWORD:123456789}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      default-filters:
+#        - name: StripPrefix
+#          args:
+#            parts: 0
+        - name: RequestRateLimiter
+          args:
+            name: default
+            key-resolver: "#{@userKeyResolver}"
+            # 设置 TTL（单位：秒）
+            redis-rate-limiter.expire-after-write: 7200 # 2 hours
+        - name: CircuitBreaker
+          args:
+            name: default
+            fallbackUri: forward:/fallback/default
+      routes:
+        - id: member
+          uri: lb://aitok-member  # 确保服务名正确
+          predicates:
+            - Path=/member/**
+          filters:
+            - StripPrefix=1
+        - id: temp-route
+          uri: lb://TEST-CLIENT-TEMP  # 确保服务名正确
+          predicates:
+            - Path=/temp/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                name: cb-account
+                key-resolver: "#{@userKeyResolver}"
+                # 设置 TTL（单位：秒）
+                redis-rate-limiter.expire-after-write: 60
+            - name: CircuitBreaker
+              args:
+                name: cb-account
+                fallbackUri: forward:/fallback/account
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: password123
+      database: 1
+# database 指定了 Redis 的数据库编号。Redis 默认支持多个逻辑数据库（编号从 0 开始），这里选择了第 1 个数据库（编号为 1）。这允许应用程序在 Redis 中隔离数据。
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+  timelimiter:
+    instances:
+      default:
+        timeoutDuration: 2s   # 网关对下游调用的最大等待时间，设置比客户端更短
+
+
+logging:
+  level:
+    com.mwu: debug
+    org.springframework: warn

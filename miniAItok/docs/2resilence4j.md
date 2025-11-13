@@ -33,3 +33,50 @@ RateLimiter 一共有两种实现类：
 
 AtomicRateLimiter：基于令牌桶限流算法实现限流。
 SemaphoreBasedRateLimiter：基于 Semaphore 实现限流。
+
+RateLimiter 一共有两种实现类：
+
+AtomicRateLimiter：基于令牌桶限流算法实现限流。
+SemaphoreBasedRateLimiter：基于 Semaphore 实现限流。
+默认情况下，采用 AtomicRateLimiter 基于令牌桶限流算法实现限流。= = 搜了一圈 Resilience4j 的源码，貌似 SemaphoreBasedRateLimiter 没有地方在使用，难道已经被抛弃了~
+
+
+Bulkhead 指的是船舶中的舱壁，它将船体分隔为多个船舱，在船部分受损时可避免沉船。
+
+在 Resilience4j 中，提供了基于 Semaphore 信号量和 ThreadPool 线程池两种 Bulkhead 实现，隔离不同种类的调用，并提供流控的能力，从而避免某类调用异常时而占用所有资源，导致影响整个系统
+
+
+
+
+Retry > Bulkhead > RateLimiter > TimeLimiter > Bulkhead
+
+
+@CircuitBreaker(name = BACKEND, fallbackMethod = "fallback")
+@RateLimiter(name = BACKEND)
+@Bulkhead(name = BACKEND)
+@Retry(name = BACKEND, fallbackMethod = "fallback")
+@TimeLimiter(name = BACKEND)
+public String method(String param1) {
+throws new Exception("xxxx");
+}
+
+private String fallback(String param1, IllegalArgumentException e) {
+return "test:IllegalArgumentException";
+}
+
+private String fallback(String param1, RuntimeException e) {
+return "test:RuntimeException";
+}
+
+
+注解	切面	顺序
+@Retry	RetryAspect	Ordered.LOWEST_PRECEDENCE - 4
+@CircuitBreaker	CircuitBreakerAspect	Ordered.LOWEST_PRECEDENCE - 3
+@RateLimiter	RateLimiterAspect	Ordered.LOWEST_PRECEDENCE - 2
+@TimeLimiter	TimeLimiterAspect	Ordered.LOWEST_PRECEDENCE - 1
+@Bulkhead	BulkheadAspect	Ordered.LOWEST_PRECEDENCE
+
+
+
+https://www.iocoder.cn/Spring-Boot/Resilience4j/?self
+[!Resilience4j Modules](./ratechoose.jpg)

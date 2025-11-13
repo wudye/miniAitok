@@ -1,0 +1,243 @@
+2025-11-12T10:57:54.090+01:00  INFO 31076 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 31076 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T10:57:54.091+01:00  INFO 31076 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T10:57:55.198+01:00  INFO 31076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T10:57:55.207+01:00  INFO 31076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T10:57:55.208+01:00  INFO 31076 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T10:57:55.240+01:00  INFO 31076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T10:57:55.240+01:00  INFO 31076 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1119 ms
+2025-11-12T10:57:56.386+01:00  INFO 31076 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T10:57:56.439+01:00  INFO 31076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T10:57:56.447+01:00  INFO 31076 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.676 seconds (process running for 3.027)
+2025-11-12T10:57:56.704+01:00  INFO 31076 --- [RMI TCP Connection(4)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T10:57:56.704+01:00  INFO 31076 --- [RMI TCP Connection(4)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T10:57:56.704+01:00  INFO 31076 --- [RMI TCP Connection(4)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-12T10:58:07.078+01:00  INFO 31076 --- [http-nio-8080-exec-1] c.m.d.r.controller.DemoController        : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T10:58:07.103+01:00  INFO 31076 --- [http-nio-8080-exec-1] c.m.d.r.controller.DemoController        : [getUserFallback][id(1) exception(ResourceAccessException)]
+2025-11-12T11:00:16.401+01:00  INFO 31076 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:00:16.407+01:00  INFO 31076 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:08:01.211+01:00  INFO 17092 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 17092 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:08:01.212+01:00  INFO 17092 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:08:02.285+01:00  INFO 17092 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:08:02.294+01:00  INFO 17092 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:08:02.295+01:00  INFO 17092 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:08:02.323+01:00  INFO 17092 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:08:02.324+01:00  INFO 17092 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1079 ms
+2025-11-12T11:08:03.446+01:00  INFO 17092 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:08:03.496+01:00  INFO 17092 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:08:03.508+01:00  INFO 17092 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.603 seconds (process running for 3.032)
+2025-11-12T11:08:04.105+01:00  INFO 17092 --- [RMI TCP Connection(2)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:08:04.105+01:00  INFO 17092 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:08:04.106+01:00  INFO 17092 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:08:13.023+01:00  INFO 17092 --- [http-nio-8080-exec-1] c.m.d.r.controller.DemoController        : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:08:25.511+01:00  INFO 17092 --- [http-nio-8080-exec-3] c.m.d.r.controller.DemoController        : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:08:25.517+01:00  INFO 17092 --- [http-nio-8080-exec-3] c.m.d.r.controller.DemoController        : [getUserFallback][id(1) exception(ResourceAccessException)]
+2025-11-12T11:08:31.278+01:00  INFO 17092 --- [http-nio-8080-exec-2] c.m.d.r.controller.DemoController        : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:08:31.280+01:00  INFO 17092 --- [http-nio-8080-exec-2] c.m.d.r.controller.DemoController        : [getUserFallback][id(1) exception(ResourceAccessException)]
+2025-11-12T11:10:18.660+01:00  INFO 17092 --- [http-nio-8080-exec-6] c.m.d.r.controller.DemoController        : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:17:38.108+01:00  INFO 17092 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:17:38.113+01:00  INFO 17092 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:17:40.515+01:00  INFO 10308 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 10308 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:17:40.515+01:00  INFO 10308 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:17:41.565+01:00  INFO 10308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:17:41.575+01:00  INFO 10308 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:17:41.576+01:00  INFO 10308 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:17:41.606+01:00  INFO 10308 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:17:41.606+01:00  INFO 10308 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1063 ms
+2025-11-12T11:17:42.706+01:00  INFO 10308 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:17:42.756+01:00  INFO 10308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:17:42.764+01:00  INFO 10308 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.559 seconds (process running for 2.911)
+2025-11-12T11:17:43.147+01:00  INFO 10308 --- [RMI TCP Connection(1)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:17:43.147+01:00  INFO 10308 --- [RMI TCP Connection(1)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:17:43.148+01:00  INFO 10308 --- [RMI TCP Connection(1)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:17:59.636+01:00  INFO 10308 --- [http-nio-8080-exec-2] c.m.d.r.c.RateLimiterDemoController      : [getUserFallback][id(1) exception(RequestNotPermitted)]
+2025-11-12T11:21:09.487+01:00  INFO 10308 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:21:09.491+01:00  INFO 10308 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:21:12.190+01:00  INFO 26368 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 26368 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:21:12.191+01:00  INFO 26368 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:21:13.409+01:00  INFO 26368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:21:13.418+01:00  INFO 26368 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:21:13.418+01:00  INFO 26368 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:21:13.445+01:00  INFO 26368 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:21:13.446+01:00  INFO 26368 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1215 ms
+2025-11-12T11:21:14.651+01:00  INFO 26368 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:21:14.702+01:00  INFO 26368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:21:14.711+01:00  INFO 26368 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.912 seconds (process running for 3.37)
+2025-11-12T11:21:15.203+01:00  INFO 26368 --- [RMI TCP Connection(1)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:21:15.203+01:00  INFO 26368 --- [RMI TCP Connection(1)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:21:15.204+01:00  INFO 26368 --- [RMI TCP Connection(1)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:21:19.678+01:00  INFO 26368 --- [http-nio-8080-exec-1] c.m.d.r.c.BulkheadDemoController         : [getUser][id(1)]
+2025-11-12T11:23:52.957+01:00  INFO 26368 --- [http-nio-8080-exec-4] c.m.d.r.c.BulkheadDemoController         : [getUser][id(1)]
+2025-11-12T11:24:07.437+01:00  INFO 26368 --- [http-nio-8080-exec-5] c.m.d.r.c.BulkheadDemoController         : [getUser][id(1)]
+2025-11-12T11:25:10.995+01:00  INFO 26368 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:25:11.001+01:00  INFO 26368 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:25:12.550+01:00  INFO 11976 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 11976 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:25:12.552+01:00  INFO 11976 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:25:13.627+01:00  INFO 11976 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:25:13.639+01:00  INFO 11976 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:25:13.639+01:00  INFO 11976 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:25:13.670+01:00  INFO 11976 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:25:13.671+01:00  INFO 11976 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1088 ms
+2025-11-12T11:25:14.868+01:00  INFO 11976 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:25:14.923+01:00  INFO 11976 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:25:14.932+01:00  INFO 11976 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.698 seconds (process running for 3.054)
+2025-11-12T11:25:15.189+01:00  INFO 11976 --- [RMI TCP Connection(2)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:25:15.190+01:00  INFO 11976 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:25:15.191+01:00  INFO 11976 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:25:17.456+01:00  INFO 11976 --- [http-nio-8080-exec-1] c.m.d.r.c.BulkheadDemoController         : [getUser][id(1)]
+2025-11-12T11:25:30.570+01:00  INFO 11976 --- [http-nio-8080-exec-2] c.m.d.r.c.BulkheadDemoController         : [getUser][id(1)]
+2025-11-12T11:36:06.401+01:00  INFO 11976 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:36:06.407+01:00  INFO 11976 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:36:08.955+01:00  INFO 18908 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 18908 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:36:08.957+01:00  INFO 18908 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:36:10.110+01:00  INFO 18908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:36:10.120+01:00  INFO 18908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:36:10.120+01:00  INFO 18908 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:36:10.150+01:00  INFO 18908 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:36:10.151+01:00  INFO 18908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1161 ms
+2025-11-12T11:36:11.342+01:00  INFO 18908 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:36:11.396+01:00  INFO 18908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:36:11.404+01:00  INFO 18908 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.864 seconds (process running for 3.252)
+2025-11-12T11:36:11.966+01:00  INFO 18908 --- [RMI TCP Connection(4)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:36:11.966+01:00  INFO 18908 --- [RMI TCP Connection(4)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:36:11.968+01:00  INFO 18908 --- [RMI TCP Connection(4)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:36:14.776+01:00  INFO 18908 --- [bulkhead-backendD-1] DemoController$ThreadPoolBulkheadService : [getUser][id(1)]
+2025-11-12T11:36:24.793+01:00  INFO 18908 --- [bulkhead-backendD-1] DemoController$ThreadPoolBulkheadService : [getUser][id(1)]
+2025-11-12T11:44:50.975+01:00  INFO 18908 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:44:50.981+01:00  INFO 18908 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:44:53.801+01:00  INFO 19392 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 19392 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:44:53.803+01:00  INFO 19392 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:44:55.126+01:00  INFO 19392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:44:55.136+01:00  INFO 19392 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:44:55.136+01:00  INFO 19392 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:44:55.169+01:00  INFO 19392 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:44:55.169+01:00  INFO 19392 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1324 ms
+2025-11-12T11:44:56.404+01:00  INFO 19392 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:44:56.460+01:00  INFO 19392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:44:56.471+01:00  INFO 19392 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 3.098 seconds (process running for 3.58)
+2025-11-12T11:44:56.768+01:00  INFO 19392 --- [RMI TCP Connection(2)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:44:56.769+01:00  INFO 19392 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:44:56.771+01:00  INFO 19392 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:45:01.633+01:00  INFO 19392 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:45:24.315+01:00  INFO 19392 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:16.701+01:00  INFO 19392 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:46:16.706+01:00  INFO 19392 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:46:18.289+01:00  INFO 13504 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 13504 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:46:18.291+01:00  INFO 13504 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:46:19.392+01:00  INFO 13504 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:46:19.402+01:00  INFO 13504 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:46:19.403+01:00  INFO 13504 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:46:19.432+01:00  INFO 13504 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:46:19.433+01:00  INFO 13504 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1114 ms
+2025-11-12T11:46:20.656+01:00  INFO 13504 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:46:20.713+01:00  INFO 13504 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:46:20.721+01:00  INFO 13504 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.75 seconds (process running for 3.115)
+2025-11-12T11:46:20.899+01:00  INFO 13504 --- [RMI TCP Connection(4)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:46:20.899+01:00  INFO 13504 --- [RMI TCP Connection(4)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:46:20.900+01:00  INFO 13504 --- [RMI TCP Connection(4)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:46:22.737+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:29.242+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:30.042+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:30.220+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:30.381+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:30.531+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:30.683+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:30.862+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.004+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.155+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.290+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.418+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.571+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.676+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.801+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:31.939+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.066+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.186+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.315+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.451+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.570+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.707+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.828+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:32.955+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:33.073+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:33.210+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:33.339+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:33.473+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:33.611+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:34.003+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:34.139+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:34.274+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:34.419+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:34.547+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:34.691+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:36.267+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:36.444+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:36.625+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:36.802+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:36.975+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:37.138+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:37.316+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:37.483+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:37.656+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:37.843+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:38.018+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:38.189+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:38.378+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:38.539+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:38.715+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:38.898+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:39.076+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:39.251+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:39.430+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:39.603+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:39.778+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:39.945+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:40.121+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:40.298+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:40.467+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:40.667+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:40.818+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:40.987+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:41.165+01:00  INFO 13504 --- [http-nio-8080-exec-4] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:41.362+01:00  INFO 13504 --- [http-nio-8080-exec-5] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:41.554+01:00  INFO 13504 --- [http-nio-8080-exec-6] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:41.755+01:00  INFO 13504 --- [http-nio-8080-exec-7] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:41.948+01:00  INFO 13504 --- [http-nio-8080-exec-8] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:42.130+01:00  INFO 13504 --- [http-nio-8080-exec-9] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:42.306+01:00  INFO 13504 --- [http-nio-8080-exec-10] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:42.500+01:00  INFO 13504 --- [http-nio-8080-exec-1] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:42.731+01:00  INFO 13504 --- [http-nio-8080-exec-2] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:46:42.890+01:00  INFO 13504 --- [http-nio-8080-exec-3] c.m.d.r.controller.RetryDemoController   : [getUser][准备调用 user-service 获取用户(1)详情]
+2025-11-12T11:49:58.677+01:00  INFO 13504 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:49:58.683+01:00  INFO 13504 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:50:01.732+01:00  INFO 31708 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 31708 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:50:01.735+01:00  INFO 31708 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:50:02.956+01:00  INFO 31708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:50:02.968+01:00  INFO 31708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:50:02.968+01:00  INFO 31708 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:50:02.999+01:00  INFO 31708 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:50:03.001+01:00  INFO 31708 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1226 ms
+2025-11-12T11:50:04.225+01:00  INFO 31708 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-12T11:50:04.277+01:00  INFO 31708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:50:04.286+01:00  INFO 31708 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.991 seconds (process running for 3.499)
+2025-11-12T11:50:04.883+01:00  INFO 31708 --- [RMI TCP Connection(3)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:50:04.884+01:00  INFO 31708 --- [RMI TCP Connection(3)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:50:04.886+01:00  INFO 31708 --- [RMI TCP Connection(3)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-12T11:50:07.413+01:00  INFO 31708 --- [bulkhead-backendD-1] LimiterDemoController$TimeLimiterService : [getUser][id(1)]
+2025-11-12T11:50:08.422+01:00  INFO 31708 --- [pool-3-thread-1] LimiterDemoController$TimeLimiterService : [getUserFallback][id(1) exception(TimeoutException)]
+2025-11-12T11:53:32.250+01:00  INFO 31708 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:53:32.256+01:00  INFO 31708 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-12T11:53:34.056+01:00  INFO 14604 --- [main] c.m.d.r.controller.DemoApplication       : Starting DemoApplication using Java 21.0.8 with PID 14604 (E:\youtube2\miniAItok\miniAItok\practice-demo-module\resilence4j-demo\main-demo\target\classes started by mwu42 in E:\youtube2\miniAItok\miniAItok)
+2025-11-12T11:53:34.057+01:00  INFO 14604 --- [main] c.m.d.r.controller.DemoApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:53:35.117+01:00  INFO 14604 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-12T11:53:35.125+01:00  INFO 14604 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T11:53:35.126+01:00  INFO 14604 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-11-12T11:53:35.153+01:00  INFO 14604 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T11:53:35.153+01:00  INFO 14604 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1069 ms
+2025-11-12T11:53:36.416+01:00  INFO 14604 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 27 endpoints beneath base path '/actuator'
+2025-11-12T11:53:36.477+01:00  INFO 14604 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-12T11:53:36.486+01:00  INFO 14604 --- [main] c.m.d.r.controller.DemoApplication       : Started DemoApplication in 2.763 seconds (process running for 3.213)
+2025-11-12T11:53:36.959+01:00  INFO 14604 --- [RMI TCP Connection(2)-192.168.0.242] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T11:53:36.960+01:00  INFO 14604 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T11:53:36.961+01:00  INFO 14604 --- [RMI TCP Connection(2)-192.168.0.242] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T11:56:48.329+01:00  INFO 14604 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-12T11:56:48.337+01:00  INFO 14604 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
