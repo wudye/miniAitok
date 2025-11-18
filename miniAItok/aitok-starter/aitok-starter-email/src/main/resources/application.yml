@@ -1,0 +1,14 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: chwmwei@gmail.com
+    password: "dczdjurfepcparjk"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+    protocol: smtps
+    default-encoding: UTF-8

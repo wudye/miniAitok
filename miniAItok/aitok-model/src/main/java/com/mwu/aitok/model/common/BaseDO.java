@@ -1,0 +1,59 @@
+package com.mwu.aitok.model.common;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+/**
+ * BaseDO
+ *
+ * @AUTHOR: mwu
+ * @DATE: 2025/4/22
+ **/
+@MappedSuperclass
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(value = {"creator", "createTime", "updater", "updateTime"}, allowGetters = true)
+@EntityListeners(AuditingEntityListener.class)
+@Data
+public class BaseDO implements Serializable {
+
+    /**
+     * 创建人
+     */
+    @CreatedBy
+    private String createBy;
+    /**
+     * 创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @CreatedDate
+    private LocalDateTime createTime;
+    /**
+     * 更新人
+     */
+    @LastModifiedBy
+    private String updateBy;
+    /**
+     * 更新时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @LastModifiedDate
+    private LocalDateTime updateTime;
+    /**
+     * 删除标记[0正常1删除]
+     */
+
+    private String delFlag = "0";
+}

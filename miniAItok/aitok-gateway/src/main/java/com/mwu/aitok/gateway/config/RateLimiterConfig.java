@@ -18,18 +18,6 @@ import java.security.NoSuchAlgorithmException;
 public class RateLimiterConfig {
 
     private static final int BUCKET_COUNT = 1024; // 根据容量调整
-    @Bean("default")
-    @Primary
-    public RedisRateLimiter defaultRateLimiter() {
-        // replenishRate = 10 tokens/sec, burstCapacity = 20, requestedTokens = 1
-        return new RedisRateLimiter(10, 20, 1);
-    }
-
-    @Bean("cb-account")
-    public RedisRateLimiter cbAccountRateLimiter() {
-        return new RedisRateLimiter(10, 20, 1);
-    }
-
 
 
     @Bean

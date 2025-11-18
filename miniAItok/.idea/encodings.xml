@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-ai/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-cache/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-oauth2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-config-server/src/main/java" charset="UTF-8" />
@@ -11,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/aitok-eureka-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-feign/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-feign/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-gateway-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/deme1-user-service/src/main/java" charset="UTF-8" />
@@ -28,9 +32,14 @@
     <file url="file://$PROJECT_DIR$/aitok-modal/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-modal/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-member-oatu2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-member/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/temp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-starter/aitok-starter-email/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-starter/aitok-starter-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-starter/aitok-starter-video/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-tools/src/main/java" charset="UTF-8" />

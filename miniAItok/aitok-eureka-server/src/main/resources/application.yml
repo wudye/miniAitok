@@ -18,6 +18,7 @@ eureka:
     service-url:
 #      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Eureka Server 地址
+#      defaultZone: http://localhost:8761/eureka/
   server:
     enable-self-preservation: true  # 是否开启自我保护模式（默认true）
     eviction-interval-timer-in-ms: 60000  # 清理无效节点的间隔（默认60秒）

@@ -17,7 +17,8 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    !-- After: 使用 grpc-bom 统一版本，并显式添加运行时实现 -->
+
+    <!-- After: 使用 grpc-bom 统一版本，并显式添加运行时实现 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -31,30 +32,26 @@
     </dependencyManagement>
 
     <dependencies>
-
-        <!-- 引入 API 项目 -->
         <dependency>
             <groupId>com.mwu</groupId>
             <artifactId>demo1-userservice-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- 实现对 SpringMVC 的自动化配置 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>net.devh</groupId>

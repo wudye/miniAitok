@@ -25,10 +25,13 @@ spring:
 #            parts: 0
         - name: RequestRateLimiter
           args:
-            name: default
-            key-resolver: "#{@userKeyResolver}"
-            # 设置 TTL（单位：秒）
-            redis-rate-limiter.expire-after-write: 7200 # 2 hours
+            args:
+              redis-rate-limiter.replenishRate: 10
+              redis-rate-limiter.burstCapacity: 20
+              redis-rate-limiter.requestedTokens: 1
+              key-resolver: "#{@userKeyResolver}"
+              # 设置 TTL（单位：秒）
+              redis-rate-limiter.expire-after-write: 7200 # 2 hours
         - name: CircuitBreaker
           args:
             name: default
@@ -47,10 +50,13 @@ spring:
           filters:
             - name: RequestRateLimiter
               args:
-                name: cb-account
-                key-resolver: "#{@userKeyResolver}"
-                # 设置 TTL（单位：秒）
-                redis-rate-limiter.expire-after-write: 60
+                args:
+                  redis-rate-limiter.replenishRate: 10
+                  redis-rate-limiter.burstCapacity: 20
+                  redis-rate-limiter.requestedTokens: 1
+                  key-resolver: "#{@userKeyResolver}"
+                  # 设置 TTL（单位：秒）
+                  redis-rate-limiter.expire-after-write: 60
             - name: CircuitBreaker
               args:
                 name: cb-account
@@ -59,7 +65,7 @@ spring:
     redis:
       host: localhost
       port: 6379
-      password: password123
+      password: 123456789
       database: 1
 # database 指定了 Redis 的数据库编号。Redis 默认支持多个逻辑数据库（编号从 0 开始），这里选择了第 1 个数据库（编号为 1）。这允许应用程序在 Redis 中隔离数据。
 
@@ -86,3 +92,11 @@ logging:
   level:
     com.mwu: debug
     org.springframework: warn
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

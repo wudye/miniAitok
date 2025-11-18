@@ -2,14 +2,41 @@ services:
   redis:
     image: redis:latest
     container_name: "aitok_redis"
-    environment:
-      - REDIS_PASSWORD=password123
-    command: ["redis-server", "--requirepass", "password123"]
+#    environment:
+#      - REDIS_PASSWORD=123456789
+    command: [ "redis-server", "--save", "", "--appendonly", "no", "--requirepass", "123456789" ]
     ports:
       - "6379:6379"
     volumes:
       - redis_aitok:/data
     restart: unless-stopped
 
+  mysql:
+    image: mysql:latest
+    container_name: aitok_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: aitok
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_aitok_data:/var/lib/mysql
+ #    - ./mysql:/docker-entrypoint-initdb.d
+    restart: always
+
+
+  elasticsearch:
+    image: elasticsearch:8.18.8
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - ELASTIC_USERNAME=admin1
+      - ELASTIC_PASSWORD=123456789
+      - xpack.security.enabled=true
+    ports:
+      - "9200:9200"
+      - "9300:9300"
 volumes:
   redis_aitok:
+  mysql_aitok_data:
