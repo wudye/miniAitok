@@ -1,7 +1,7 @@
 package com.mwu.aitokcommon.cache.service;
 
-import cn.hutool.core.util.BooleanUtil;
 import jakarta.annotation.Resource;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
@@ -419,7 +419,7 @@ public class RedisService {
      */
     public boolean tryLock(String key, long timeout, TimeUnit unit) {
         Boolean flag = redisTemplate.opsForValue().setIfAbsent(key, "1", timeout, unit);
-        return BooleanUtil.isTrue(flag);
+        return BooleanUtils.isTrue(flag);
     }
 
     /**

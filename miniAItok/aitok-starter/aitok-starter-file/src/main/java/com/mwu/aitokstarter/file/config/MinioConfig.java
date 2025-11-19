@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // 。proxyBeanMethods = false 参数表示在创建 Bean 时不使用代理模式，这样可以提高性能，适用于没有依赖关系的 Bean。
-@Configuration(proxyBeanMethods = false)
+@Configuration()
 /*
 
 该注解的作用是将 MinioProperties 配置类加载到 Spring 容器中。MinioProperties
@@ -18,8 +18,8 @@ import org.springframework.context.annotation.Configuration;
 用于避免在未配置相关属性时加载不必要的 Bean，从而提高应用的灵活性和性能。
  */
 @EnableConfigurationProperties(MinioProperties.class)
-@ConditionalOnProperty(prefix = "minio", name = "endpoint")
-@ConditionalOnClass(MinioClient.class)
+//@ConditionalOnProperty(prefix = "minio", name = "endpoint")
+//@ConditionalOnClass(MinioClient.class)
 public class MinioConfig {
 
     @Bean

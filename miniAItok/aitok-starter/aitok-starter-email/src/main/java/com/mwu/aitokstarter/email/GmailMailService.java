@@ -7,17 +7,18 @@ import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
-
+@Service
 public class GmailMailService {
 
     private final JavaMailSender mailSender;
-    private final String defaultFrom;
+   // private final String defaultFrom;
 
-    public GmailMailService(JavaMailSender mailSender, String defaultFrom) {
+    public GmailMailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
-        this.defaultFrom = defaultFrom;
+       // this.defaultFrom = defaultFrom;
     }
 
     public void sendSimpleEmail(String to, String subject, String text, String from) {
@@ -25,7 +26,7 @@ public class GmailMailService {
         msg.setTo(to);
         msg.setSubject(subject);
         msg.setText(text);
-        msg.setFrom(from != null ? from : defaultFrom);
+        //msg.setFrom(from != null ? from : defaultFrom);
         mailSender.send(msg);
     }
 
@@ -36,7 +37,7 @@ public class GmailMailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
-        helper.setFrom(from != null ? from : defaultFrom);
+       // helper.setFrom(from != null ? from : defaultFrom);
         if (attachmentSource != null && attachmentName != null) {
             helper.addAttachment(attachmentName, attachmentSource);
         }

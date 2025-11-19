@@ -1,0 +1,62 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.mwu.aitok;
+
+option java_package = "com.mwu.aitok";
+//option java_outer_classname = "..." 注释掉后，protoc 会用默认的外部类名：把 .proto 文件名转成驼峰后加上 OuterClass，例如 MemberService.proto → MemberServiceOuterClass。
+//option java_outer_classname = "MemberServiceGrpcProto";
+
+
+message GetByIdRequest {
+  int64 user_id = 1;
+}
+
+message GetAvatarRequest {
+  int64 user_id = 1;
+}
+
+
+message GetInIdsRequest {
+  repeated int64 user_ids = 1;
+}
+
+message GetByUserNameRequest {
+  string user_name = 1;
+}
+
+// 响应消息
+message MemberResponse {
+  int64 user_id = 1;
+  string user_name = 2;
+  string nick_name = 3;
+  string email = 4;
+  string telephone = 5;
+  int32 sex = 6;
+  string avatar = 7;
+  int32 status = 8;
+  string create_time = 9;
+  string update_time = 10;
+
+}
+
+message AvatarResponse {
+  string avatar = 1;
+}
+
+
+message MemberListResponse {
+  repeated MemberResponse members = 1;
+}
+
+
+
+service MemberService {
+  rpc GetById(GetByIdRequest) returns (MemberResponse);
+
+  rpc GetAvatar(GetAvatarRequest) returns (AvatarResponse);
+
+  rpc GetInIds(GetInIdsRequest) returns (MemberListResponse);
+
+  rpc GetByUserName(GetByUserNameRequest) returns (MemberResponse);
+}

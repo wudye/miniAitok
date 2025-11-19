@@ -44,6 +44,6 @@ public class GmailMailAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public GmailMailService gmailMailService(JavaMailSender mailSender) {
-        return new GmailMailService(mailSender, props.getDefaultFrom());
+        return new GmailMailService(mailSender);
     }
 }

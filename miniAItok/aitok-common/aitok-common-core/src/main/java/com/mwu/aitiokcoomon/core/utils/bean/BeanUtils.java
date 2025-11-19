@@ -1,7 +1,8 @@
 // java
 package com.mwu.aitiokcoomon.core.utils.bean;
 
-import com.mwu.aitiokcoomon.core.utils.CollectionUtils;
+
+import com.mwu.aitiokcoomon.core.utils.CustomCollectionUtils;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -39,7 +40,7 @@ public class BeanUtils {
         if (source == null) {
             return null;
         }
-        return CollectionUtils.convertList(source, s -> toBean(s, targetType));
+        return CustomCollectionUtils.convertList(source, s -> toBean(s, targetType));
     }
 
     public static <S, T> List<T> toBean(List<S> source, Class<T> targetType, Consumer<T> peek) {

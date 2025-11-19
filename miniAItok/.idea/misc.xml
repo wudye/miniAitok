@@ -9,10 +9,12 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/aitok-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-grpc-demo/demo1/demo1-user-servife/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-grpc-demo/demo1/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-grpc-demo/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-modal/pom.xml" />
+        <option value="$PROJECT_DIR$/aitok-service/aitok-service-member/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-service/temp/pom.xml" />
         <option value="$PROJECT_DIR$/practice-demo-module/pom.xml" />
         <option value="$PROJECT_DIR$/practice-demo-module/resilence4j-demo.md/pom.xml" />

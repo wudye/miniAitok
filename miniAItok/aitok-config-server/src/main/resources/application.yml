@@ -73,7 +73,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,httptrace,metrics
+        include: health,info,metrics
 
 
 

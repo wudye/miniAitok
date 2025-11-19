@@ -2,9 +2,7 @@ package com.mwu.aitok.model.member.domain;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,13 +12,14 @@ import java.time.LocalDateTime;
  *
  * @author mwu
  * @since 2023-10-29 20:36:06
+ **/
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "user_sensitive")
- */
 public class UserSensitive implements Serializable {
     private static final long serialVersionUID = 565052820117877580L;
     /**

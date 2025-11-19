@@ -1,1 +1,2 @@
 com.mwu.aitokstarter.file.service.MinioService
+com.mwu.aitokstarter.file.config.MinioConfig

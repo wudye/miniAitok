@@ -1,7 +1,8 @@
 package com.mwu.aitiokcoomon.core.utils;
 
 
-import com.mwu.didacommon.core.utils.string.StringUtils;
+
+import com.mwu.aitiokcoomon.core.utils.string.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

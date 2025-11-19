@@ -1,0 +1,20 @@
+# check java processes
+jps -l
+
+# check the memory usage of a java process
+jinfo -flag MaxHeapSize <pid>
+-XX:MaxHeapSize=8480882688 byte =  (8080 MB)
+
+# check the class loading statistics
+jstat -class <pid>
+
+# check the statistics of garbage collection
+jstat -gc <pid>
+
+# check the compilation statistics
+ jstat -compiler <pid>
+
+
+# check the runtime environment of a java process
+jcmd <pid> VM.flags
+

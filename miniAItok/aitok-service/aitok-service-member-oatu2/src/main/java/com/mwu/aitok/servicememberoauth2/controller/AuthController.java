@@ -52,6 +52,7 @@ public class AuthController {
 
         System.out.println("login attempt: " + username + "/" + password);
         // TODO: 用真实用户验证替换此处
+
 //        if (!"secret".equals(password)) {
 //            return ResponseEntity.status(401).build();
 //        }

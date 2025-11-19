@@ -5,6 +5,10 @@ server:
 
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   application:
     name: aitok-member
   config:
@@ -44,13 +48,37 @@ spring:
       database: 1
 
   elasticsearch:
-    uris:
-      - http://localhost:9200
-    username: admin1
+    uris: http://localhost:9200
+    username: elastic
     password: 123456789
     connection-timeout: 5s
     socket-timeout: 60s
 
+  rabbitmq:
+   # virtual-host: /cheese
+    host: localhost
+    port: 5672
+    username: aitok
+    password: 123456789
+    connection-timeout: 3s # 连接超时时间
+    listener:
+      simple:
+        prefetch: 1 #能者多劳，但可能消息堆积 表示每次只处理一个消息，避免消息堆积
+        acknowledge-mode: auto # 消息的确认模式为自动确认。当消费者成功处理消息后，RabbitMQ 会自动发送确认信号，无需手动调用 channel.basicAck
+        retry: # 消费者在处理消息失败时的重试策略
+          enabled: true # 开启消费者失败重试
+          initial-interval: 1000ms # 初识的失败等待时长为1秒
+          multiplier: 1 # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
+          max-attempts: 3 # 最大重试次数
+          stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false
+    template: # 消息发送端
+      retry:
+        enabled: true # 超时重试
+        initial-interval: 1000ms # 失败后的初始等待时间
+        multiplier: 1
+        max-attempts: 3
+# RabbitMQ 消息模板通常指 Spring AMQP 提供的 RabbitTemplate，它是应用与 RabbitMQ
+  #交互的高层 API。主要职责包括发送/接收消息、进行消息转换（对象到消息、消息到对象）、处理确认回调和返回消息、以及支持重试与事务等
 logging:
   file:
     path: ./logs/aitok-member
@@ -72,3 +100,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
+minio:
+  access-key: admin
+  secret-key: 123456789
+  bucketName: aitok-member
+  endpoint: http://localhost:9000
+

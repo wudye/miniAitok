@@ -1,11 +1,10 @@
 // java
 package com.mwu.aitiokcoomon.core.utils;
 
-import cn.hutool.extra.servlet.JakartaServletUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mwu.didacommon.core.constant.Constants;
-import com.mwu.didacommon.core.domain.R;
-import com.mwu.didacommon.core.utils.string.StringUtils;
+import com.mwu.aitiokcoomon.core.constant.Constants;
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitiokcoomon.core.utils.string.StringUtils;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -293,11 +292,59 @@ public class ServletUtils {
         return response.writeWith(Mono.just(dataBuffer));
     }
 
+    /*
+    import cn.hutool.extra.servlet.JakartaServletUtil;
+
     public static String getClientIP() {
         HttpServletRequest request = getRequest();
         if (request == null) {
             return null;
         }
         return JakartaServletUtil.getClientIP(request);
+    }
+
+     */
+
+    public static String getClientIP() {
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
+
+        String[] headersToCheck = {
+                "X-Forwarded-For",
+                "X-Real-IP",
+                "Proxy-Client-IP",
+                "WL-Proxy-Client-IP",
+                "HTTP_CLIENT_IP",
+                "HTTP_X_FORWARDED_FOR"
+        };
+
+        String ip = null;
+        for (String header : headersToCheck) {
+            String value = request.getHeader(header);
+            if (value != null && value.length() != 0 && !"unknown".equalsIgnoreCase(value)) {
+                ip = value;
+                break;
+            }
+        }
+
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+
+        // 若有多个 IP（例如 "client, proxy1, proxy2"），取第一个非空且非 unknown 的
+        if (ip != null && ip.contains(",")) {
+            String[] parts = ip.split(",");
+            for (String part : parts) {
+                part = part.trim();
+                if (part.length() > 0 && !"unknown".equalsIgnoreCase(part)) {
+                    ip = part;
+                    break;
+                }
+            }
+        }
+
+        return ip;
     }
 }

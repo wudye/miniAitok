@@ -27,6 +27,7 @@
         <module>aitok-starter</module>
         <module>aitok-model</module>
         <module>aitok-gateway-server</module>
+        <module>aitok-grpc-server</module>
     </modules>
 
     <properties>
@@ -107,7 +108,11 @@
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>2.20.0</version> <!-- 与项目 Jackson 版本保持一致 -->
+            </dependency>
 
             <dependency>
                 <groupId>commons-beanutils</groupId>

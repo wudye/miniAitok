@@ -5,7 +5,9 @@ package com.mwu.aitok.servicememberoauth2.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
@@ -13,6 +15,10 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "tokens")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TokenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +35,9 @@ public class TokenEntity {
 可与 @Basic(fetch = FetchType.LAZY) 一起使用以延迟加载大字段（具体是否生效依实现而定）。
 注解不会自动修改已有数据库列类型，若已存在表需执行迁移（ALTER）或启用 Hibernate DDL 更新。
      */
-    @Lob
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
-    private String accessToken;
+//    @Lob
+//    @Column(nullable = false, columnDefinition = "LONGTEXT")
+//    private String accessToken;
 
     @Lob
     @Column(nullable = false, columnDefinition = "LONGTEXT")
@@ -48,33 +54,12 @@ public class TokenEntity {
 JPA/Hibernate：可直接作为实体字段映射为 SQL TIMESTAMP/DATETIME（注意数据库时区/精度差异，MySQL 推荐统一使用 UTC 或显式 columnDefinition）。
 Jackson：序列化时建议注册 JavaTimeModule 以得到 ISO 字符串输出。
      */
-    private Instant accessExpiry;
+//    private Instant accessExpiry;
     private Instant refreshExpiry;
+    @CreationTimestamp
     private Instant createdAt;
 
-    protected TokenEntity() {}
 
-    public TokenEntity(String userId, String accessToken, String refreshToken,
-                       Instant accessExpiry, Instant refreshExpiry, Instant createdAt) {
-        this.userId = userId;
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
-        this.accessExpiry = accessExpiry;
-        this.refreshExpiry = refreshExpiry;
-        this.createdAt = createdAt;
-    }
 
-    // getters / setters (省略可用 IDE 生成)
-    public Long getId() { return id; }
-    public String getUserId() { return userId; }
-    public String getAccessToken() { return accessToken; }
-    public String getRefreshToken() { return refreshToken; }
-    public Instant getAccessExpiry() { return accessExpiry; }
-    public Instant getRefreshExpiry() { return refreshExpiry; }
-    public Instant getCreatedAt() { return createdAt; }
 
-    public void setAccessToken(String accessToken) { this.accessToken = accessToken; }
-    public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
-    public void setAccessExpiry(Instant accessExpiry) { this.accessExpiry = accessExpiry; }
-    public void setRefreshExpiry(Instant refreshExpiry) { this.refreshExpiry = refreshExpiry; }
 }

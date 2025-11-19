@@ -1,5 +1,1 @@
-com.mwu.aitokcommon.core.exception.GlobalExceptionCatch
-com.mwu.aitokcommon.core.swagger.SwaggerConfiguration
-com.mwu.aitokcommon.core.swagger.Swagger2Configuration
-com.mwu.aitokcommon.core.config.MybatisPlusConfig
-com.mwu.aitokcommon.core.aspect.MappingCostTimeAspect
+

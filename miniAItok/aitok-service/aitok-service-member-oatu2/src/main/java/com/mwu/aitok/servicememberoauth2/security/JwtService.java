@@ -20,10 +20,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.time.Instant;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class JwtService {
@@ -63,6 +60,8 @@ public class JwtService {
 
         JWTClaimsSet.Builder claimsBuilder = new JWTClaimsSet.Builder()
                 .issuer(ISSUER)
+                .subject("system")
+                .audience("app")
                 .issueTime(Date.from(now))
                 .expirationTime(Date.from(now.plusSeconds(3600)));
 
@@ -88,6 +87,15 @@ public class JwtService {
         return token;
     }
 
+    /*
+    jwt-rsa-jwk.json 是保存服务端 RSA 密钥对的文件，按代码会写入运行该后端进程的操作系统用户的家目录下的 /.aitok 目录（例如 C:\Users\<svcuser>\.aitok\jwt-rsa-jwk.json 或 Linux 的 /home/<svcuser>/.aitok/jwt-rsa-jwk.json）。
+这是“每个后端实例/主机”一份文件，而不是为每个应用用户单独生成。换言之，运行该服务的同一个服务器（或容器）上所有登录用户都会使用同一把密钥签发/验证 access token。
+对外验证只需公钥：服务通过 getJwkSet() 暴露公钥集合，外部或前端用该公钥验证 JWT 签名；私钥留在该文件中，必须严格保护，不能公开。
+部署注意事项：
+如果有多台后端实例，需保证它们共享同一密钥（通过共享文件、配置管理或使用 KMS/密钥库），否则一个实例签的 token 另一个实例无法验证。
+在生产环境建议使用专门的密钥管理（KMS、Vault）或环境/容器秘密管理，避免把私钥明文写在主机文件系统上。
+密钥轮换要显式实现：替换该文件后需协调令牌有效性或重新签发。
+     */
     // 生成 refresh token（不使用 JWT），并同时保存到 DB + JSON 文件
     @Transactional
     public TokenPair createAndStoreTokens(String username, String userId) throws Exception {
@@ -106,16 +114,32 @@ public class JwtService {
         Instant refreshExpiry = now.plusSeconds(7 * 24 * 3600); // 7 天
 
         // 3. 保存到数据库
-        TokenEntity entity = new TokenEntity(userId, accessToken, refreshToken, accessExpiry, refreshExpiry, now);
-        tokenRepository.save(entity);
+        TokenEntity entity = new TokenEntity();
+        entity.setUserId(userId);
+        entity.setRefreshToken(refreshToken);
+        entity.setRefreshExpiry(refreshExpiry);
+
+        // if userId exits, update the existing record
+
+        Optional<TokenEntity> existing = tokenRepository.findByUserId(userId);
+        if (existing.isPresent()) {
+            TokenEntity existingEntity = existing.get();
+            existingEntity.setRefreshToken(refreshToken);
+            existingEntity.setRefreshExpiry(refreshExpiry);
+            tokenRepository.save(existingEntity);
+
+        } else {
+            tokenRepository.save(entity);
+        }
 
         // 4. 写入用户目录下的 JSON 文件，供本地或测试使用
+        // TODO: 生产环境请delete此段，避免在文件系统存储敏感令牌
         Path dir = Path.of(System.getProperty("user.home"), ".aitok", "tokens");
         Files.createDirectories(dir);
         Path out = dir.resolve(userId + ".json");
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> outMap = new HashMap<>();
-        outMap.put("accessToken", accessToken);
+       outMap.put("accessToken", accessToken);
         outMap.put("refreshToken", refreshToken);
         outMap.put("accessExpiry", accessExpiry.toString());
         outMap.put("refreshExpiry", refreshExpiry.toString());

@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 // TODO : add file metadata support, if is vidoe or big file should support chunk upload
 
 
-@EnableConfigurationProperties(MinioProperties.class)
+@EnableConfigurationProperties(MinioConfig.class)
 //此注解用于将 MinioConfig 配置类导入到当前上下文中。通过这种方式，MinioConfig 中定义的 Bean 和配置会被加载到 Spring 容器中，从而在当前类中可用。
 @Import(MinioConfig.class)
 
@@ -75,21 +75,27 @@ public class MinioService {
 
 
 
-    public void uploadFile(MultipartFile file) throws Exception {
-        try {
-            InputStream inputStream = file.getInputStream();
+
+    public String uploadFile(MultipartFile file) throws Exception {
+        String objectName = file.getOriginalFilename();
+        if (objectName == null || objectName.trim().isEmpty()) {
+            objectName = java.util.UUID.randomUUID().toString();
+        }
+        try (InputStream inputStream = file.getInputStream()) {
             minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket(bucketName)
-                            .object(file.getOriginalFilename())
+                            .object(objectName)
                             .stream(inputStream, file.getSize(), -1)
                             .contentType(file.getContentType())
                             .build()
             );
         } catch (MinioException e) {
-            throw new Exception("文件上传失败: " + e.getMessage());
+            throw new Exception("文件上传失败: " + e.getMessage(), e);
         }
+        return getObjectUrl(objectName);
     }
+
 
     public InputStream downloadFile(String objectName) throws Exception {
         try {

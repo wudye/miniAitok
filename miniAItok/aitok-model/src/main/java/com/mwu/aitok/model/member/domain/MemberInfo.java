@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
  *
  * @author mwu
  * @since 2023-11-12 22:26:25
-
+ */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "member_info")
- */
+
 public class MemberInfo implements Serializable {
     private static final long serialVersionUID = -18427092522208701L;
     /**

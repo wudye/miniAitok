@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @Table(name = "member")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+/*
 @NamedQueries({
         @NamedQuery(
                 name = "Member.findByUserName",
@@ -27,6 +29,8 @@ import java.time.LocalDateTime;
                 query = "SELECT m FROM Member m WHERE m.userId = :userId"
         )
 })
+
+ */
 public class Member implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -59,11 +63,11 @@ public class Member implements Serializable {
     /**
      * 帐号状态（0正常 1停用）
      */
-    private String status;
+    private String status= "0";
     /**
      * 删除标志（0代表存在 1代表删除）
      */
-    private String delFlag;
+    private String delFlag = "0";
     /**
      * 最后登录IP
      */
