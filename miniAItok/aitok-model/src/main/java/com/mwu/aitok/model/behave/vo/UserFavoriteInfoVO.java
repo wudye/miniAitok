@@ -1,9 +1,8 @@
 package com.mwu.aitok.model.behave.vo;
 
-import com.mwu.aitok.model.behave.domain.UserFavorite;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 /**
  * UserFavoriteInfoVO
@@ -12,10 +11,34 @@ import lombok.NoArgsConstructor;
  * @DATE: 2023/11/19
  **/
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class UserFavoriteInfoVO {
 
-    private UserFavorite userFavorite;
+    private Long favoriteId;
+    /**
+     * 用户id
+     */
+    private Long userId;
+
+    private String title;
+
+    private String description;
+    /**
+     * 收藏夹封面
+     */
+    private String coverImage;
+
+    private LocalDateTime createTime;
+    /**
+     * 0:别人可见，1:陌生人不可见
+     */
+    private String showStatus;
+    /**
+     * 0存在，1删除
+     */
+    private String delFlag;
     // 收藏视频数量
     private Long videoCount;
 
@@ -23,11 +46,4 @@ public class UserFavoriteInfoVO {
     private String[] videoCoverList;
 
 
-    public UserFavoriteInfoVO(UserFavorite userFavorite) {
-        this.userFavorite = userFavorite;
-    }
-
-    public static UserFavoriteInfoVO from(UserFavorite userFavorite) {
-        return new UserFavoriteInfoVO(userFavorite);
-    }
 }

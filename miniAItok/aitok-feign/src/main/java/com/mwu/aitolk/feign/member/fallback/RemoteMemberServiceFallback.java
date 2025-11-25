@@ -1,5 +1,6 @@
 package com.mwu.aitolk.feign.member.fallback;
 
+;
 import com.mwu.aitiokcoomon.core.domain.R;
 import com.mwu.aitok.model.member.domain.Member;
 import com.mwu.aitolk.feign.member.RemoteMemberService;

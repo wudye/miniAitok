@@ -433,7 +433,23 @@ public class RedisService {
 
     /**
      * redis 管道操作
+     *
+     * 在 RedisTemplate 中，管道（Pipeline）是一种批量操作 Redis 的机制。通过管道，多个 Redis 命令可以一次性发送到 Redis 服务器，而不需要每个命令都等待服务器的响应。这种方式可以显著提高性能，尤其是在需要执行大量操作时。
+     *
      */
+    /*
+       public List<Object> executePipeline() {
+        // 使用管道执行批量操作
+        return redisTemplate.executePipelined((RedisCallback<Object>) connection -> {
+            connection.set("key1".getBytes(), "value1".getBytes());
+            connection.set("key2".getBytes(), "value2".getBytes());
+            connection.get("key1".getBytes());
+            connection.get("key2".getBytes());
+            return null; // 返回值由 RedisTemplate 收集
+        });
+    }
+     */
+
     public List pipeline(RedisCallback redisCallback) {
         return redisTemplate.executePipelined(redisCallback);
     }

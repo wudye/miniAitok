@@ -32,8 +32,7 @@ public class UserFavorite implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "favorite_id")
-    private Long favoriteId;
+
     /**
      * 用户id
      */
@@ -66,6 +65,7 @@ public class UserFavorite implements Serializable {
      * 0存在，1删除
      */
     private String delFlag;
+
 
 
 }

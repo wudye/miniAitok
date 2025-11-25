@@ -84,15 +84,14 @@ public class GrpcMemberServiceImpl extends MemberServiceGrpc.MemberServiceImplBa
         }
         return MemberResponse.newBuilder()
                 .setUserId(memeber.getUserId())
-                .setUserName(memeber.getUserName())
-                .setNickName(memeber.getNickName())
-                .setEmail(memeber.getEmail())
-                .setTelephone(memeber.getTelephone())
-                .setSex(Integer.parseInt(memeber.getSex()))
-                .setAvatar(memeber.getAvatar())
-                .setStatus(Integer.parseInt(memeber.getStatus()))
-                .setCreateTime(memeber.getCreateTime().toString())
-                .setUpdateTime(memeber.getUpdateTime().toString())
+                .setUserName(Optional.ofNullable(memeber.getUserName()).orElse(""))
+                .setNickName(Optional.ofNullable(memeber.getNickName()).orElse(""))
+                .setEmail(Optional.ofNullable(memeber.getEmail()).orElse(""))
+                .setTelephone(Optional.ofNullable(memeber.getTelephone()).orElse(""))
+                .setSex(Optional.ofNullable(memeber.getSex()).orElse(""))
+                .setAvatar(Optional.ofNullable(memeber.getAvatar()).orElse(""))
+                .setStatus(Optional.ofNullable(memeber.getStatus()).orElse("0"))
                 .build();
+
     }
 }

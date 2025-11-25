@@ -1,0 +1,140 @@
+
+
+server:
+  port: 18016
+
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: aitok-social
+
+    #Spring Boot 提供了优雅关闭功能，当应用接收到关闭信号（如 SIGTERM）时，会依次调用 SmartLifecycle 接口的 stop() 方法或其他关闭回调方法，
+    # 确保资源（如线程池、连接池等）能够被正确释放。timeout-per-shutdown-phase 指定了每个阶段的最大等待时间，超过该时间后，未完成的任务将被强制终止。
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  config:
+    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
+      password: ${CONFIG_SERVER_PASSWORD:123456789}
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456789
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      pool-name: HikariPool
+      connection-timeout: 30000
+      max-lifetime: 60000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456789
+      database: 1
+
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: 123456789
+    connection-timeout: 5s
+    socket-timeout: 60s
+
+  rabbitmq:
+   # virtual-host: /cheese
+    host: localhost
+    port: 5672
+    username: aitok
+    password: 123456789
+    connection-timeout: 3s # 连接超时时间
+    listener:
+      simple:
+        prefetch: 1 #能者多劳，但可能消息堆积 表示每次只处理一个消息，避免消息堆积
+        acknowledge-mode: auto # 消息的确认模式为自动确认。当消费者成功处理消息后，RabbitMQ 会自动发送确认信号，无需手动调用 channel.basicAck
+        retry: # 消费者在处理消息失败时的重试策略
+          enabled: true # 开启消费者失败重试
+          initial-interval: 1000ms # 初识的失败等待时长为1秒
+          multiplier: 1 # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
+          max-attempts: 3 # 最大重试次数
+          stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false
+    template: # 消息发送端
+      retry:
+        enabled: true # 超时重试
+        initial-interval: 1000ms # 失败后的初始等待时间
+        multiplier: 1
+        max-attempts: 3
+# RabbitMQ 消息模板通常指 Spring AMQP 提供的 RabbitTemplate，它是应用与 RabbitMQ
+  #交互的高层 API。主要职责包括发送/接收消息、进行消息转换（对象到消息、消息到对象）、处理确认回调和返回消息、以及支持重试与事务等
+logging:
+  file:
+    path: ./logs/aitok-member
+  level:
+    root: info
+
+
+
+oauth2:
+  resourceserver:
+    jwt:
+      jwk-set-uri: http://localhost:18002/member/test/.well-known/jwks.json
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+minio:
+  access-key: admin
+  secret-key: 123456789
+  bucketName: aitok-member
+  endpoint: http://localhost:9000
+
+
+
+video-async-executor:
+  core-size: 32
+  max-size: 64
+  queue-capacity: 100
+
+
+ffmpeg:
+  vframes:
+    # 截图存储路径
+    targetPath: D:/temp/aitok
+    # 0~31 数字越小质量越高
+    quantity: 20
+    # 指定截取时间
+    timestamp: 00:00:00
+
+
+grpc:
+  server:
+    port: 50053
+  client:
+    aitok-member:
+      address: static://127.0.0.1:50051
+      negotiation-type: plaintext

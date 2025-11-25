@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/aitok-common/aitok-common-oauth2/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-grpc-demo/demo1/demo1-user-servife/pom.xml" />
         <option value="$PROJECT_DIR$/aitok-grpc-demo/demo1/user-service/pom.xml" />

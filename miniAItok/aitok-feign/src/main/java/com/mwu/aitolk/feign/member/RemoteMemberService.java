@@ -8,15 +8,19 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(contextId = "remoteMemberService", value = ServiceNameConstants.USER_SERVICE,
-       fallbackFactory = RemoteMemberServiceFallback.class)
+/**
+ * RemoteMemberService
+ *
+ * @AUTHOR: roydon
+ * @DATE: 2023/10/27
+ **/
+@FeignClient(contextId = "remoteMemberService", value = ServiceNameConstants.USER_SERVICE, fallbackFactory = RemoteMemberServiceFallback.class)
 public interface RemoteMemberService {
 
+    /**
+     * 获取用户信息
+     */
+    @GetMapping("/api/v1/{userId}")
+    R<Member> userInfoById(@PathVariable Long userId);
 
-
-        /**
-         * 获取用户信息
-         */
-        @GetMapping("/api/v1/{userId}")
-        R<Member> userInfoById(@PathVariable Long userId);
 }

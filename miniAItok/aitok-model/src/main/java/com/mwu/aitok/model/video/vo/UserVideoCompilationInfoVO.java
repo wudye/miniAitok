@@ -1,10 +1,16 @@
 package com.mwu.aitok.model.video.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.swing.plaf.PanelUI;
+import java.time.LocalDateTime;
 
 /**
  * web页面
@@ -21,12 +27,18 @@ public class UserVideoCompilationInfoVO  {
     private Long videoCount;
     private Boolean weatherFollow;
 
-    private UserVideoCompilation userVideoCompilation;
+    private Long compilationId;
 
-    public UserVideoCompilationInfoVO(UserVideoCompilation userVideoCompilation) {
-        this.userVideoCompilation = userVideoCompilation;
-    }
-    public static UserVideoCompilationInfoVO build(UserVideoCompilation userVideoCompilation) {
-        return new UserVideoCompilationInfoVO(userVideoCompilation);
-    }
+    private Long userId;
+
+    private String title;
+
+    private String description;
+
+    private String coverImage;
+
+    private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
+
 }

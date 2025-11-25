@@ -14,8 +14,14 @@
     <artifactId>aitok-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>aitok-service-member</module>
         <module>aitok-service-member-oatu2</module>
+        <module>aitok-service-video</module>
+        <module>aitok-service-behave</module>
+        <module>aitok-service-creator</module>
+        <module>aitok-service-notice</module>
+        <module>aitok-service-recommend</module>
+        <module>aitok-service-search</module>
+        <module>aitok-service-social</module>
     </modules>
 
     <properties>

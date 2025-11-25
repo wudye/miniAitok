@@ -33,8 +33,15 @@
     <file url="file://$PROJECT_DIR$/aitok-modal/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-modal/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-behave/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-creator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-member-oatu2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-member/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-notice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-recommend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-social/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-video/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/temp/src/main/java" charset="UTF-8" />

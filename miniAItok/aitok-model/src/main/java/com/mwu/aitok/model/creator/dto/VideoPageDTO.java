@@ -1,6 +1,6 @@
 package com.mwu.aitok.model.creator.dto;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * VideoPageDTO
@@ -9,6 +9,10 @@ import lombok.Data;
  * @DATE: 2023/12/5
  **/
 @Data
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class VideoPageDTO {
     private Long userId;
     /**

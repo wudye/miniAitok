@@ -1,0 +1,48 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.mwu.aitok;
+
+option java_package = "com.mwu.aitok";
+
+
+message NumRequest {
+  int64  video_id = 1;
+}
+
+
+message NumResponse {
+  int64  num = 1;
+}
+
+message TrueResponse {
+  bool  result = 1;
+}
+
+message TwoNumRequest {
+   string video_id = 1;
+  int64  user_id = 2;
+}
+
+message VideoBehaveDataResponse {
+  int64  like_num = 1;
+  int64  favorite_num = 2;
+  int64  comment_num = 3;
+  int64  view_num = 4;
+
+}
+
+service BehaveService {
+  rpc apiGetVideoLikeNum(NumRequest) returns (NumResponse);
+  rpc apiGetVideoFavoriteNum(NumRequest) returns (NumResponse);
+
+  rpc removeVideoCommentByVideoId(NumRequest) returns (TrueResponse);
+  rpc apiGetVideoCommentNum(NumRequest) returns (NumResponse);
+  rpc apiDeleteVideoDocumentByVideoId(NumRequest) returns (TrueResponse);
+  rpc removeOtherLikeVideoBehaveRecord(NumRequest) returns (TrueResponse);
+  rpc removeOtherFavoriteVideoBehaveRecord(NumRequest) returns (TrueResponse);
+
+  rpc apiWeatherLikeVideo(TwoNumRequest) returns (TrueResponse);
+  rpc apiWeatherFavoriteVideo(TwoNumRequest) returns (TrueResponse);
+  rpc apiGetVideoBehaveData(NumRequest) returns (VideoBehaveDataResponse);
+}

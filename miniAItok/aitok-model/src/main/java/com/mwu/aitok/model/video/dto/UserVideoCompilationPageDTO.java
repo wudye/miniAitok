@@ -1,9 +1,14 @@
 package com.mwu.aitok.model.video.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /**
  * UserVideoCompilationPageDTO
@@ -17,15 +22,34 @@ import lombok.NoArgsConstructor;
 public class UserVideoCompilationPageDTO  {
     private Integer pageNum = 1;
     private Integer pageSize = 10;
-    private UserVideoCompilation userVideoCompilation;
 
-    public UserVideoCompilationPageDTO(UserVideoCompilation userVideoCompilation) {
+    private Long compilationId;
+    /**
+     * 用户id
+     */
+    private Long userId;
+    /**
+     * 合集标题
+     */
 
-        this.userVideoCompilation = userVideoCompilation;
-    }
+    private String title;
+    /**
+     * 描述
+     */
+    private String description;
+    /**
+     * 合集封面(5M)
+     */
+    private String coverImage;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
 
 
-    public static UserVideoCompilationPageDTO build(UserVideoCompilation userVideoCompilation) {
-        return new UserVideoCompilationPageDTO(userVideoCompilation);
-    }
+
 }

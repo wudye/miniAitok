@@ -1,0 +1,35 @@
+package com.mwu.aitok.service.video.controller.v1;
+
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitok.model.video.domain.VideoTag;
+import com.mwu.aitok.service.video.service.VideoTagService;
+import jakarta.annotation.Resource;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 视频标签表(VideoTag)表控制层
+ *
+ * @author roydon
+ * @since 2023-11-11 16:05:08
+ */
+@RestController
+@RequestMapping("/api/v1/tag")
+public class VideoTagController {
+
+    @Resource
+    private VideoTagService videoTagService;
+
+    /**
+     * 新增标签
+     */
+    @PostMapping("/save")
+    public R<Long> saveTag(@Validated @RequestBody VideoTag videoTag) {
+        return R.ok(videoTagService.saveTag(videoTag).getTagId());
+    }
+
+}
+

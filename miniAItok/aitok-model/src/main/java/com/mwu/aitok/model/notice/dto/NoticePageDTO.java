@@ -20,12 +20,27 @@ public class NoticePageDTO  {
     private Integer pageSize;
     private Notice notice;
 
-    public NoticePageDTO(Notice notice) {
-        this.notice = notice;
-    }
-
-    public static NoticePageDTO of(Notice notice) {
-        return new NoticePageDTO(notice);
-    }
+    private Long noticeId;
+    /**
+     * 用户id
+     */
+    private Long operateUserId;
+    // 被通知的用户
+    private Long noticeUserId;
+    private String videoId;
+    private Long commentId;
+    /**
+     * 内容
+     */
+    private String content;
+    private String remark;
+    /**
+     * 通知类型(0：点赞，1：关注，2：收藏、3:视频被评论，4：回复评论、5：赞了评论)
+     */
+    private String noticeType;
+    /**
+     * 接收标志(0：未读 1：已读)
+     */
+    private String receiveFlag;
 
 }

@@ -1,10 +1,15 @@
 package com.mwu.aitok.model.behave.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mwu.aitok.model.behave.domain.VideoUserComment;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -26,12 +31,37 @@ public class VideoUserCommentVO {
 
     // 子评论，默认二级
     private List<VideoUserCommentVO> children;
+    private Long commentId;
+    /**
+     * 视频id
+     */
+    @NotNull
+    private String videoId;
+    /**
+     * 用户id
+     */
+    private Long userId;
+    /**
+     * 父id
+     */
+    private Long parentId;
+    /**
+     * 评论的根id
+     */
+    private Long originId;
+    /**
+     * 评论内容
+     */
 
-    public VideoUserCommentVO(VideoUserComment videoUserComment) {
-        this.parentComment  = videoUserComment;
-    }
+    private String content;
+    /**
+     * 点赞量
+     */
+    private Long likeNum;
+    /**
+     * 状态：0默认1禁止
+     */
+    private String status;
 
-    public static VideoUserCommentVO from(VideoUserComment videoUserComment) {
-        return new VideoUserCommentVO(videoUserComment);
-    }
+    private LocalDateTime createTime;
 }

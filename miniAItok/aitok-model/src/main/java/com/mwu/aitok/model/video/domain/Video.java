@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "video")
+@Builder
 public class Video {
 
     private static final long serialVersionUID = 1L;

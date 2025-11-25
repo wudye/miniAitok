@@ -1,9 +1,7 @@
 package com.mwu.aitok.model.video.vo;
 
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * UserVideoCompilationVO
@@ -11,9 +9,16 @@ import lombok.NoArgsConstructor;
  * @AUTHOR: mwu
  * @DATE: 2023/11/27
  **/
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class UserVideoCompilationVO {
+    private Long compilationId;
+    private Long userId;
+    private String title;
+    private String description;
+    private String coverImage;
+
     // 播放量
     private Long viewCount;
     // 获赞量
@@ -32,4 +37,6 @@ public class UserVideoCompilationVO {
     public static UserVideoCompilationVO build(UserVideoCompilation userVideoCompilation) {
         return new UserVideoCompilationVO(userVideoCompilation);
     }
+
+
 }

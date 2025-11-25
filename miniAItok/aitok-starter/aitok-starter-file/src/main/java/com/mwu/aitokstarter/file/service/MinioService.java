@@ -3,7 +3,7 @@ package com.mwu.aitokstarter.file.service;
 
 import com.mwu.aitokstarter.file.config.MinioConfig;
 import io.minio.*;
-import io.minio.errors.MinioException;
+import io.minio.errors.*;
 import io.minio.http.Method;
 import io.minio.messages.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Import;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +46,77 @@ public class MinioService {
     private String endpoint;
 
 
-    public void uploadObject(String objectName, String localFilePath, String contentType) throws Exception {
+    public String multipartUploadVideoFile(MultipartFile file) throws IOException, ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        // 1. 校验视频类型（根据你项目实际工具类替换）
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("video")) {
+            throw new IllegalArgumentException("仅支持视频文件上传");
+        }
+
+
+        String objectName = file.getOriginalFilename();
+        if (objectName == null || objectName.trim().isEmpty()) {
+            objectName = java.util.UUID.randomUUID().toString();
+        }
+
+        String uploadId = null;
+        List<String> parts = new ArrayList<>();
+
+
+        // S3 最小分片 5MB，最大 part 数 10000，这里选 10MB 并按需放大确保不超过 10000 片
+        long fileSize = file.getSize();
+        long minPart = 5L * 1024 * 1024;
+        long partSize = Math.max(10L * 1024 * 1024, (long) Math.ceil((double) fileSize / 10_000));
+        partSize = Math.max(partSize, minPart);
+        try (InputStream in = file.getInputStream()) {
+            long uploaded = 0;
+            int partNumber = 1;
+            while (uploaded < fileSize) {
+                long cur = Math.min(partSize, fileSize - uploaded);
+                String partName = objectName + ".part." + partNumber;
+                minioClient.putObject(
+                        PutObjectArgs.builder()
+                                .bucket(bucketName)
+                                .object(partName)
+                                .stream(in, cur, -1)
+                                .contentType(contentType)
+                                .build()
+                );
+                parts.add(partName);
+                uploaded += cur;
+                partNumber++;
+            }
+
+            List<ComposeSource> sources = new ArrayList<>();
+            for (String part : parts) {
+                sources.add(ComposeSource.builder().bucket(bucketName).object(part).build());
+            }
+            minioClient.composeObject(
+                    ComposeObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .sources(sources)
+                            .build()
+            );
+
+            return getObjectUrl(objectName);
+        } catch (Exception ex) {
+            for (String part : parts) {
+                minioClient.removeObject(
+                        RemoveObjectArgs.builder()
+                                .bucket(bucketName)
+                                .object(String.valueOf(part))
+                                .build()
+                );
+            }
+            throw ex;
+        }
+
+
+
+    }
+
+        public void uploadObject(String objectName, String localFilePath, String contentType) throws Exception {
         UploadObjectArgs args = UploadObjectArgs.builder()
                 .bucket(bucketName)
                 .object(objectName)

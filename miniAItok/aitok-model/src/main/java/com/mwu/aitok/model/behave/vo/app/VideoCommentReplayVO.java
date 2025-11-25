@@ -1,9 +1,15 @@
 package com.mwu.aitok.model.behave.vo.app;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mwu.aitok.model.behave.domain.VideoUserComment;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /**
  * VideoCommentReplayVO
@@ -22,12 +28,38 @@ public class VideoCommentReplayVO {
     // 被回复者昵称
     private String replayUserNickName;
 
-    public VideoCommentReplayVO(VideoUserComment base) {
-        this.base = base;
-    }
+    private Long commentId;
+    /**
+     * 视频id
+     */
+    @NotNull
+    private String videoId;
+    /**
+     * 用户id
+     */
+    private Long userId;
+    /**
+     * 父id
+     */
+    private Long parentId;
+    /**
+     * 评论的根id
+     */
+    private Long originId;
+    /**
+     * 评论内容
+     */
 
-    public static VideoCommentReplayVO from(VideoUserComment base) {
-        return new VideoCommentReplayVO(base);
-    }
+    private String content;
+    /**
+     * 点赞量
+     */
+    private Long likeNum;
+    /**
+     * 状态：0默认1禁止
+     */
+    private String status;
+
+    private LocalDateTime createTime;
 
 }

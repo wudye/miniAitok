@@ -2,11 +2,13 @@ package com.mwu.aitok.model.search.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.Date;
 
+@Getter
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(indexName = "search_video", createIndex = true)

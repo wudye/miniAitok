@@ -108,3 +108,8 @@ minio:
   bucketName: aitok-member
   endpoint: http://localhost:9000
 
+grpc:
+  server:
+    port: 50051   # 固定 gRPC 端口，方便被其他服务发现
+  security:
+    enabled: false

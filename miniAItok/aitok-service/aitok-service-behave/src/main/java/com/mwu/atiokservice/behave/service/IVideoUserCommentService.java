@@ -1,0 +1,107 @@
+package com.mwu.atiokservice.behave.service;
+
+
+
+import com.mwu.aitiokcoomon.core.domain.vo.PageData;
+import com.mwu.aitok.model.behave.domain.VideoUserComment;
+import com.mwu.aitok.model.behave.dto.VideoCommentReplayPageDTO;
+import com.mwu.aitok.model.behave.dto.VideoUserCommentPageDTO;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+
+/**
+ * (VideoUserComment)表服务接口
+ *
+ * @author roydon
+ * @since 2023-10-30 16:52:53
+ */
+public interface IVideoUserCommentService  {
+
+    /**
+     * 回复评论
+     *
+     * @param videoUserComment
+     * @return
+     */
+    boolean replay(VideoUserComment videoUserComment);
+
+    /**
+     * 用户删除自己的评论
+     *
+     * @param commentId
+     * @return
+     */
+    boolean delCommentByUser(Long commentId);
+
+    /**
+     * 分页根据视频id获取评论根id
+     *
+     * @param pageDTO
+     * @return
+     */
+    Page<VideoUserComment> getRootListByVideoId(VideoUserCommentPageDTO pageDTO);
+
+    /**
+     * 获取子评论
+     *
+     * @param commentId
+     * @return
+     */
+    List<VideoUserComment> getChildren(Long commentId);
+
+    /**
+     * 查找指定视频评论量
+     *
+     * @param videoId
+     * @return
+     */
+    Long queryCommentCountByVideoId(String videoId);
+
+    /**
+     * 分页查询评论树
+     *
+     * @param pageDTO
+     * @return
+     * @throws InterruptedException
+     */
+    PageData getCommentPageTree(VideoUserCommentPageDTO pageDTO);
+
+    /**
+     * 删除视频所有评论
+     *
+     * @param videoId
+     * @return
+     */
+    boolean removeCommentByVideoId(String videoId);
+
+    /**
+     * 分页视频父评论
+     *
+     * @param pageDTO
+     * @return
+     */
+    PageData getCommentParentPage(VideoUserCommentPageDTO pageDTO);
+
+    /**
+     * 评论视频
+     *
+     * @param videoUserComment
+     * @return
+     */
+    boolean commentVideo(VideoUserComment videoUserComment);
+
+    /**
+     * 视频评论回复分页
+     */
+    PageData getCommentReplyPage(VideoCommentReplayPageDTO pageDTO);
+
+    /**
+     * 获取用户评论视频记录
+     *
+     * @param userId
+     * @return
+     */
+    List<String> getUserCommentVideoIdsRecord(Long userId);
+
+}
