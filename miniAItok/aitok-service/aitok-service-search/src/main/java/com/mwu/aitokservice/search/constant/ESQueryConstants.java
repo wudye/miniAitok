@@ -3,7 +3,7 @@ package com.mwu.aitokservice.search.constant;
 /**
  * ESQueryConstants
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/12/13
  **/
 public class ESQueryConstants {

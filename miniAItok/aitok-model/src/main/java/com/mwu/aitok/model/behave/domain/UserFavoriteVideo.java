@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 /**
  * (UserFavoriteVideo)实体类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-17 10:16:03
  */
 @Getter

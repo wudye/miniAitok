@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 视频评论
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/4
  **/
 @RestController

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * (VideoCategory)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 19:41:13
  */
 @RestController

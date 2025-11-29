@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * UserVideoScore
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/27
  **/
 @Data

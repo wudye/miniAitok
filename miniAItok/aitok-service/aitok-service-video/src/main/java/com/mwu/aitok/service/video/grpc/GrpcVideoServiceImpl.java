@@ -234,33 +234,10 @@ public class GrpcVideoServiceImpl extends VideoServiceGrpc.VideoServiceImplBase 
 
     }
 
-        /**
-         * 获取视频标签
-         *
-         * @param
-         * @return
 
-    @Override
-    public List<VideoTag> apiGetVideoTagStack(String videoId) {
-        return videoTagRelationService.queryVideoTagsByVideoId(videoId);
-    }
-         */
-        public void  apiGetVideoTagStack(VideoIdRequest request, StreamObserver<VideoTagListResponse> responseObserver) {
-            Long videoId = request.getVideoId();
 
-            List<VideoTag> videoTags =  videoTagRelationService.queryVideoTagsByVideoId(String.valueOf(videoId));
 
-            VideoTagListResponse.Builder videoTagListResponse = VideoTagListResponse.newBuilder();
-            for (VideoTag tag : videoTags) {
-                VideoTagResponse.Builder vtr = VideoTagResponse.newBuilder()
-                        .setTagId(tag.getTagId() == null ? 0L : tag.getTagId())
-                        .setTag(tag.getTag() == null ? "" : tag.getTag());
-                videoTagListResponse.addVideoTagList(vtr.build());
-            }
-            responseObserver.onNext(videoTagListResponse.build());
-            responseObserver.onCompleted();
 
-        }
 
 
     /**
@@ -430,6 +407,25 @@ public class GrpcVideoServiceImpl extends VideoServiceGrpc.VideoServiceImplBase 
                 .setVideoCount(videoCompilationInfoVO.getVideoCount());
         responseObserver.onNext( userVideoCompilationInfoVOResponse.build());
         responseObserver.onCompleted();
+    }
+
+
+
+    public void  apiGetVideoTagStack(VideoIdRequest request, StreamObserver<TagsIdListResponse> responseObserver) {
+        Long videoId = request.getVideoId();
+
+        List<VideoTag> videoTags =  videoTagRelationService.queryVideoTagsByVideoId(String.valueOf(videoId));
+
+        TagsIdListResponse.Builder videoTagListResponse =
+                TagsIdListResponse.newBuilder().addAllTagIds(
+                        videoTags.stream().map(VideoTag::getTagId).collect(Collectors.toList())
+                );
+
+
+
+        responseObserver.onNext(videoTagListResponse.build());
+        responseObserver.onCompleted();
+
     }
 
 }

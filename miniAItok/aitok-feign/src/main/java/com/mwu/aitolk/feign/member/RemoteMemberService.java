@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * RemoteMemberService
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/27
  **/
 @FeignClient(contextId = "remoteMemberService", value = ServiceNameConstants.USER_SERVICE, fallbackFactory = RemoteMemberServiceFallback.class)

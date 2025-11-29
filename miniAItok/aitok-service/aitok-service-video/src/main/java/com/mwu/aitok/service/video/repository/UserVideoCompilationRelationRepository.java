@@ -12,7 +12,6 @@ import java.util.List;
 public interface UserVideoCompilationRelationRepository extends JpaRepository<UserVideoCompilationRelation, Long> {
     void deleteByVideoId(String videoId);
 
-    Page<UserVideoCompilationRelation> findByCompilationId(Long compilationId);
 
     Page<UserVideoCompilationRelation> findByCompilationId(Long compilationId, Pageable pageable);
 

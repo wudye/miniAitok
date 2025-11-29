@@ -57,7 +57,7 @@ import static com.mwu.aitok.service.video.constants.InterestPushConstant.VIDEO_C
 /**
  * (VideoCategory)表服务实现类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 19:41:14
  */
 @Slf4j

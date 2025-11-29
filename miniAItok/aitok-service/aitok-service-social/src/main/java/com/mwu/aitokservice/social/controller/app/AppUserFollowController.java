@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * AppUserFollowController
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/2/1
  **/
 @RestController

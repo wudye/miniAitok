@@ -6,6 +6,7 @@ import com.mwu.aitok.model.notice.domain.Notice;
 import com.mwu.aitok.model.notice.mq.NoticeDirectConstant;
 import com.mwu.aitokservice.notice.repository.NoticeRepository;
 import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -16,19 +17,20 @@ import org.springframework.stereotype.Component;
 /**
  * VideoRabbitListener
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  * video视频服务mq监听器
  **/
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class NoticeDirectListener {
 
-    @Resource
-    private NoticeRepository noticeService;
+    private final NoticeRepository noticeService;
 
-    @Resource
-    private ObjectMapper objectMapper;
+
+
+    private  final ObjectMapper objectMapper;
 
     /**
      * video延时消息 todo 考虑到业务场景，需要引入消息堆积解决方案：1、多个消费者；2、线程池；3、扩大队列容积（惰性队列lazy）

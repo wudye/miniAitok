@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 视频图片关联表(VideoImage)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2023-11-20 21:18:59
  */
 @RestController

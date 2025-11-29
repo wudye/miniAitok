@@ -13,7 +13,7 @@ import java.util.List;
  * 1、基于用户协同过滤
  * 2、基于视频标签
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/27
  **/
 @Slf4j

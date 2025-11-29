@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 /**
  * (VideoCategory)实体类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 19:41:13
  */
 @Getter

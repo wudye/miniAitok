@@ -1,8 +1,9 @@
 package com.mwu.aitolk.feign.video.fallback;
 
-import com.niuyin.common.core.domain.R;
-import com.niuyin.feign.video.RemoteVideoService;
-import com.niuyin.model.video.domain.Video;
+
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitok.model.video.domain.Video;
+import com.mwu.aitolk.feign.video.RemoteVideoService;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * RemoteVideoServiceFallback
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/28
  **/
 @Component

@@ -3,7 +3,7 @@ package com.mwu.aitok.servicememberoauth2.constants;
 /**
  * UserCacheConstant
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/29
  **/
 public class UserCacheConstants {

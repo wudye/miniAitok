@@ -2,7 +2,7 @@ package com.mwu.aitokservice.search.constant;
 
 /**
  * 功能：
- * 作者：lzq
+ * 作者：mwu
  * 日期：2023/11/21 10:40
  */
 public class VideoHotTitleCacheConstants {

@@ -1,6 +1,7 @@
 package com.mwu.atiokservice.behave.controller.v1;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.R;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 点赞表(VideoUserLike)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 14:32:56
  */
 @RestController
@@ -35,7 +36,7 @@ public class VideoUserLikeController {
      * 用户点赞
      */
     @GetMapping("/{videoId}")
-    public R<Boolean> getDetails(@PathVariable("videoId") String videoId) {
+    public R<Boolean> getDetails(@PathVariable("videoId") String videoId) throws JsonProcessingException {
         return R.ok(videoUserLikeService.videoLike(videoId));
     }
 

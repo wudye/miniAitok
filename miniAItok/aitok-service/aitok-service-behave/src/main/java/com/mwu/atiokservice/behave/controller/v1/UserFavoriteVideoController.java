@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * (UserFavoriteVideo)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-17 10:16:03
  */
 @RestController

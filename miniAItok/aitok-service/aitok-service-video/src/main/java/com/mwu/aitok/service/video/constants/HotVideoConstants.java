@@ -3,7 +3,7 @@ package com.mwu.aitok.service.video.constants;
 /**
  * HotVideoConstants
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/11/7
  * 热门视频常量
  **/

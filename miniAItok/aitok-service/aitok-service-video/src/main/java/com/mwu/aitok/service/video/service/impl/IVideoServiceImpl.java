@@ -792,11 +792,12 @@ public class IVideoServiceImpl implements IVideoService {
             member = BeanCopyUtils.copyBean(memberResponse, Member.class);
         }
         Collection<String> videoIdsByUserModel = interestPushService.getVideoIdsByUserModel(member);
+        Collection<Long> videoIds = videoIdsByUserModel.stream().map(Long::valueOf).collect(Collectors.toList());
         if (CollectionUtils.isEmpty(videoIdsByUserModel)) {
             return Collections.emptyList();
         }
-        List<Video> videoList = videoRepository.findByVideoIdIn(
-                videoIdsByUserModel,
+        List<Video> videoList = videoRepository.findAllByIdIn(
+                videoIds,
                 Sort.by(Sort.Direction.DESC, "createTime")
         );
         List<VideoVO> videoVOList = BeanCopyUtils.copyBeanList(videoList, VideoVO.class);
@@ -1204,7 +1205,12 @@ public class IVideoServiceImpl implements IVideoService {
             return Collections.emptyList();
         }
         // DelFlagEnum.EXIST.getCode() 返回 Integer 或相应类型
-        return videoRepository.findByVideoIdInAndDelFlagOrderByCreateTimeDesc(videoIds, DelFlagEnum.EXIST.getCode());
+
+        List<Long> longVideoIds = videoIds.stream()
+                .map(Long::valueOf)
+                .toList();
+        return videoRepository.findByIdInAndDelFlagOrderByCreateTimeDesc(longVideoIds, DelFlagEnum.EXIST.getCode());
+
     }
 
     @Override

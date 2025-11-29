@@ -1,14 +1,14 @@
 package com.mwu.aitokservice.search.controller.v1;
 
-import com.niuyin.common.core.domain.R;
-import com.niuyin.service.search.service.VideoSearchHistoryService;
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitokservice.search.service.VideoSearchHistoryService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * VideoSearchHistoryController
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  **/
 @RestController

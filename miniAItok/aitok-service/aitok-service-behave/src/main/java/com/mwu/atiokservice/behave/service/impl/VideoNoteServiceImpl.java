@@ -31,7 +31,7 @@ import static org.bouncycastle.asn1.x500.style.RFC4519Style.member;
 /**
  * 视频笔记表(VideoNote)表服务实现类
  *
- * @author roydon
+ * @author mwu
  * @since 2024-05-05 18:51:05
  */
 @Service("videoNoteService")

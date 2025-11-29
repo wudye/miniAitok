@@ -1,6 +1,7 @@
 package com.mwu.atiokservice.behave.service;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitok.model.behave.domain.VideoUserFavorites;
 import com.mwu.aitok.model.video.dto.VideoPageDto;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * 视频收藏表(VideoUserFavorites)表服务接口
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 15:57:38
  */
 public interface IVideoUserFavoritesService  {
@@ -19,7 +20,7 @@ public interface IVideoUserFavoritesService  {
     /**
      * 收藏视频
      */
-    boolean userOnlyFavoriteVideo(String videoId);
+    boolean userOnlyFavoriteVideo(String videoId) throws JsonProcessingException;
 
     /**
      * 取消收藏视频

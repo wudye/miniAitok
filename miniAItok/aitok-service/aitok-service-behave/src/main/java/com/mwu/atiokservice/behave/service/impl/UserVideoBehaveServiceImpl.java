@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * 用户视频行为表(UserVideoBehave)表服务实现类
  *
- * @author roydon
+ * @author mwu
  * @since 2024-04-19 14:21:15
  */
 @Service("userVideoBehaveService")

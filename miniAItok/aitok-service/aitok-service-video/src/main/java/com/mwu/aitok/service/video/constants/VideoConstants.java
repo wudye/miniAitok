@@ -3,7 +3,7 @@ package com.mwu.aitok.service.video.constants;
 /**
  * VideoConstants
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/11/11
  **/
 public class VideoConstants {

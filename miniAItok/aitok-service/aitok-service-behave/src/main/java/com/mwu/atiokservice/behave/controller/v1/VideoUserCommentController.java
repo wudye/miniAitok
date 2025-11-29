@@ -35,7 +35,7 @@ import static com.mwu.aitok.model.notice.mq.NoticeDirectConstant.NOTICE_DIRECT_E
 /**
  * (VideoUserComment)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-30 16:52:51
  */
 @Slf4j
@@ -95,7 +95,7 @@ public class VideoUserCommentController {
      */
     private void sendNotice2MQ(String videoId, String content, Long operateUserId) throws JsonProcessingException {
         // 根据视频获取发布者id
-        Video video = videoUserLikeMapper.findByVideoId(videoId);
+        Video video = new Video() ;// videoUserLikeMapper.findByVideoId(videoId);
         if (StringUtils.isNull(video)) {
             return;
         }

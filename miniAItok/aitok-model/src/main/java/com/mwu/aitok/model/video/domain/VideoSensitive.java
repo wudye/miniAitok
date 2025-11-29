@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 /**
  * 敏感词信息表(VideoSensitive)实体类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 11:17:39
  */
 @Getter

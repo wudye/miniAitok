@@ -1,8 +1,9 @@
 package com.mwu.aitolk.feign.social;
 
-import com.niuyin.common.core.constant.ServiceNameConstants;
-import com.niuyin.common.core.domain.R;
-import com.niuyin.feign.social.fallback.RemoteSocialServiceFallback;
+
+import com.mwu.aitiokcoomon.core.constant.ServiceNameConstants;
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitolk.feign.social.fallback.RemoteSocialServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * RemoteSocialService
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/11/4
  **/
 @FeignClient(contextId = "remoteSocialService", value = ServiceNameConstants.SOCIAL_SERVICE, fallbackFactory = RemoteSocialServiceFallback.class)

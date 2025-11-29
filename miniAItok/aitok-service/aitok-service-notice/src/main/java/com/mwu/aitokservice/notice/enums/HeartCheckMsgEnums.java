@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * ws心跳检测消息枚举
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/3/8
  **/
 @Getter

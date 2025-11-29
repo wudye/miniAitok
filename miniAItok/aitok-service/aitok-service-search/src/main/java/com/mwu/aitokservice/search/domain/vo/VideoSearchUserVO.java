@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 /**
  * VideoSearchUserVO
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/11/3
  **/
 @EqualsAndHashCode(callSuper = true)

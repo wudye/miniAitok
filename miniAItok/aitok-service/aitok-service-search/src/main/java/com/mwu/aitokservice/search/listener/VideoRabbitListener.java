@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * VideoRabbitListener
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  * video视频服务mq监听器
  **/
@@ -29,7 +29,7 @@ public class VideoRabbitListener {
      */
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(name = VideoDelayedQueueConstant.ESSYNC_DIRECT_QUEUE, durable = "true"),
-            exchange = @Exchange(name = VideoDelayedQueueConstant.ESSYNC_DELAYED_EXCHANGE, delayed = "true"),
+            exchange = @Exchange(name = VideoDelayedQueueConstant.ESSYNC_DELAYED_EXCHANGE, type = "direct"),
             key = VideoDelayedQueueConstant.ESSYNC_ROUTING_KEY
     ))
     public void listenVideoDelayMessage(String msg) {

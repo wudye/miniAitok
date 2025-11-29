@@ -12,12 +12,12 @@ import java.util.List;
 /**
  * 点赞表(VideoUserLike)表服务接口
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 14:33:00
  */
 public interface IVideoUserLikeService {
 
-    boolean videoLike(String videoId);
+    boolean videoLike(String videoId) throws JsonProcessingException;
 
     /**
      * 分页查询我的点赞视频

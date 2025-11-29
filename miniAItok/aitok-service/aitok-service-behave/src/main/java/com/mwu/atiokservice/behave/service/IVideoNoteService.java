@@ -8,7 +8,7 @@ import com.mwu.aitok.model.behave.vo.VideoNoteVO;
 /**
  * 视频笔记表(VideoNote)表服务接口
  *
- * @author roydon
+ * @author mwu
  * @since 2024-05-05 18:51:05
  */
 public interface IVideoNoteService  {

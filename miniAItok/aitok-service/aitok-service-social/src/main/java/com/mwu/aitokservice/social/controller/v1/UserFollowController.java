@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 用户关注表(UserFollow)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-30 15:54:19
  */
 @RestController

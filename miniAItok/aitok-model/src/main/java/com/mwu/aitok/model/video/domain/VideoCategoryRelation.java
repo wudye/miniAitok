@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 视频分类关联表(VideoCategoryRelation)实体类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 14:44:34
  */
 @Getter

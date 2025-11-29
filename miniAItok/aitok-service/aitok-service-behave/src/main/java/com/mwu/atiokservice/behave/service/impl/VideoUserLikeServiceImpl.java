@@ -53,7 +53,7 @@ import static com.mwu.aitok.model.notice.mq.NoticeDirectConstant.NOTICE_DIRECT_E
 /**
  * 点赞表(VideoUserLike)表服务实现类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 14:33:01
  */
 @Slf4j
@@ -87,7 +87,7 @@ public class VideoUserLikeServiceImpl implements IVideoUserLikeService {
      */
     @Transactional
     @Override
-    public boolean videoLike(String videoId) {
+    public boolean videoLike(String videoId) throws JsonProcessingException {
         Long userId = UserContext.getUserId();
 
 
@@ -247,7 +247,7 @@ public class VideoUserLikeServiceImpl implements IVideoUserLikeService {
 
         VideoIdListRequest videoIdListRequest = VideoIdListRequest.newBuilder().addAllVideoIds(videoIds).build();
         VideoListResponse videoListResponse = videoServiceBlockingStub.apiGetVideoListByVideoIds(videoIdListRequest);
-        List<Video> records = videoUserLikeMapper.selectPersonLikePage(pageDto);
+        List<Video> records = List.of(); //videoUserLikeMapper.selectPersonLikePage(pageDto);
         List<MyLikeVideoVO> videoVOList = BeanCopyUtils.copyBeanList(records, MyLikeVideoVO.class);
         CompletableFuture.allOf(videoVOList.stream().map(this::packageMyLikeVideoPageAsync).toArray(CompletableFuture[]::new)).join();
         return PageData.genPageData(videoVOList, videoUserLikeMapper.selectPersonLikeCount(UserContext.getUserId(), pageDto.getVideoTitle()));
@@ -273,7 +273,8 @@ public class VideoUserLikeServiceImpl implements IVideoUserLikeService {
     public void packageVideoImageData(VideoVO videoVO) {
         // 若是图文则封装图片集合
         if (videoVO.getPublishType().equals(PublishType.IMAGE.getCode())) {
-            List<VideoImage> videoImageList = videoUserLikeMapper.selectImagesByVideoId(videoVO.getVideoId());
+            List<VideoImage> videoImageList = null;
+            //videoUserLikeMapper.selectImagesByVideoId(videoVO.getVideoId());
             String[] imgs = videoImageList.stream().map(VideoImage::getImageUrl).toArray(String[]::new);
             videoVO.setImageList(imgs);
         }
@@ -288,32 +289,35 @@ public class VideoUserLikeServiceImpl implements IVideoUserLikeService {
     @Override
     public PageData queryPersonLikePage(VideoPageDto pageDto) {
         //判断该用户的点赞列表是否对外展示
-        MemberInfo memberInfo = videoUserLikeMapper.selectPersonLikeShowStatus(pageDto.getUserId());
+        MemberInfo memberInfo = null;
+        // videoUserLikeMapper.selectPersonLikeShowStatus(pageDto.getUserId());
         if (memberInfo.getLikeShowStatus().equals(ShowStatusEnum.HIDE.getCode())) {
             return PageData.emptyPage();
         }
         pageDto.setPageNum((pageDto.getPageNum() - 1) * pageDto.getPageSize());
-        List<Video> records = videoUserLikeMapper.selectPersonLikePage(pageDto);
+        List<Video> records = List.of();// videoUserLikeMapper.selectPersonLikePage(pageDto);
         ArrayList<VideoVO> videoVOList = new ArrayList<>();
         List<CompletableFuture<Void>> futures = records.stream()
                 .map(r -> CompletableFuture.runAsync(() -> {
                     VideoVO videoVO = BeanCopyUtils.copyBean(r, VideoVO.class);
                     //若是图文，则封装图片集合
                     if (r.getPublishType().equals(PublishType.IMAGE.getCode())) {
-                        List<VideoImage> videoImageList = videoUserLikeMapper.selectImagesByVideoId(videoVO.getVideoId());
+                        List<VideoImage> videoImageList = null;// videoUserLikeMapper.selectImagesByVideoId(videoVO.getVideoId());
                         String[] imgs = videoImageList.stream().map(VideoImage::getImageUrl).toArray(String[]::new);
                         videoVO.setImageList(imgs);
                     }
                     //若是开启定位，则封装定位
                     if (r.getPositionFlag().equals(PositionFlag.OPEN.getCode())) {
-                        VideoPosition videoPosition = videoUserLikeMapper.selectPositionByVideoId(videoVO.getVideoId());
+                        VideoPosition videoPosition = null;
+                              //  videoUserLikeMapper.selectPositionByVideoId(videoVO.getVideoId());
                         // TODO need set position VO add a class called videoPositionVO
                         // videoVO.setPosition(videoPosition);
                     }
                     videoVOList.add(videoVO);
                 })).collect(Collectors.toList());
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-        return PageData.genPageData(videoVOList, videoUserLikeMapper.selectPersonLikeCount(pageDto));
+        //return PageData.genPageData(videoVOList, videoUserLikeMapper.selectPersonLikeCount(pageDto));
+        return  null;
     }
 
     /**
@@ -359,6 +363,7 @@ public class VideoUserLikeServiceImpl implements IVideoUserLikeService {
      */
     @Override
     public Boolean videoActionLike(String videoId) throws JsonProcessingException {
+        /*
         Long userId = UserContext.getUserId();
         boolean likeVideo = videoUserLikeMapper.userLikeVideo(videoId, userId);
         if (likeVideo) {
@@ -385,7 +390,11 @@ public class VideoUserLikeServiceImpl implements IVideoUserLikeService {
             // 插入点赞行为数据
             userVideoBehaveService.syncUserVideoBehave(userId, videoId, UserVideoBehaveEnum.LIKE);
         }
+
         return likeVideo;
+         */
+
+        return true;
     }
 
     @Override

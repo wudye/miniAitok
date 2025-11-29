@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * RemoteBehaveService
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/11/4
  **/
 @FeignClient(contextId = "remoteBehaveService", value = ServiceNameConstants.BEHAVE_SERVICE, fallbackFactory = RemoteBehaveServiceFallback.class)

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * 视频收藏表(VideoUserFavorites)实体类
  * 此表表示用户仅仅收藏视频，与收藏夹无关
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 15:57:38
  */
 @Getter

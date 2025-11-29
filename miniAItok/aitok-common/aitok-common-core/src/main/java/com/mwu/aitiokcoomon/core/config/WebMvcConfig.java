@@ -2,6 +2,7 @@ package com.mwu.aitiokcoomon.core.config;
 
 import com.mwu.aitiokcoomon.core.compont.SnowFlake;
 import jakarta.annotation.Resource;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.AntPathMatcher;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@ConfigurationProperties(prefix = "aitok.web")
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Resource

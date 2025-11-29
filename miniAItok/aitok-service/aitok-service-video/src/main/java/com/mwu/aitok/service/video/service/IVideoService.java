@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * 视频表(Video)表服务接口
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-25 20:33:11
  */
 public interface IVideoService  {

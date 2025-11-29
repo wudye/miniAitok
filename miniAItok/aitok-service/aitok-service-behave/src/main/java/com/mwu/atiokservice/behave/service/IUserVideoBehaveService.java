@@ -6,7 +6,7 @@ import com.mwu.aitok.model.behave.enums.UserVideoBehaveEnum;
 /**
  * 用户视频行为表(UserVideoBehave)表服务接口
  *
- * @author roydon
+ * @author mwu
  * @since 2024-04-19 14:21:13
  */
 public interface IUserVideoBehaveService  {

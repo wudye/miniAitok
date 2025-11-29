@@ -83,6 +83,11 @@ spring:
         max-attempts: 3
 # RabbitMQ 消息模板通常指 Spring AMQP 提供的 RabbitTemplate，它是应用与 RabbitMQ
   #交互的高层 API。主要职责包括发送/接收消息、进行消息转换（对象到消息、消息到对象）、处理确认回调和返回消息、以及支持重试与事务等
+  listener:
+    simple:
+      missing-queues-fatal: false # 启动时如果队列不存在不报错
+      # 如果队列暂时由外部创建，调试时可设置为 false
+
 logging:
   file:
     path: ./logs/aitok-member

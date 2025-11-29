@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 用户标签模型服务
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/27
  **/
 public interface UserTagModalRecommendService {

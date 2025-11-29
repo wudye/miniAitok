@@ -3,7 +3,7 @@ package com.mwu.aitok.servicememberoauth2.constants;
 /**
  * SmsConstant
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/1/28
  **/
 public class SmsConstant {

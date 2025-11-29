@@ -97,6 +97,6 @@ public class AppVideoController {
      */
     @PostMapping("/userPage")
     public PageData<?> userPage(@RequestBody VideoPageDto pageDto) {
-        return videoService.queryUserVideoPage(pageDto);
+        return (PageData<?>) videoService.queryUserVideoPage(pageDto);
     }
 }

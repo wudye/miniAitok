@@ -1,7 +1,15 @@
 package com.mwu.atiokservice.behave.service.impl;
 
 
+import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.exception.CustomException;
+import com.mwu.aitok.model.behave.domain.UserFavoriteVideo;
+import com.mwu.aitok.model.behave.domain.VideoUserFavorites;
+import com.mwu.aitok.model.behave.dto.UserFavoriteVideoDTO;
+import com.mwu.aitok.model.constants.VideoCacheConstants;
+import com.mwu.aitok.model.notice.domain.Notice;
+import com.mwu.aitok.model.notice.enums.NoticeType;
+import com.mwu.aitok.model.notice.enums.ReceiveFlag;
 import com.mwu.aitokcommon.cache.service.RedisService;
 import com.mwu.atiokservice.behave.repository.UserFavoriteVideoRepository;
 import com.mwu.atiokservice.behave.repository.VideoUserFavoritesRepository;
@@ -23,12 +31,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.niuyin.model.notice.mq.NoticeDirectConstant.*;
+import static com.mwu.aitok.model.notice.mq.NoticeDirectConstant.NOTICE_DIRECT_EXCHANGE;
+
 
 /**
  * (UserFavoriteVideo)表服务实现类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-17 10:16:09
  */
 @Slf4j
@@ -61,6 +70,8 @@ public class UserFavoriteVideoServiceImpl implements IUserFavoriteVideoService {
     @Transactional(rollbackFor = CustomException.class)
     @Override
     public Boolean videoFavorites(UserFavoriteVideoDTO userFavoriteVideoDTO) {
+
+        /*
         // 删除仅仅收藏此视频的一条记录
         videoUserFavoritesService.remove(new LambdaQueryWrapper<VideoUserFavorites>()
                 .eq(VideoUserFavorites::getUserId, UserContext.getUserId())
@@ -131,6 +142,9 @@ public class UserFavoriteVideoServiceImpl implements IUserFavoriteVideoService {
         } else {
             return false;
         }
+
+         */
+        return true;
     }
 
     /**
@@ -142,6 +156,7 @@ public class UserFavoriteVideoServiceImpl implements IUserFavoriteVideoService {
     @Async
     public void sendNotice2MQ(String videoId, Long operateUserId) {
         // 根据视频获取发布者id
+        /*
         Video video = videoUserLikeMapper.selectVideoByVideoId(videoId);
         if (StringUtils.isNull(video)) {
             return;
@@ -162,6 +177,8 @@ public class UserFavoriteVideoServiceImpl implements IUserFavoriteVideoService {
         String msg = JSON.toJSONString(notice);
         rabbitTemplate.convertAndSend(NOTICE_DIRECT_EXCHANGE, NOTICE_CREATE_ROUTING_KEY, msg);
         log.debug(" ==> {} 发送了一条消息 ==> {}", NOTICE_DIRECT_EXCHANGE, msg);
+        */
+
     }
 
     @Async
@@ -183,8 +200,17 @@ public class UserFavoriteVideoServiceImpl implements IUserFavoriteVideoService {
      */
     @Override
     public Boolean videoWeatherInFavoriteFolder(Long favoriteId, String videoId) {
+        /*
         LambdaQueryWrapper<UserFavoriteVideo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserFavoriteVideo::getFavoriteId, favoriteId).eq(UserFavoriteVideo::getVideoId, videoId);
         return this.count(queryWrapper) > 0;
+
+         */
+        return true;
+    }
+
+    @Override
+    public List<UserFavoriteVideo> getUserFavoriteVideos(Long userId, String videoId) {
+        return List.of();
     }
 }

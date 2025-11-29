@@ -22,7 +22,6 @@ public class WebSocketServer {
 
     // 用来保存在线连接数
     private static final Map<Long, Session> sessionPool = new ConcurrentHashMap<>();
-    @Resource
     private static ObjectMapper objectMapper ;
 
     /**

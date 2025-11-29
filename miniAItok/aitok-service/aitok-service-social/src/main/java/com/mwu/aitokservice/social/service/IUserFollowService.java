@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 用户关注表(UserFollow)表服务接口
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-30 15:54:21
  */
 public interface IUserFollowService  {

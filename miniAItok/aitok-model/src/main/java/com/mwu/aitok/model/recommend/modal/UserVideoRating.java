@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * UserVideoRating
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/27
  **/
 @Data

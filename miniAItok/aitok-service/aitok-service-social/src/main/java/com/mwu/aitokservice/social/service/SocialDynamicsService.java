@@ -8,7 +8,7 @@ import com.mwu.aitok.model.social.cache.DynamicUser;
 /**
  * 社交动态服务
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/6
  **/
 public interface SocialDynamicsService {

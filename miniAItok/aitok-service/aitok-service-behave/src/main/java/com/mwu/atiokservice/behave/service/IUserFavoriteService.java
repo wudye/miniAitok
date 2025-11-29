@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * (UserFavorite)表服务接口
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-13 16:37:53
  */
 public interface IUserFavoriteService {

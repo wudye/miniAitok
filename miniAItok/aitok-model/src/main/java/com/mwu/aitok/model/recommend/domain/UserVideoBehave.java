@@ -12,7 +12,7 @@ package com.mwu.aitok.model.recommend.domain;//package com.niuyin.model.recommen
 ///**
 // * 用户视频行为表(UserVideoBehave)实体类
 // *
-// * @author roydon
+// * @author mwu
 // * @since 2024-04-27 18:56:47
 // */
 //@Data

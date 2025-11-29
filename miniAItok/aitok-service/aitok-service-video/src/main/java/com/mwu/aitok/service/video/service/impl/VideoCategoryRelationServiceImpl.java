@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 /**
  * 视频分类关联表(VideoCategoryRelation)表服务实现类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 14:44:35
  */
 @Service

@@ -3,7 +3,7 @@ package com.mwu.aitokservice.search.constant;//package com.niuyin.service.search
 ///**
 // * ESIndexConstants
 // *
-// * @AUTHOR: roydon
+// * @AUTHOR: mwu
 // * @DATE: 2023/10/31
 // **/
 //public class ESIndexConstants {

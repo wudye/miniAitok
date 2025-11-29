@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 视频收藏表(VideoUserFavorites)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 15:57:37
  */
 @RestController

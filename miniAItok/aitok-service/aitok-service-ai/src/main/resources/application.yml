@@ -1,0 +1,256 @@
+
+
+server:
+  port: 180020
+  servlet:
+    encoding:
+      enabled: true
+      charset: UTF-8 # 必须设置 UTF-8，避免 WebFlux 流式返回（AI 场景）会乱码问题
+      force: true
+
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: aitok-ai
+    #Spring Boot 提供了优雅关闭功能，当应用接收到关闭信号（如 SIGTERM）时，会依次调用 SmartLifecycle 接口的 stop() 方法或其他关闭回调方法，
+    # 确保资源（如线程池、连接池等）能够被正确释放。timeout-per-shutdown-phase 指定了每个阶段的最大等待时间，超过该时间后，未完成的任务将被强制终止。
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  config:
+    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
+      password: ${CONFIG_SERVER_PASSWORD:123456789}
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456789
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      # 连接池最大连接数，默认是 10
+      maximum-pool-size: 60
+      # 链接超时时间，默认 30000(30 秒)
+      connection-timeout: 60000
+      # 空闲连接存活最大时间，默认 600000(10 分钟)
+      idle-timeout: 60000
+      # 连接将被测试活动的最大时间量
+      validation-timeout: 3000
+      # 此属性控制池中连接的最长生命周期，值 0 表示无限生命周期，默认 1800000(30 分钟)
+      max-lifetime: 60000
+      # 连接到数据库时等待的最长时间(秒)
+      login-timeout: 5
+      # 池中维护的最小空闲连接数
+      minimum-idle: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456789
+      database: 1
+
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: 123456789
+    connection-timeout: 5s
+    socket-timeout: 60s
+
+  rabbitmq:
+   # virtual-host: /cheese
+    host: localhost
+    port: 5672
+    username: aitok
+    password: 123456789
+    connection-timeout: 3s # 连接超时时间
+    listener:
+      simple:
+        prefetch: 1 #能者多劳，但可能消息堆积 表示每次只处理一个消息，避免消息堆积
+        acknowledge-mode: auto # 消息的确认模式为自动确认。当消费者成功处理消息后，RabbitMQ 会自动发送确认信号，无需手动调用 channel.basicAck
+        retry: # 消费者在处理消息失败时的重试策略
+          enabled: true # 开启消费者失败重试
+          initial-interval: 1000ms # 初识的失败等待时长为1秒
+          multiplier: 1 # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
+          max-attempts: 3 # 最大重试次数
+          stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false
+    template: # 消息发送端
+      retry:
+        enabled: true # 超时重试
+        initial-interval: 1000ms # 失败后的初始等待时间
+        multiplier: 1
+        max-attempts: 3
+# RabbitMQ 消息模板通常指 Spring AMQP 提供的 RabbitTemplate，它是应用与 RabbitMQ
+  #交互的高层 API。主要职责包括发送/接收消息、进行消息转换（对象到消息、消息到对象）、处理确认回调和返回消息、以及支持重试与事务等
+
+  ai:
+    openai:
+      base-url: https://api.siliconflow.cn/ # https://dashscope.aliyuncs.com/compatible-mode
+      api-key: sk-epsakfenqnyzoxhmbucsxlhkdqlcbnimslqoivkshalvdozz # sk-6879fb6daefa445d890bb9edf8dbab7c
+      chat:
+        options:
+          model: deepseek-ai/DeepSeek-V3 # qwen-plus
+      image:
+        options:
+          model: Kwai-Kolors/Kolors # wanx2.1-t2i-turbo
+
+# 雪花算法主键生成器
+snowflake:
+  datacenterId: 2 # 数据中心ID
+  machineId: 1 # 机器ID
+
+
+logging:
+  file:
+    path: ./logs/aitok-member
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG
+
+
+
+oauth2:
+  resourceserver:
+    jwt:
+      jwk-set-uri: http://localhost:18002/member/test/.well-known/jwks.json
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+minio:
+  access-key: admin
+  secret-key: 123456789
+  bucketName: aitok-member
+  endpoint: http://localhost:9000
+
+
+
+video-async-executor:
+  core-size: 32
+  max-size: 64
+  queue-capacity: 100
+
+
+ffmpeg:
+  vframes:
+    # 截图存储路径
+    targetPath: D:/temp/aitok
+    # 0~31 数字越小质量越高
+    quantity: 20
+    # 指定截取时间
+    timestamp: 00:00:00
+
+
+grpc:
+  server:
+    port: 50053
+  client:
+    aitok-member:
+      address: static://127.0.0.1:50051
+      negotiation-type: plaintext
+
+--- # ai配置
+
+spring:
+  ai:
+    vectorstore: # 向量存储
+      redis:
+        initialize-schema: true
+        index: knowledge_index # Redis 中向量索引的名称：用于存储和检索向量数据的索引标识符，所有相关的向量搜索操作都会基于这个索引进行
+        prefix: "knowledge_segment:" # Redis 中存储向量数据的键名前缀：这个前缀会添加到每个存储在 Redis 中的向量数据键名前，每个 document 都是一个 hash 结构
+      qdrant:
+        initialize-schema: true
+        collection-name: knowledge_segment # Qdrant 中向量集合的名称：用于存储向量数据的集合标识符，所有相关的向量操作都会在这个集合中进行
+        host: 127.0.0.1
+        port: 6334
+      milvus:
+        initialize-schema: true
+        database-name: default # Milvus 中数据库的名称
+        collection-name: knowledge_segment # Milvus 中集合的名称：用于存储向量数据的集合标识符，所有相关的向量操作都会在这个集合中进行
+        client:
+          host: 127.0.0.1
+          port: 19530
+    qianfan: # 文心一言
+      api-key: x0cuLZ7XsaTCU08vuJWO87Lg
+      secret-key: R9mYF9dl9KASgi5RUq0FQt3wRisSnOcK
+    zhipuai: # 智谱 AI
+      api-key: 32f84543e54eee31f8d56b2bd6020573.3vh9idLJZ2ZhxDEs
+    openai: # OpenAI 官方
+      api-key: sk-aN6nWn3fILjrgLFT0fC4Aa60B72e4253826c77B29dC94f17
+      base-url: https://api.gptsapi.net
+    azure: # OpenAI 微软
+      openai:
+        endpoint: https://eastusprejade.openai.azure.com
+        api-key: xxx
+    ollama:
+      base-url: http://127.0.0.1:11434
+      chat:
+        model: llama3
+    stabilityai:
+      api-key: sk-e53UqbboF8QJCscYvzJscJxJXoFcFg4iJjl1oqgE7baJETmx
+    dashscope: # 通义千问
+      api-key: sk-7d903764249848cfa912733146da12d1
+    minimax: # Minimax：https://www.minimaxi.com/
+      api-key: xxxx
+    moonshot: # 月之暗灭（KIMI）
+      api-key: sk-abc
+
+niuyin:
+  ai:
+    deep-seek: # DeepSeek
+      enable: true
+      api-key: sk-47dae11
+      model: deepseek-chat
+    doubao: # 字节豆包
+      enable: true
+      api-key: b7e962aa-fb6f-4916-a999-c4ce99c97527
+      model: doubao-1-5-lite-32k-250115
+    hunyuan: # 腾讯混元
+      enable: true
+      api-key: sk-abc
+      model: hunyuan-turbo
+    siliconflow: # 硅基流动
+      enable: true
+      api-key: sk-epsakfenqnyzoxhmbucsxlhkdqlcbnimslqoivkshalvdozz
+      model: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+    xinghuo: # 讯飞星火
+      enable: true
+      appKey: 75b161ed2aef4719b275d6e7f2a4d4cd
+      secretKey: YWYxYWI2MTA4ODI2NGZlYTQyNjAzZTcz
+      model: generalv3.5
+    baichuan: # 百川智能
+      enable: true
+      api-key: sk-abc
+      model: Baichuan4-Turbo
+    midjourney:
+      enable: true
+      #    base-url: https://api.holdai.top/mj-relax/mj
+      base-url: https://api.holdai.top/mj
+      api-key: sk-dZEPiVaNcT3FHhef51996bAa0bC74806BeAb620dA5Da10Bf # sk-n8u7ObhQ3XXr8bVKA976D81bD1C44040909133B095AbE559
+      notify-url: https://77c22fba.r37.cpolar.top/admin-api/ai/image/midjourney/notify
+    suno: # ai音乐
+      enable: true
+      #    base-url: https://suno-55ishh05u-status2xxs-projects.vercel.app
+      base-url: http://127.0.0.1:3001
+
+

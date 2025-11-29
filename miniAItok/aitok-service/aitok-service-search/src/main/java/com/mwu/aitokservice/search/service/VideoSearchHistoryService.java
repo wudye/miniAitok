@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * VideoSearchHistoryService
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  **/
 public interface VideoSearchHistoryService {

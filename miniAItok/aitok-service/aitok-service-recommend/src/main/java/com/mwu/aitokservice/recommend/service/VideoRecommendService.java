@@ -43,7 +43,7 @@ import static com.mwu.aitok.model.constants.VideoCacheConstants.VIDEO_POSITION_P
 /**
  * 视频推荐服务
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/27
  **/
 @Slf4j

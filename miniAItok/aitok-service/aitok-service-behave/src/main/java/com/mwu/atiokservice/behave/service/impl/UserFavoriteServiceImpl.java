@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * (UserFavorite)表服务实现类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-13 16:37:53
  */
 @Slf4j

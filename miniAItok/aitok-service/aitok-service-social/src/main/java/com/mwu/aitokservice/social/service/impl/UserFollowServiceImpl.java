@@ -57,7 +57,7 @@ import static com.mwu.aitok.model.notice.mq.NoticeDirectConstant.NOTICE_DIRECT_E
 /**
  * 用户关注表(UserFollow)表服务实现类
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-30 15:54:21
  */
 @Slf4j

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * (VideoCategory)表服务接口
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 19:41:14
  */
 public interface IVideoCategoryService  {

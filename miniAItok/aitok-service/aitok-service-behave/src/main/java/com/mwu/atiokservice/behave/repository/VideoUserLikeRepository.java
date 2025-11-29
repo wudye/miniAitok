@@ -6,8 +6,10 @@ import com.mwu.aitok.model.video.domain.Video;
 import com.mwu.aitok.model.video.domain.VideoImage;
 import com.mwu.aitok.model.video.domain.VideoPosition;
 import com.mwu.aitok.model.video.dto.VideoPageDto;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public interface VideoUserLikeRepository extends JpaRepository<VideoUserLike, Lo
 
     Long getLikeNumByVideoId(String videoId);
 
-    Video findByVideoId(String videoId);
+   // Video findByVideoId(String videoId);
 
     void deleteByVideoId(String videoId);
 
@@ -29,7 +31,7 @@ public interface VideoUserLikeRepository extends JpaRepository<VideoUserLike, Lo
     void deleteByUserIdAndVideoId(Long userId, String videoId);
 
     List<Long> getVideoIdsByUserId(Long userId);
-    @Query(value = "SELECT COUNT(1) FROM video_user_like vul " +
+  /*  @Query(value = "SELECT COUNT(1) FROM video_user_like vul " +
             "RIGHT JOIN video v ON vul.video_id = v.video_id " +
             "WHERE vul.user_id = :userId " +
             "AND (:videoTitle IS NULL OR v.video_title LIKE %:videoTitle%)", nativeQuery = true)
@@ -37,6 +39,7 @@ public interface VideoUserLikeRepository extends JpaRepository<VideoUserLike, Lo
 
     long selectPersonLikeCount(Long userId, String videoTitle);
 
+   */
 
 
     List<VideoUserLike> findByUserIdOrVideoId(Long userId, String videoId);
@@ -44,24 +47,28 @@ public interface VideoUserLikeRepository extends JpaRepository<VideoUserLike, Lo
     List<VideoUserLike> findByUserId(Long userId);
 
     // TODO need refactor
-    boolean userLikeVideo(String videoId, Long userId);
+   // boolean userLikeVideo(String videoId, Long userId);
     // TODO need refactor
-    List<Video> selectPersonLikePage(VideoPageDto pageDto);
+   // List<Video> selectPersonLikePage(VideoPageDto pageDto);
 
     // TODO need refactor
-    List<VideoImage> selectImagesByVideoId(String videoId);
+   // List<VideoImage> selectImagesByVideoId(String videoId);
 
     // TODO need refactor
-    MemberInfo selectPersonLikeShowStatus(Long userId);
+    // MemberInfo selectPersonLikeShowStatus(Long userId);
 
     // TODO need refactor
-    VideoPosition selectPositionByVideoId(String videoId);
+//    VideoPosition selectPositionByVideoId(String videoId);
 
     // TODO need refactor
-    Video selectVideoByVideoId(String videoId);
+  //  Video selectVideoByVideoId(String videoId);
 
     // TODO need refactor
-    List<VideoImage> selectImagesByVideoIds(List<String> imageVideoIds);
+  //  List<VideoImage> selectImagesByVideoIds(List<String> imageVideoIds);
 
     VideoUserLike findVideoUserLikeByVideoId(String videoId);
+
+    @Query("SELECT COUNT(1) FROM VideoUserLike vul " +
+            "WHERE vul.userId = :userId ")
+    long selectPersonLikeCount(Long userId, String videoTitle);
 }

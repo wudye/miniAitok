@@ -57,7 +57,7 @@ import static com.mwu.aitok.model.notice.mq.NoticeDirectConstant.NOTICE_DIRECT_E
 /**
  * (VideoUserComment)表服务实现类
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-30 16:52:53
  */
 @Slf4j
@@ -115,7 +115,7 @@ public class VideoUserCommentServiceImpl implements IVideoUserCommentService {
      */
     private void sendNotice2MQ(String videoId, String content, Long operateUserId) {
         // 根据视频获取发布者id
-        Video video = videoUserLikeMapper.findByVideoId(videoId);
+        Video video = new Video();// videoUserLikeMapper.findByVideoId(videoId);
         if (StringUtils.isNull(video)) {
             return;
         }
@@ -364,7 +364,7 @@ public class VideoUserCommentServiceImpl implements IVideoUserCommentService {
      */
     private void commentVideoSendNotice2MQ(String videoId, String content, Long operateUserId) {
         // 根据视频获取发布者id
-        Video video = videoUserLikeMapper.findByVideoId(videoId);
+        Video video = new Video();// videoUserLikeMapper.findByVideoId(videoId);
         if (StringUtils.isNull(video)) {
             return;
         }

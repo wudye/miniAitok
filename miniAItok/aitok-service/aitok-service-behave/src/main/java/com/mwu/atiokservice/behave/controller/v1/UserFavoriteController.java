@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  * (UserFavorite)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-13 16:37:53
  */
 @RestController

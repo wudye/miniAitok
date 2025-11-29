@@ -51,6 +51,9 @@ spring:
       port: 6379
       password: 123456789
       database: 1
+    mongodb:
+      uri: mongodb://localhost:27017/aitokdb
+
 
   elasticsearch:
     uris: http://localhost:9200

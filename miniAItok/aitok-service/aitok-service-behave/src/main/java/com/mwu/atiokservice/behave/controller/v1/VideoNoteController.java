@@ -20,7 +20,7 @@ import java.util.Objects;
 /**
  * 视频笔记表(VideoNote)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2024-05-05 18:51:04
  */
 @RestController

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 用户视频行为表(UserVideoBehave)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2024-04-19 14:21:12
  */
 @RestController

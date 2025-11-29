@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 视频推荐控制器
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/27
  **/
 @RestController

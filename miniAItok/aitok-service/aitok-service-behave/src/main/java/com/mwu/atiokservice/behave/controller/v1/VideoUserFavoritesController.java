@@ -1,5 +1,6 @@
 package com.mwu.atiokservice.behave.controller.v1;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.R;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 视频收藏表(VideoUserFavorites)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 15:57:37
  */
 @RestController
@@ -30,7 +31,7 @@ public class VideoUserFavoritesController {
      * 用户仅收藏视频
      */
     @GetMapping("/{videoId}")
-    public R<Boolean> userFavoriteOnlyVideo(@PathVariable("videoId") String videoId) {
+    public R<Boolean> userFavoriteOnlyVideo(@PathVariable("videoId") String videoId) throws JsonProcessingException {
         return R.ok(videoUserFavoritesService.userOnlyFavoriteVideo(videoId));
     }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * RemoteBehaveServiceFallback
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/28
  **/
 @Component
@@ -58,6 +58,21 @@ public class RemoteBehaveServiceFallback implements FallbackFactory<RemoteBehave
             @Override
             public R<Boolean> weatherFavorite(String videoId) {
                 return R.fail(false);
+            }
+
+            @Override
+            public R<Long> getLikeNumByVideoId(Long videoId) {
+                return null;
+            }
+
+            @Override
+            public Integer countByVideoIdAndUserId(long videoId, long userId) {
+                return 0;
+            }
+
+            @Override
+            public long countByVideoIdAndUserId(String videoId, long userId) {
+                return 0;
             }
         };
     }

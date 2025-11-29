@@ -6,7 +6,6 @@ import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitok.model.video.domain.Video;
 import com.mwu.aitok.model.video.dto.CategoryVideoPageDTO;
 import com.mwu.aitok.model.video.vo.app.AppVideoCategoryVo;
-import com.mwu.aitok.service.video.repository.VideoUserFavoritesRepository;
 import com.mwu.aitok.service.video.service.IVideoCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import java.util.List;
 /**
  * (VideoCategory)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 19:41:13
  */
 @RequiredArgsConstructor

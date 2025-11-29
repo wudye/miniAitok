@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 /**
  * (UserFavorite)实体类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-13 14:56:12
  */
 @Getter

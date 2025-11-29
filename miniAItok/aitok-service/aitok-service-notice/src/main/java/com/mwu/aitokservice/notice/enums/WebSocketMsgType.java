@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * WebSocket消息类型
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/3/8
  **/
 @Getter

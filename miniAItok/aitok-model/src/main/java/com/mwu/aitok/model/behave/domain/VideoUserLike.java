@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * 点赞表(VideoUserLike)实体类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 14:32:59
  */
 @Getter

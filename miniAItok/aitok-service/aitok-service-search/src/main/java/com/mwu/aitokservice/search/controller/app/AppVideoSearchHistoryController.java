@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * AppVideoSearchHistoryController
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/2/3
  * 视频搜索历史
  **/

@@ -9,7 +9,7 @@ import static com.mwu.aitok.model.behave.mq.BehaveQueueConstant.*;
 /**
  * MemberDirectMessageConfig
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/11
  * 延时交换机绑定
  **/

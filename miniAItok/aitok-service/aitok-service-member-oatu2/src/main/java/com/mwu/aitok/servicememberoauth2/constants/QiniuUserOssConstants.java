@@ -3,7 +3,7 @@ package com.mwu.aitok.servicememberoauth2.constants;
 /**
  * 七牛oss用户桶
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/26
  **/
 public class QiniuUserOssConstants {

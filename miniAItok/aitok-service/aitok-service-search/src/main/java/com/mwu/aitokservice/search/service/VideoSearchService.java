@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * VideoSyncEsService
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  **/
 public interface VideoSearchService {

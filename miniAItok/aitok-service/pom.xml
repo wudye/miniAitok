@@ -22,6 +22,7 @@
         <module>aitok-service-recommend</module>
         <module>aitok-service-search</module>
         <module>aitok-service-social</module>
+        <module>aitok-service-ai</module>
     </modules>
 
     <properties>

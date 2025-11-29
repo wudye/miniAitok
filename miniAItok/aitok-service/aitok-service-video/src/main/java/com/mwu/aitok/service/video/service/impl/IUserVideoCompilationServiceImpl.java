@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class IUserVideoCompilationServiceImpl implements IUserVideoCompilationService {
 
     private final UserVideoCompilationRepository userVideoCompilationRepository;
@@ -50,6 +50,13 @@ public class IUserVideoCompilationServiceImpl implements IUserVideoCompilationSe
     private final IUserVideoCompilationRelationService userVideoCompilationRelationService;
 
     private final IVideoService videoService;
+
+    public IUserVideoCompilationServiceImpl(UserVideoCompilationRepository userVideoCompilationRepository, @Lazy PackageUserVideoCompilationVOProcessor packageUserVideoCompilationVOProcessor, IUserVideoCompilationRelationService userVideoCompilationRelationService, IVideoService videoService) {
+        this.userVideoCompilationRepository = userVideoCompilationRepository;
+        this.packageUserVideoCompilationVOProcessor = packageUserVideoCompilationVOProcessor;
+        this.userVideoCompilationRelationService = userVideoCompilationRelationService;
+        this.videoService = videoService;
+    }
 
     /**
      * 分页查询我的合集
@@ -170,7 +177,9 @@ public class IUserVideoCompilationServiceImpl implements IUserVideoCompilationSe
 
         Pageable pageable = PageRequest.of(Math.max(0, pageDTO.getPageNum() - 1), pageDTO.getPageSize(),
                 Sort.by(Sort.Direction.DESC, "createTime"));
-        return userVideoCompilationRepository.findByCompilationId(pageDTO.getCompilationId(), pageable);
+
+        Page<UserVideoCompilation> page = userVideoCompilationRepository.findAllByCompilationId(pageDTO.getCompilationId(), pageable);
+        return page;
 
     }
 

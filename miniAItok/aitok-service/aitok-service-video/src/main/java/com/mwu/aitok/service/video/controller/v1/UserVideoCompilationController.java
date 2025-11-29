@@ -8,8 +8,10 @@ import com.mwu.aitok.model.video.domain.UserVideoCompilation;
 import com.mwu.aitok.model.video.dto.CompilationVideoPageDTO;
 import com.mwu.aitok.model.video.dto.UpdateUserVideoCompilationDTO;
 import com.mwu.aitok.model.video.dto.UserVideoCompilationPageDTO;
+import com.mwu.aitok.service.video.repository.UserVideoCompilationRepository;
 import com.mwu.aitok.service.video.service.IUserVideoCompilationService;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -17,7 +19,7 @@ import java.time.LocalDateTime;
 /**
  * 用户视频合集表(UserVideoCompilation)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2023-11-27 18:08:37
  */
 @RestController
@@ -27,6 +29,9 @@ public class UserVideoCompilationController {
     @Resource
     private IUserVideoCompilationService userVideoCompilationService;
 
+    @Autowired
+    private UserVideoCompilationRepository userVideoCompilationRepository;
+
     /**
      * 创建合集
      */
@@ -34,7 +39,8 @@ public class UserVideoCompilationController {
     public R<Boolean> createVideoCompilation(@RequestBody UserVideoCompilation userVideoCompilation) {
         userVideoCompilation.setUserId(UserContext.getUserId());
         userVideoCompilation.setCreateTime(LocalDateTime.now());
-        return R.ok(userVideoCompilationService.save(userVideoCompilation));
+        userVideoCompilationRepository.save(userVideoCompilation);
+        return R.ok(true    );
     }
 
     /**
@@ -50,7 +56,7 @@ public class UserVideoCompilationController {
      */
     @PostMapping("/mp")
     public PageData videoCompilationMyPage(@RequestBody UserVideoCompilationPageDTO pageDTO) {
-        return userVideoCompilationService.videoCompilationMyPage(pageDTO);
+        return (PageData) userVideoCompilationService.videoCompilationMyPage(pageDTO);
     }
 
     /**
@@ -58,7 +64,7 @@ public class UserVideoCompilationController {
      */
     @PostMapping("/up")
     public PageData videoCompilationUserPage(@RequestBody UserVideoCompilationPageDTO pageDTO) {
-        return userVideoCompilationService.videoCompilationUserPage(pageDTO);
+        return (PageData) userVideoCompilationService.videoCompilationUserPage(pageDTO);
     }
 
     /**
@@ -66,7 +72,7 @@ public class UserVideoCompilationController {
      */
     @PostMapping("/videoPage")
     public PageData compilationVideoPage(@RequestBody CompilationVideoPageDTO pageDTO) {
-        return userVideoCompilationService.compilationVideoPage(pageDTO);
+        return (PageData) userVideoCompilationService.compilationVideoPage(pageDTO);
     }
 
 }

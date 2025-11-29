@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * VideoSearchController
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  **/
 @RestController
@@ -65,7 +65,9 @@ public class VideoSearchController {
             // 图文视频
             VideoIdRequest imageRequest = VideoIdRequest.newBuilder().setVideoId(Long.parseLong(v.getVideoId())).build();
             VideoImagesListResponse imageResponse = videoServiceBlockingStub.apiGetVideoImagesByVideoId(imageRequest);
-            v.setImageList(imageResponse.getVideoImagesListList());
+        //    v.setImageList(imageResponse.getVideoImagesListList());
+
+            v.setImageList(null);
             // 是否点赞、是否收藏
             ApiWeatherLikeVideoRequest likeRequest = ApiWeatherLikeVideoRequest.newBuilder()
                     .setVideoId(Long.parseLong(v.getVideoId()))

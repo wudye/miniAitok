@@ -3,7 +3,7 @@ package com.mwu.aitok.service.video.constants;
 /**
  * 兴趣推送 redis key 常量
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/12/20
  **/
 public class InterestPushConstant {

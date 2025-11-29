@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * (UserFavoriteVideo)表服务接口
  *
- * @author lzq
+ * @author mwu
  * @since 2023-11-17 10:16:09
  */
 public interface IUserFavoriteVideoService  {

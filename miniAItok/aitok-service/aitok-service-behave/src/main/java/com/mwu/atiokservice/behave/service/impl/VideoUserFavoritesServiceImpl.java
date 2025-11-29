@@ -57,7 +57,7 @@ import static com.mwu.aitok.model.notice.mq.NoticeDirectConstant.NOTICE_DIRECT_E
 /**
  * 视频收藏表(VideoUserFavorites)表服务实现类
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-31 15:57:38
  */
 @Slf4j
@@ -99,7 +99,7 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
      */
     @Transactional
     @Override
-    public boolean userOnlyFavoriteVideo(String videoId) {
+    public boolean userOnlyFavoriteVideo(String videoId) throws JsonProcessingException {
         //从token获取用户id
         Long userId = UserContext.getUserId();
         //构建查询条件
@@ -163,7 +163,8 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
      */
     private void sendNotice2MQ(String videoId, Long operateUserId) throws JsonProcessingException {
         // 根据视频获取发布者id
-        Video video = videoUserLikeMapper.selectVideoByVideoId(videoId);
+      //  Video video = videoUserLikeMapper.selectVideoByVideoId(videoId);
+      Video video = null;
         if (StringUtils.isNull(video)) {
             return;
         }
@@ -222,8 +223,8 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
                 .map(UserFavoriteVideoVO::getVideoId)
                 .collect(Collectors.toList());
         // 批量查询图文视频对应的图片集合（异步）
-        CompletableFuture<List<VideoImage>> videoImagesFuture = CompletableFuture.supplyAsync(() ->
-                videoUserLikeMapper.selectImagesByVideoIds(imageVideoIds));
+        CompletableFuture<List<VideoImage>> videoImagesFuture = null;
+             //   CompletableFuture.supplyAsync(() ->videoUserLikeMapper.selectImagesByVideoIds(imageVideoIds));
         // 更新视频对象的图片集合
         CompletableFuture<Void> updateVideosFuture = videoImagesFuture.thenAcceptAsync(videoImages -> {
             if (videoImages != null) {
@@ -243,7 +244,7 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
         // 等待异步操作完成
         CompletableFuture.allOf(videoImagesFuture, updateVideosFuture).join();
         // 查询用户收藏的视频总数
-        Long count = videoUserFavoritesMapper.selectUserFavoriteVideosCount(pageDto);
+        Long count =  0L; //videoUserFavoritesMapper.selectUserFavoriteVideosCount(pageDto);
         return PageData.genPageData(videos, count);
     }
 
@@ -252,7 +253,7 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
         pageDto.setPageNum((pageDto.getPageNum() - 1) * pageDto.getPageSize());
         pageDto.setUserId(UserContext.getUserId());
         // 查询用户收藏的视频列表（包含分页）
-        List<String> videoIds = videoUserFavoritesMapper.selectUserFavoriteVideoIds(pageDto);
+        List<String> videoIds = List.of();// videoUserFavoritesMapper.selectUserFavoriteVideoIds(pageDto);
         if (videoIds.isEmpty()) {
             return PageData.emptyPage();
         }
@@ -273,7 +274,7 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
         // 设置点赞量
         CompletableFuture.allOf(myFavoriteVideoVOList.stream().map(this::packageMyLikeVideoPageAsync).toArray(CompletableFuture[]::new)).join();
         // 查询用户收藏的视频总数
-        Long count = videoUserFavoritesMapper.selectUserFavoriteVideosCount(pageDto);
+        Long count = 0L; //videoUserFavoritesMapper.selectUserFavoriteVideosCount(pageDto);
         return PageData.genPageData(myFavoriteVideoVOList, count);
     }
 
@@ -281,7 +282,7 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
     public PageData queryUserFavoriteVideoPageForApp(VideoPageDto pageDto) {
         pageDto.setPageNum((pageDto.getPageNum() - 1) * pageDto.getPageSize());
         // 查询用户收藏的视频列表（包含分页）
-        List<String> videoIds = videoUserFavoritesMapper.selectUserFavoriteVideoIds(pageDto);
+        List<String> videoIds = List.of();// videoUserFavoritesMapper.selectUserFavoriteVideoIds(pageDto);
         if (videoIds.isEmpty()) {
             return PageData.emptyPage();
         }
@@ -300,7 +301,7 @@ public class VideoUserFavoritesServiceImpl implements IVideoUserFavoritesService
         // 设置点赞量
         CompletableFuture.allOf(myFavoriteVideoVOList.stream().map(this::packageMyLikeVideoPageAsync).toArray(CompletableFuture[]::new)).join();
         // 查询用户收藏的视频总数
-        Long count = videoUserFavoritesMapper.selectUserFavoriteVideosCount(pageDto);
+        Long count = 0L;// videoUserFavoritesMapper.selectUserFavoriteVideosCount(pageDto);
         return PageData.genPageData(myFavoriteVideoVOList, count);
     }
 

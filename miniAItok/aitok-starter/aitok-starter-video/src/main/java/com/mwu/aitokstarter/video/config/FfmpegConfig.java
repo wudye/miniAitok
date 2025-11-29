@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 功能：
- * 作者：lzq
+ * 作者：mwu
  * 日期：2023/11/18 23:53
  */
 @Data

@@ -27,7 +27,7 @@ public interface VideoUserCommentRepository extends JpaRepository<VideoUserComme
 
     List<String> getVideoUserCommentByUserId(Long userId);
 
-    Page<VideoUserComment> findAllByCommentId(Long commentId);
+   // Page<VideoUserComment> findAllByCommentId(Long commentId);
 
     Page<VideoUserComment> findAllByOriginIdAndStatus(Long originId, String status, Pageable pageable);
 

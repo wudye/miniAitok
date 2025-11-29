@@ -38,7 +38,7 @@ import static com.mwu.aitok.model.constants.VideoConstants.OUT_FOLLOW;
 /**
  * 社交动态服务
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/4/6
  **/
 @Slf4j

@@ -6,7 +6,7 @@ import ws.schild.jave.info.MultimediaInfo;
 /**
  * 选中的代码 import ws.schild.jave.info.MultimediaInfo; 是一个导入语句，用于引入外部库 ws.schild.jave 中的 MultimediaInfo 类。这个类通常与多媒体处理相关，提供视频或音频文件的元信息，例如格式、时长、比特率、分辨率等。
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2024/2/4
  **/
 @Data

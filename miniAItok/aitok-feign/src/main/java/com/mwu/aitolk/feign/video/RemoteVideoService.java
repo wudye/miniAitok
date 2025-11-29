@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * RemoteVideoService
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/28
  **/
 @FeignClient(contextId = "remoteVideoService", value = ServiceNameConstants.VIDEO_SERVICE, fallbackFactory = RemoteVideoServiceFallback.class)

@@ -13,7 +13,7 @@ package com.mwu.aitokservice.search.domain;//package com.niuyin.service.search.d
 ///**
 // * VideoSearchVO
 // *
-// * @AUTHOR: roydon
+// * @AUTHOR: mwu
 // * @DATE: 2023/10/31
 // * 视频搜索返回体
 // **/

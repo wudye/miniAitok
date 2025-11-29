@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 视频定位表(VideoPosition)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2023-11-21 15:44:14
  */
 @RestController

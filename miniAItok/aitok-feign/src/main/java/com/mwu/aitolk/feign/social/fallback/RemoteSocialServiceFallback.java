@@ -1,14 +1,15 @@
 package com.mwu.aitolk.feign.social.fallback;
 
-import com.niuyin.common.core.domain.R;
-import com.niuyin.feign.social.RemoteSocialService;
+
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitolk.feign.social.RemoteSocialService;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**
  * RemoteSocialServiceFallback
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/28
  **/
 @Component

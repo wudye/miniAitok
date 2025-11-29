@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 /**
  * MemberRabbitListener
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  * 用户服务mq监听器
  **/
@@ -26,7 +27,7 @@ import java.time.LocalDateTime;
 @Component
 public class MemberRabbitListener {
 
-    @Resource
+    @Autowired
     private UserFavoriteRepository userFavoriteService;
 
     /**

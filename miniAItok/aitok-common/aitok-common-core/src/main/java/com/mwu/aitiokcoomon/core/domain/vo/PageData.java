@@ -53,7 +53,7 @@ public class PageData<T>  implements Serializable {
      *
      * @param page Spring Data 分页对象
      */
-    public static <T> PageData<T> fromSpringPage(Page<T> page) {
+    public static <T> PageData<T> page(Page<T> page) {
         if (page.isEmpty()) {
             return emptyPage();
         }

@@ -1,14 +1,15 @@
 package com.mwu.aitolk.feign.interceptor;
 
-import com.niuyin.common.core.context.UserContext;
-import com.niuyin.common.core.utils.string.StringUtils;
+
+import com.mwu.aitiokcoomon.core.context.UserContext;
+import com.mwu.aitiokcoomon.core.utils.string.StringUtils;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
 /**
  * UserInterceptor
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/30
  * <a href="https://www.bilibili.com/video/BV1kH4y1S7wz?p=33&vd_source=616a9dd528080cf576646147166fe033">...</a>
  * openfeign发送请求时传递token

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 点赞表(VideoUserLike)表控制层
  *
- * @author lzq
+ * @author mwu
  * @since 2023-10-30 14:32:56
  */
 @RestController

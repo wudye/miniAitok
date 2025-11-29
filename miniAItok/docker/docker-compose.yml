@@ -85,14 +85,21 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: aitok
       RABBITMQ_DEFAULT_PASS: 123456789
-      RABBITMQ_DEFAULT_VHOST: /
-      RABBITMQ_ERLANG_COOKIE: secretcookie
     ports:
       - "5672:5672"
       - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
       - rabbitmq_logs:/var/log/rabbitmq
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: aitok_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb/data:/data/db
     restart: unless-stopped
 
 volumes:

@@ -19,6 +19,7 @@ import com.mwu.aitok.service.video.service.IVideoService;
 import com.mwu.aitok.service.video.service.InterestPushService;
 import com.mwu.aitokcommon.cache.annotations.DoubleCache;
 import com.mwu.aitokcommon.cache.annotations.RedissonLock;
+import com.mwu.aitokstarter.file.service.MinioService;
 import com.mwu.aitokstarter.video.service.FfmpegVideoService;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
@@ -32,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 视频表(Video)表控制层
  *
- * @author roydon
+ * @author mwu
  * @since 2023-10-25 20:33:08
  */
 @RestController
@@ -42,14 +43,11 @@ public class VideoController {
     @Resource
     private IVideoService videoService;
 
-    @Resource
-    private FileStorageService fileStorageService;
+
 
     @Resource
-    private AliyunOssService aliyunOssService;
+    private MinioService minioService;
 
-    @DubboReference(mock = "return null")
-    private DubboMemberService dubboMemberService;
 
     @Resource
     private InterestPushService interestPushService;
@@ -131,7 +129,7 @@ public class VideoController {
      * 视频上传 todo 上传视频业务转移到creator创作者中心
      */
     @PostMapping("/upload")
-    public R<VideoUploadVO> uploadVideo(@RequestParam("file") MultipartFile file) {
+    public R<VideoUploadVO> uploadVideo(@RequestParam("file") MultipartFile file) throws Exception {
         return R.ok(videoService.uploadVideo(file));
     }
 
@@ -140,7 +138,7 @@ public class VideoController {
      */
     @Deprecated
     @PostMapping("/upload/image")
-    public R<String> uploadImages(@RequestParam("file") MultipartFile file) {
+    public R<String> uploadImages(@RequestParam("file") MultipartFile file) throws Exception {
         String originalFilename = file.getOriginalFilename();
         if (StringUtils.isNull(originalFilename)) {
             throw new CustomException(HttpCodeEnum.IMAGE_TYPE_FOLLOW);
@@ -151,7 +149,7 @@ public class VideoController {
                 || originalFilename.endsWith(".jpeg")
                 || originalFilename.endsWith(".webp")) {
             String filePath = PathUtils.generateFilePath(originalFilename);
-            String url = fileStorageService.uploadImgFile(file, QiniuVideoOssConstants.VIDEO_ORIGIN_PREFIX_URL, filePath);
+            String url =  minioService.uploadFile(file);
             return R.ok(url);
         } else {
             throw new CustomException(HttpCodeEnum.IMAGE_TYPE_FOLLOW);
@@ -171,7 +169,7 @@ public class VideoController {
      */
     @PostMapping("/mypage")
     public PageData myPage(@RequestBody VideoPageDto pageDto) {
-        return videoService.queryMyVideoPage(pageDto);
+        return (PageData) videoService.queryMyVideoPage(pageDto);
     }
 
     /**
@@ -179,7 +177,7 @@ public class VideoController {
      */
     @PostMapping("/userpage")
     public PageData userPage(@RequestBody VideoPageDto pageDto) {
-        return videoService.queryUserVideoPage(pageDto);
+        return (PageData) videoService.queryUserVideoPage(pageDto);
     }
 
     /**

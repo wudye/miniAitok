@@ -24,13 +24,13 @@ public interface VideoUserFavoritesRepository extends JpaRepository<VideoUserFav
     Long countVideoUserFavoritesByUserId(Long userId);
 
     // TODO need refactor
-    List<UserFavoriteVideoVO> selectUserFavoriteVideos(VideoPageDto pageDto);
+   // List<UserFavoriteVideoVO> selectUserFavoriteVideos(VideoPageDto pageDto);
 
     // TODO need refactor
-    Long selectUserFavoriteVideosCount(VideoPageDto pageDto);
+ //   Long selectUserFavoriteVideosCount(VideoPageDto pageDto);
 
     // TODO need refactor
-    List<String> selectUserFavoriteVideoIds(VideoPageDto pageDto);
+   // List<String> selectUserFavoriteVideoIds(VideoPageDto pageDto);
 
     Long countByVideoId(String videoId);
 

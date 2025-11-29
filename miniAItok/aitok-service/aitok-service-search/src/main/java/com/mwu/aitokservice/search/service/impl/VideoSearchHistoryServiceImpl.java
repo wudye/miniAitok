@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * VideoSearchHistoryServiceImpl
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/31
  **/
 @Service("videoSearchHistoryServiceImpl")

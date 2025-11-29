@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 /**
  * 通知表(Notice)表服务接口
  *
- * @author roydon
+ * @author mwu
  * @since 2023-11-08 16:21:45
  */
 public interface INoticeService{

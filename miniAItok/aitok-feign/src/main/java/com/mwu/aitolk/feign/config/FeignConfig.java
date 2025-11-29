@@ -1,6 +1,6 @@
 package com.mwu.aitolk.feign.config;
 
-import com.niuyin.feign.interceptor.UserInterceptor;
+import com.mwu.aitolk.feign.interceptor.UserInterceptor;
 import feign.Logger;
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * FeignConfig
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/11/4
  **/
 @Configuration

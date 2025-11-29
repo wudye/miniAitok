@@ -24,7 +24,6 @@ public interface VideoRepository extends JpaRepository<Video, Long>,  JpaSpecifi
 
 
 
-    List<Video> findByVideoIdInAndDelFlagOrderByCreateTimeDesc(List<String> videoIds, String code);
 
     List<Video> findAllByUserId(Long userId);
 
@@ -42,7 +41,6 @@ public interface VideoRepository extends JpaRepository<Video, Long>,  JpaSpecifi
 
     Long countByUserIdAndDelFlag(Long userId, String code);
 
-    List<Video> findByVideoIdIn(Collection<String> videoIdsByUserModel, Sort createTime);
 
 
     Long getLikeCountById(Long id);
@@ -56,4 +54,8 @@ public interface VideoRepository extends JpaRepository<Video, Long>,  JpaSpecifi
     int getFavoritesByUserIdAndId(Long userId, Long id);
 
     int getLikeNumByUserIdAndId(Long userId, Long id);
+
+    List<Video> findAllByIdIn(Collection<Long> ids, Sort sort);
+
+    List<Video> findByIdInAndDelFlagOrderByCreateTimeDesc(Collection<Long> id, String delFlag);
 }

@@ -3,7 +3,7 @@ package com.mwu.aitok.service.video.constants;
 /**
  * QiniuOssConstants
  *
- * @AUTHOR: roydon
+ * @AUTHOR: mwu
  * @DATE: 2023/10/26
  **/
 public class QiniuVideoOssConstants {
