@@ -13,6 +13,7 @@ import com.mwu.aitok.model.video.domain.Video;
 import com.mwu.aitokservice.creator.repository.UserVideoCompilationRepository;
 import com.mwu.aitokservice.creator.repository.VideoRepository;
 
+import com.mwu.aitokservice.creator.repository.VideoSpecification;
 import com.mwu.aitokservice.creator.service.CreatorService;
 import com.mwu.aitokstarter.file.service.MinioService;
 import io.minio.errors.*;
@@ -25,6 +26,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,27 +69,25 @@ public class CreatorServiceImpl implements CreatorService {
     @Override
     public PageData queryVideoPage(VideoPageDTO videoPageDTO) {
         videoPageDTO.setUserId(UserContext.getUserId());
-        videoPageDTO.setPageNum((videoPageDTO.getPageNum() - 1) * videoPageDTO.getPageSize());
 
         Pageable pageable = PageRequest.of((videoPageDTO.getPageNum() -1 ), videoPageDTO.getPageSize());
 
-        Page<Video> videoList = videoMapper.selectVideoPage(
+        Specification<Video> spec = VideoSpecification.countQuery(
                 videoPageDTO.getUserId(),
                 videoPageDTO.getVideoTitle(),
                 videoPageDTO.getPublishType(),
                 videoPageDTO.getShowType(),
                 videoPageDTO.getPositionFlag(),
                 videoPageDTO.getAuditsStatus()
-        ,  pageable);
-        if (videoList.isEmpty()) {
+        );
+        Page<Video> videos = videoMapper.findAll(spec, pageable);
+
+
+
+        if (videos.isEmpty()) {
             return PageData.emptyPage();
         }
-        return PageData.genPageData(videoList.getContent(), videoMapper.selectVideoPageCount(videoPageDTO.getUserId(),
-                videoPageDTO.getVideoTitle(),
-                videoPageDTO.getPublishType(),
-                videoPageDTO.getShowType(),
-                videoPageDTO.getPositionFlag(),
-                videoPageDTO.getAuditsStatus()));
+        return PageData.genPageData( videos.getContent(), videos.getTotalElements());
 
     }
 
@@ -97,7 +100,6 @@ public class CreatorServiceImpl implements CreatorService {
     @Override
     public PageData queryVideoCompilationPage(videoCompilationPageDTO videoCompilationPageDTO) {
         videoCompilationPageDTO.setUserId(UserContext.getUserId());
-        videoCompilationPageDTO.setPageNum((videoCompilationPageDTO.getPageNum() - 1) * videoCompilationPageDTO.getPageSize());
 
         Pageable pageable = PageRequest.of((videoCompilationPageDTO.getPageNum() -1 ), videoCompilationPageDTO.getPageSize());
         Page<Video> videosPage = videoMapper.findAllByUserId(videoCompilationPageDTO.getUserId(), pageable);
@@ -110,8 +112,8 @@ public class CreatorServiceImpl implements CreatorService {
         if (compilationList.isEmpty()) {
             return PageData.emptyPage();
         }
-        return PageData.genPageData(compilationList.getContent(), userVideoCompilationRepository.selectVideoCompilationPageCount(videoCompilationPageDTO.getUserId()
-        , videoCompilationPageDTO.getTitle()));
+
+        return PageData.genPageData(compilationList.getContent(), compilationList.getTotalElements());
     }
 
     /**
@@ -126,7 +128,6 @@ public class CreatorServiceImpl implements CreatorService {
         if (StringUtils.isEmpty(originalFilename)) {
             throw new CustomException(HttpCodeEnum.IMAGE_TYPE_FOLLOW);
         }
-        // todo 对文件大小进行判断
         // 对原始文件名进行判断
         if (originalFilename.endsWith(".png")
                 || originalFilename.endsWith(".jpg")
@@ -156,7 +157,7 @@ public class CreatorServiceImpl implements CreatorService {
      * @return
      */
     @Override
-    public String multipartUploadVideo(MultipartFile file) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public String multipartUploadVideo(MultipartFile file) throws Exception {
         return minioService.multipartUploadVideoFile(file);
     }
 
@@ -167,7 +168,14 @@ public class CreatorServiceImpl implements CreatorService {
     public DashboardAmountVO dashboardAmount() {
         // todo 添加每日10点的定时任务缓存到redis
 
-        Long userId = UserContext.getUserId();
+
+        Authentication authentication1 = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("authentication: " + authentication1.getPrincipal());
+
+
+        Jwt jwt1 = ((JwtAuthenticationToken) authentication1).getToken();
+        Long userId = jwt1.getClaim("userid");
+
         DashboardAmountVO dashboardAmountVO = new DashboardAmountVO();
         Long videoPlayCount = videoMapper.selectVideoPlayAmount(userId);
         dashboardAmountVO.setPlayAmount(new DashboardAmountItem(videoPlayCount, videoMapper.selectVideoPlayAmountAdd(userId), videoMapper.selectVideoPlayAmount7Day(userId)));

@@ -39,3 +39,34 @@ build/
 .DS_Store
 
 /docker/**
+
+### Logs ###
+logs/
+*.log
+logs/**
+!logs/.gitkeep
+### Temporary Files ###
+*.tmp
+*.temp
+*.swp
+*~
+*.swo
+### Compiled Files ###
+*.class
+*.jar
+*.war
+*.ear
+*.dll
+*.exe
+*.obj
+*.so
+*.dylib
+### Package Files ###
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

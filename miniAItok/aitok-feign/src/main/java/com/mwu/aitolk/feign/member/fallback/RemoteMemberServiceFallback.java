@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RemoteMemberServiceFallback implements FallbackFactory<RemoteMemberService> {
+    public RemoteMemberServiceFallback() {
+    }
     @Override
     public RemoteMemberService create(Throwable cause) {
         return new RemoteMemberService() {

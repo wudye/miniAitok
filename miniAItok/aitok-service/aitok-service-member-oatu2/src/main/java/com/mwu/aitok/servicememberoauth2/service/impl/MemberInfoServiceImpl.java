@@ -57,8 +57,21 @@ public class MemberInfoServiceImpl implements MemberInfoService {
            Optional<MemberInfo> optionalMemberInfo = memberInfoRepository.findMemberInfoByUserId(userId);
            if (optionalMemberInfo.isPresent()){
                MemberInfo memberInfo1 = optionalMemberInfo.get();
-               BeanUtils.copyProperties(memberInfo1, memberInfo, "infoId", "userId");
-               memberInfoRepository.save(memberInfo);
+               memberInfo1.setBackImage(memberInfo.getBackImage());
+               memberInfo1.setDescription(memberInfo.getDescription());
+               System.out.println(memberInfo.getBirthday());
+               memberInfo1.setBirthday(memberInfo.getBirthday());
+               memberInfo1.setProvince(memberInfo.getProvince());
+               memberInfo1.setCity(memberInfo.getCity());
+               memberInfo1.setRegion(memberInfo.getRegion());
+               memberInfo1.setAdcode(memberInfo.getAdcode());
+               memberInfo1.setCampus(memberInfo.getCampus());
+               memberInfo1.setLikeShowStatus(memberInfo.getLikeShowStatus());
+               memberInfo1.setFavoriteShowStatus(memberInfo.getFavoriteShowStatus());
+               memberInfoRepository.save(memberInfo1);
+
+
+
            } else {
                memberInfoRepository.save(memberInfo);
            }

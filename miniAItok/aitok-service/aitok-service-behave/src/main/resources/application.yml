@@ -109,8 +109,10 @@ eureka:
 minio:
   access-key: admin
   secret-key: 123456789
-  bucketName: aitok-member
+  bucket: aitok-member
   endpoint: http://localhost:9000
+  public-read: true
+
 
 
 

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 MinioClient Bean已经创建完毕后
 自动检查并创建所需的存储桶
  */
-@Component
 @Slf4j
 public class MinioBucketInitializer implements ApplicationRunner {
 

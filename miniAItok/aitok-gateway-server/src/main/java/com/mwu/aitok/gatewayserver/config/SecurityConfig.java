@@ -8,23 +8,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
-import org.springframework.security.oauth2.core.OAuth2Error;
+
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
-import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.*;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
-import org.springframework.security.web.SecurityFilterChain;
+
+
 import org.springframework.security.web.server.SecurityWebFilterChain;
+
+
 import org.springframework.web.cors.CorsConfiguration;
+
 
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -49,17 +48,20 @@ public class SecurityConfig {
     @Value("${app.jwt.audience:}") // 可选
     private String audience;
 
+//    @Resource
+//    private  UserIdResponseHeaderFilter userIdResponseHeaderFilter;
+
     private static final String[] COMMON_PUBLIC = new String[]{
-            "/actuator/**",
-            "/v3/api-docs/**",
-            "/swagger-ui/**",
-            "/swagger-ui.html",
+            "/*/actuator/**",
+            "/*/v3/api-docs/**",
+            "/*/swagger-ui/**",
+            "/*/swagger-ui.html",
             "/*/api/v1/login", // 登录接口：/member/api/v1/login
             "/*/api/v1/register",
             "/*/api/v1/sms-login", // 短信登陆接口：/member/api/v1/sms-login
             "/*/register",
             "/*/app/sms-register",
-            "/swagger-ui/**",
+            "/*/swagger-ui/**",
             "/*/api/v1/feed",
             "/*/api/v1/pushVideo",
             "/*/api/v1/app/recommend",
@@ -93,6 +95,7 @@ public class SecurityConfig {
     }
 
 
+
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) throws Exception {
         http
@@ -104,6 +107,12 @@ public class SecurityConfig {
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
+//                // 在这里添加你的过滤器
+//                .addFilterAt(userIdResponseHeaderFilter, SecurityWebFiltersOrder.OAUTH2_AUTHORIZATION_CODE);
+
+
+
+
 
 /*                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {
                     jwt.jwtAuthenticationConverter(

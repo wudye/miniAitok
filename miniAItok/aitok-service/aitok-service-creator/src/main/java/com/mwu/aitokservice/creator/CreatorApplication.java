@@ -1,6 +1,7 @@
 package com.mwu.aitokservice.creator;
 
 
+import com.mwu.aitiokcoomon.core.annotations.EnableUserTokenInterceptor;
 import com.mwu.aitokcommon.cache.annotations.EnableCacheConfig;
 import com.mwu.aitolk.feign.config.FeignConfig;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -30,6 +31,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAsync
 @EnableCaching
 @EntityScan(basePackages = {"com.mwu.aitok.model"})
+@EnableUserTokenInterceptor
 public class CreatorApplication implements CommandLineRunner {
 
     public static void main(String[] args) {

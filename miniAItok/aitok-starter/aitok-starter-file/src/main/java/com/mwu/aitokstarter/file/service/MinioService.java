@@ -8,6 +8,7 @@ import io.minio.http.Method;
 import io.minio.messages.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,14 +31,14 @@ import java.util.concurrent.TimeUnit;
 @EnableConfigurationProperties(MinioConfig.class)
 //此注解用于将 MinioConfig 配置类导入到当前上下文中。通过这种方式，MinioConfig 中定义的 Bean 和配置会被加载到 Spring 容器中，从而在当前类中可用。
 @Import(MinioConfig.class)
-
+@AutoConfiguration
 public class MinioService {
 
 
     @Autowired
     private MinioClient minioClient;
 
-    @Value("${minio.bucket-name}")
+    @Value("${minio.bucket}")
     private String bucketName;
     @Value("${minio.public-read:true}")
     private boolean publicRead;
@@ -46,8 +47,11 @@ public class MinioService {
     private String endpoint;
 
 
-    public String multipartUploadVideoFile(MultipartFile file) throws IOException, ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+
+
+    public String multipartUploadVideoFile(MultipartFile file) throws Exception {
         // 1. 校验视频类型（根据你项目实际工具类替换）
+
         String contentType = file.getContentType();
         if (contentType == null || !contentType.startsWith("video")) {
             throw new IllegalArgumentException("仅支持视频文件上传");
@@ -66,38 +70,58 @@ public class MinioService {
         // S3 最小分片 5MB，最大 part 数 10000，这里选 10MB 并按需放大确保不超过 10000 片
         long fileSize = file.getSize();
         long minPart = 5L * 1024 * 1024;
+
+        if (fileSize <= minPart) {
+            return uploadFile(file);
+
+        }
+        // 代码设定了每个分片至少要有10MB
+        /*
+        (long) Math.ceil((double) fileSize / 10_000)：这是为了遵守MinIO的限制。
+        MinIO规定一个文件最多只能由10,000个分片组成。这行代码的意思是：用总文件大小除以10,000，
+        然后向上取整，计算出为了不超过10,000个分片的限制，每个分片最小需要多大。•Math.ceil 向上取整，
+        确保分片大小足够。•(double) 强制类型转换，保证除法是浮点数运算，结果更精确。
+         */
         long partSize = Math.max(10L * 1024 * 1024, (long) Math.ceil((double) fileSize / 10_000));
+        // 规定的分片最小尺寸（通常是5MB）。这一行是再次确保我们计算出的分片大小不会低于服务器的硬性要求。
         partSize = Math.max(partSize, minPart);
-        try (InputStream in = file.getInputStream()) {
-            long uploaded = 0;
-            int partNumber = 1;
-            while (uploaded < fileSize) {
-                long cur = Math.min(partSize, fileSize - uploaded);
-                String partName = objectName + ".part." + partNumber;
+        // 2. 循环上传每一个分片
+        try (InputStream in = file.getInputStream()) { // 使用 try-with-resources 确保流被自动关闭
+            long uploaded = 0; // 记录已上传的字节数
+            int partNumber = 1; // 当前分片的编号
+            while (uploaded < fileSize) { // 只要还没传完，就一直循环
+                long cur = Math.min(partSize, fileSize - uploaded); // 计算当前分片的大小（最后一个分片可能比 partSize 小）
+                String partName = objectName + ".part." + partNumber; // 为临时分片起一个唯一的名字，如 "my-video.mp4.part.1"
+
+                // 上传当前这一个分片
                 minioClient.putObject(
                         PutObjectArgs.builder()
                                 .bucket(bucketName)
-                                .object(partName)
-                                .stream(in, cur, -1)
+                                .object(partName) // 上传的是临时分片对象
+                                .stream(in, cur, -1) // 从输入流中读取 cur 字节的数据进行上传
                                 .contentType(contentType)
                                 .build()
                 );
-                parts.add(partName);
-                uploaded += cur;
-                partNumber++;
+
+                parts.add(partName); // 将上传成功的临时分片名记录下来
+
+                uploaded += cur; // 更新已上传的总大小
+
+                partNumber++; // 准备下一个分片
             }
 
-            List<ComposeSource> sources = new ArrayList<>();
-            for (String part : parts) {
-                sources.add(ComposeSource.builder().bucket(bucketName).object(part).build());
-            }
-            minioClient.composeObject(
-                    ComposeObjectArgs.builder()
-                            .bucket(bucketName)
-                            .object(objectName)
-                            .sources(sources)
-                            .build()
-            );
+            // 3. 合并所有分片
+                List<ComposeSource> sources = new ArrayList<>();
+                for (String part : parts) {
+                    sources.add(ComposeSource.builder().bucket(bucketName).object(part).build());
+                }
+                minioClient.composeObject(
+                        ComposeObjectArgs.builder()
+                                .bucket(bucketName)
+                                .object(objectName) // 最终合并成的文件名
+                                .sources(sources)   // 指定源分片列表
+                                .build()
+                );
 
             return getObjectUrl(objectName);
         } catch (Exception ex) {
@@ -163,6 +187,7 @@ public class MinioService {
                             .contentType(file.getContentType())
                             .build()
             );
+            System.out.println("文件上传成功: " + objectName);
         } catch (MinioException e) {
             throw new Exception("文件上传失败: " + e.getMessage(), e);
         }

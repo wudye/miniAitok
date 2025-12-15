@@ -18,4 +18,6 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
     @Transactional
     @Query("delete from TokenEntity t where t.refreshExpiry < :cutoff")
     int deleteByRefreshExpiryBefore(Instant now);
+
+    void deleteByRefreshToken(String refreshToken);
 }

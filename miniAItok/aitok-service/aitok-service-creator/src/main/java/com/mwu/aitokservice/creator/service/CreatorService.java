@@ -57,7 +57,7 @@ public interface CreatorService {
      * @param file
      * @return
      */
-    String multipartUploadVideo(MultipartFile file) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException;
+    String multipartUploadVideo(MultipartFile file) throws Exception;
 
     /**
      * 视频播放量

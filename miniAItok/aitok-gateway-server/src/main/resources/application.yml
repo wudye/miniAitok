@@ -49,6 +49,13 @@ spring:
             - Path=/video/**
           filters:
             - StripPrefix=1
+        - id: creator
+          #  uri: http://localhost:18008  # 确保服务名正确
+          uri: lb://AITOK-CREATOR
+          predicates:
+            - Path=/creator/**
+          filters:
+            - StripPrefix=1
         - id: temp-route
           uri: lb://TEST-CLIENT-TEMP  # 确保服务名正确
           predicates:

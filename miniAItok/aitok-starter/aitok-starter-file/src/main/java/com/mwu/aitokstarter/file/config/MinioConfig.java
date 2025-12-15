@@ -1,14 +1,19 @@
 package com.mwu.aitokstarter.file.config;
 
 import io.minio.MinioClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // 。proxyBeanMethods = false 参数表示在创建 Bean 时不使用代理模式，这样可以提高性能，适用于没有依赖关系的 Bean。
-@Configuration()
+//@Configuration()
+@AutoConfiguration
 /*
 
 该注解的作用是将 MinioProperties 配置类加载到 Spring 容器中。MinioProperties
@@ -23,10 +28,21 @@ import org.springframework.context.annotation.Configuration;
 public class MinioConfig {
 
     @Bean
+
     public MinioClient minioClient(MinioProperties minioProperties) {
         return MinioClient.builder()
                 .endpoint(minioProperties.getEndpoint())
                 .credentials(minioProperties.getAccessKey(), minioProperties.getSecretKey())
                 .build();
     }
+
+    @Bean
+    @ConditionalOnBean(MinioClient.class)
+    @ConditionalOnMissingBean(MinioBucketInitializer.class)
+
+    public MinioBucketInitializer minioBucketInitializer(MinioClient minioClient,
+                                                         @Value("${minio.bucket}") String bucketName) {
+        return new MinioBucketInitializer(minioClient, bucketName);
+    }
+
 }

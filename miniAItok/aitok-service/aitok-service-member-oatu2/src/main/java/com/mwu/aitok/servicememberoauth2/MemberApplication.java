@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication(scanBasePackages = "com.mwu.aitok")
+@SpringBootApplication(scanBasePackages = {"com.mwu.aitok.servicememberoauth2", "com.mwu.aitokcommon", "com.mwu.aitiokcoomon", "com.mwu.aitokstarter"})
 @EnableDiscoveryClient
 @EntityScan({"com.mwu.aitok.servicememberoauth2.entity", "com.mwu.aitok.model.member.domain"})
 @EnableJpaRepositories("com.mwu.aitok.servicememberoauth2.repository")

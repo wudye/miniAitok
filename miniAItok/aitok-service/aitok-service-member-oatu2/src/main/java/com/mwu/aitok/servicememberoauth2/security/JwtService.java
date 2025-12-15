@@ -111,26 +111,18 @@ public class JwtService {
 
         Instant now = Instant.now();
         Instant accessExpiry = now.plusSeconds(3600);
-        Instant refreshExpiry = now.plusSeconds(7 * 24 * 3600); // 7 天
+        Instant refreshExpiry = now.plusSeconds(30 * 24 * 3600); // 7 天
 
-        // 3. 保存到数据库
+        // 保存到数据库
         TokenEntity entity = new TokenEntity();
         entity.setUserId(userId);
+        entity.setUsername(username);
         entity.setRefreshToken(refreshToken);
         entity.setRefreshExpiry(refreshExpiry);
 
-        // if userId exits, update the existing record
+        // 直接保存新记录，允许同一个 user_id 有多条记录
+        tokenRepository.save(entity);
 
-        Optional<TokenEntity> existing = tokenRepository.findByUserId(userId);
-        if (existing.isPresent()) {
-            TokenEntity existingEntity = existing.get();
-            existingEntity.setRefreshToken(refreshToken);
-            existingEntity.setRefreshExpiry(refreshExpiry);
-            tokenRepository.save(existingEntity);
-
-        } else {
-            tokenRepository.save(entity);
-        }
 
         // 4. 写入用户目录下的 JSON 文件，供本地或测试使用
         // TODO: 生产环境请delete此段，避免在文件系统存储敏感令牌
@@ -157,4 +149,5 @@ public class JwtService {
     public JWKSet getJwkSet() {
         return new JWKSet(rsaJWK.toPublicJWK());
     }
+
 }

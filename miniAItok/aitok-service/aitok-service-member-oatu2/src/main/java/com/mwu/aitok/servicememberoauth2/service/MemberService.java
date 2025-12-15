@@ -13,7 +13,7 @@ import java.util.Map;
 public interface MemberService {
     boolean register(RegisterBody registerBody);
 
-    Map<String, String> login(LoginUserDTO loginUserDTO) throws Exception;
+    Map<String, String> login(LoginUserDTO loginUserDTO, String ip) throws Exception;
 
     Member updateUserInfo(Member user);
 

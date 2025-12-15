@@ -48,6 +48,7 @@ public class MemberRabbitListener {
         userFavorite.setDescription("用户默认创建的收藏夹");
         userFavorite.setCreateTime(LocalDateTime.now());
         userFavoriteService.save(userFavorite);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!用户默认收藏夹创建成功");
         log.info("用户默认收藏夹创建成功");
     }
 

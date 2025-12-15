@@ -5,6 +5,7 @@ import com.mwu.aitok.model.video.domain.Video;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VideoRepository extends JpaRepository<Video, Long> {
+public interface VideoRepository extends JpaRepository<Video, Long> , JpaSpecificationExecutor<Video> {
     
     Page<Video> findAllByUserId(Long userId, Pageable pageable);
 
@@ -107,9 +108,10 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
             nativeQuery = true)
     Long selectVideoLikeAmountAdd(@Param("userId") Long userId);
 
-    @Query(value = "SELECT COUNT(*) AS count " +
+    @Query(value = "SELECT COUNT(vuc.id) " +
             "FROM video_user_comment vuc " +
-            "WHERE vuc.video_id IN (SELECT v.video_id FROM video v WHERE v.user_id = :userId)",
+            "JOIN video v ON vuc.video_id = v.video_id " +
+            "WHERE v.user_id = :userId",
             nativeQuery = true)
     Long selectVideoCommentAmount(@Param("userId") Long userId);
 

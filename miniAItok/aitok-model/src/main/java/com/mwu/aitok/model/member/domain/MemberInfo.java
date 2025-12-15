@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * 会员详情表(MemberInfo)实体类
@@ -38,7 +38,7 @@ public class MemberInfo implements Serializable {
     /**
      * 个人页面背景图片
      */
-    @Size(max = 255, message = "背景图地址过长")
+    @Size(max = 2048, message = "背景图地址过长")
     private String backImage;
     /**
      * 个人描述
@@ -48,15 +48,15 @@ public class MemberInfo implements Serializable {
     /**
      * 生日
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime birthday;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private LocalDate birthday;
     /**
      * 省
      */
     @Size(max = 20, message = "省份名称过长")
     private String province;
     /**
-     * 市
+     *
      */
     @Size(max = 30, message = "城市名过长")
     private String city;
@@ -86,4 +86,3 @@ public class MemberInfo implements Serializable {
     private String favoriteShowStatus;
 
 }
-

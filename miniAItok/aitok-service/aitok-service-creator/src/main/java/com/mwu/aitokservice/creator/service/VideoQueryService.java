@@ -6,10 +6,12 @@ import com.mwu.aitok.model.video.domain.UserVideoCompilation;
 import com.mwu.aitok.model.video.domain.Video;
 import com.mwu.aitokservice.creator.repository.UserVideoCompilationRepository;
 import com.mwu.aitokservice.creator.repository.VideoRepository;
+import com.mwu.aitokservice.creator.repository.VideoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -37,16 +39,19 @@ public class VideoQueryService {
             videoPageDTO.getPageNum() - 1,  // 转换为 0-based 页码
             videoPageDTO.getPageSize()
         );
-        
-        return videoRepository.selectVideoPage(
-            videoPageDTO.getUserId(),
-            videoPageDTO.getVideoTitle(),
-            videoPageDTO.getPublishType(),
-            videoPageDTO.getShowType(),
-            videoPageDTO.getPositionFlag(),
-            videoPageDTO.getAuditsStatus(),
-            pageable
+        Specification<Video> spec = VideoSpecification.countQuery(
+                videoPageDTO.getUserId(),
+                videoPageDTO.getVideoTitle(),
+                videoPageDTO.getPublishType(),
+                videoPageDTO.getShowType(),
+                videoPageDTO.getPositionFlag(),
+                videoPageDTO.getAuditsStatus()
         );
+        Page<Video> videos = videoRepository.findAll(spec, pageable);
+        return  videos;
+
+        
+
     }
     
     /**

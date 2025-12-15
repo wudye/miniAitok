@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// TODO test not finish, just leave
 /**
  * 视频查询控制器
  * 展示 JPA 分页查询的完整使用示例
@@ -22,7 +23,11 @@ public class VideoQueryController {
     private VideoQueryService videoQueryService;
     
     // ==================== 视频分页查询接口 ====================
-    
+
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
     /**
      * 分页查询视频 - 完整参数版本
      */

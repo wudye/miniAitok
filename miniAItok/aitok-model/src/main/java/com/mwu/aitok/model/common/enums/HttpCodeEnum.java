@@ -44,6 +44,9 @@ public enum HttpCodeEnum {
 
     CONFIRM_PASSWORD_NOT_MATCH(1020, "两次密码不一致"),
 
+    USER_LOCKED(1022, "账户已锁定，请15分钟后再试"),
+    IP_LOCKED(1023, "IP地址已锁定，请30分钟后再试"),
+
     NOT_ALLOW_FOLLOW_YOURSELF(1100, "不能关注自己"),
     USER_NOT_EXIST(1101, "用户不存在"),
     ALREADY_FOLLOW(1102, "已关注"),
