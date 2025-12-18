@@ -19,9 +19,23 @@
     docs(markdown)
     config,eureka,feign,gateway,service, grpc(optional), common, tools, starter, modael
 
-
+# common module(public module)
+## common-core
+## common-cache
+1. annotation(DoubleCache) + asject(DubboCacheAspect) to do Multi-Level Cache Architecture(caffeine + redis + mysql)
+2. request→ Caffeine（L1） → Redis（L2） → database(mysql)
+    strategy:
+   read order: Caffeine → Redis → Database
+   write order: write to Redis and Caffeine
+   update: redis and caffeine
+   delete: Redis and Caffeine
+   distributed lock with redisson build by annotation(RedissonLock) + aop(RedissonLockAspect)
+## common-ai
+# video module
+    creator module  integrate to video module, multipart upload for video
+    redis Anti-Repeat Submit annotation(VideoRepeatSubmit) + aop(VideoRepeatSubmitAspect)
     
-# creator module, multipart upload for video
+
 # notice moduele, websocket
     client connect → /websocket/123
                 ↓

@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.creator.controller.v1;
+package com.mwu.aitok.service.video.controller;
 
 
 import com.mwu.aitiokcoomon.core.domain.R;
@@ -7,7 +7,7 @@ import com.mwu.aitok.model.creator.dto.VideoPageDTO;
 import com.mwu.aitok.model.creator.dto.videoCompilationPageDTO;
 import com.mwu.aitok.model.creator.vo.DashboardAmountVO;
 
-import com.mwu.aitok.service.creator.service.CreatorService;
+import com.mwu.aitok.service.video.creator.service.CreatorService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +30,12 @@ public class CreatorController {
     @Value("${spring.servlet.multipart.max-file-size}")
     private String maxFileSize;
 
+
+
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
     /**
      * 视频分页
      */

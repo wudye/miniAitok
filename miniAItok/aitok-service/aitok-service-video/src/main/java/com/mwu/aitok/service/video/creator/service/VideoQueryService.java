@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.creator.service;
+package com.mwu.aitok.service.video.creator.service;
 
 import com.mwu.aitok.model.creator.dto.VideoPageDTO;
 import com.mwu.aitok.model.creator.dto.videoCompilationPageDTO;

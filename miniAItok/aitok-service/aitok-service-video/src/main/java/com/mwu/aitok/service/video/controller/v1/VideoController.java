@@ -1,7 +1,6 @@
 package com.mwu.aitok.service.video.controller.v1;
 
 
-import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.R;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitiokcoomon.core.exception.CustomException;
@@ -14,7 +13,6 @@ import com.mwu.aitok.model.video.dto.*;
 import com.mwu.aitok.model.video.vo.VideoUploadVO;
 import com.mwu.aitok.model.video.vo.VideoVO;
 import com.mwu.aitok.service.video.annotation.VideoRepeatSubmit;
-import com.mwu.aitok.service.video.constants.QiniuVideoOssConstants;
 import com.mwu.aitok.service.video.service.IVideoService;
 import com.mwu.aitok.service.video.service.InterestPushService;
 import com.mwu.aitokcommon.cache.annotations.DoubleCache;
@@ -36,6 +34,7 @@ import java.util.concurrent.TimeUnit;
  * @author mwu
  * @since 2023-10-25 20:33:08
  */
+// TODO api crud move to /api/v1/creator
 @RestController
 @RequestMapping("/api/v1")
 public class VideoController {
@@ -88,6 +87,14 @@ public class VideoController {
      * @param id
      * @return
      */
+    /*
+    在 key = "#id" 中， # 是 SpEL（Spring Expression Language）语法，表示方法参数引用。
+
+SpEL 表达式语法
+#id 的含义
+# : SpEL前缀，告诉Spring这是一个表达式
+id : 方法参数名
+     */
     @DoubleCache(cachePrefix = "aaatest:double:cache", key = "#id", expire = 10, unit = TimeUnit.MINUTES)
     @RedissonLock(prefixKey = "aaaredisson:lock", key = "#id")
     @GetMapping("/testRedissonLock")
@@ -130,7 +137,12 @@ public class VideoController {
      */
     @PostMapping("/upload")
     public R<VideoUploadVO> uploadVideo(@RequestParam("file") MultipartFile file) throws Exception {
+        /*
         return R.ok(videoService.uploadVideo(file));
+
+         */
+        String res = "use creator to upload video /api/v1/creator/upload-video";
+        return R.ok(null);
     }
 
     /**
@@ -139,6 +151,7 @@ public class VideoController {
     @Deprecated
     @PostMapping("/upload/image")
     public R<String> uploadImages(@RequestParam("file") MultipartFile file) throws Exception {
+        /*
         String originalFilename = file.getOriginalFilename();
         if (StringUtils.isNull(originalFilename)) {
             throw new CustomException(HttpCodeEnum.IMAGE_TYPE_FOLLOW);
@@ -154,6 +167,10 @@ public class VideoController {
         } else {
             throw new CustomException(HttpCodeEnum.IMAGE_TYPE_FOLLOW);
         }
+
+         */
+        String res = "use creator to upload image /api/v1/creator/upload-video-image";
+        return R.ok(res);
     }
 
     /**
@@ -197,7 +214,7 @@ public class VideoController {
     }
 
     /**
-     * 更新视频
+     * 更新视频 information
      */
     @PutMapping("/update")
     public R<?> updateVideo(@RequestBody UpdateVideoDTO updateVideoDTO) {

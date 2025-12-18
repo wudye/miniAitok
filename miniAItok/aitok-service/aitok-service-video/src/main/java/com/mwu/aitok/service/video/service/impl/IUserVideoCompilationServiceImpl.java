@@ -1,11 +1,8 @@
 package com.mwu.aitok.service.video.service.impl;
 
-import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitiokcoomon.core.utils.bean.BeanCopyUtils;
 import com.mwu.aitiokcoomon.core.utils.string.StringUtils;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
-import com.mwu.aitok.model.video.domain.UserVideoCompilationRelation;
-import com.mwu.aitok.model.video.domain.VideoCategory;
 import com.mwu.aitok.model.video.dto.CompilationVideoPageDTO;
 import com.mwu.aitok.model.video.dto.UpdateUserVideoCompilationDTO;
 import com.mwu.aitok.model.video.dto.UserVideoCompilationPageDTO;
@@ -16,7 +13,6 @@ import com.mwu.aitok.service.video.service.IUserVideoCompilationService;
 import com.mwu.aitok.service.video.service.IVideoService;
 import com.mwu.aitok.service.video.util.PackageUserVideoCompilationVOProcessor;
 import jakarta.persistence.criteria.Predicate;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

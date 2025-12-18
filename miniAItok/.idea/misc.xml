@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/aitok-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/aitok-service/aitok-service-creator/pom.xml" />
       </set>
     </option>
     <option name="ignoredPathMasks">

@@ -30,8 +30,12 @@ import com.mwu.aitok.model.video.vo.app.VideoRecommendVO;
 import com.mwu.aitok.service.video.constants.HotVideoConstants;
 import com.mwu.aitok.service.video.constants.QiniuVideoOssConstants;
 import com.mwu.aitok.service.video.constants.VideoConstants;
+import com.mwu.aitok.service.video.creator.controller.GetUserId;
 import com.mwu.aitok.service.video.domain.MediaVideoInfo;
-import com.mwu.aitok.service.video.repository.*;
+import com.mwu.aitok.service.video.repository.UserFollowRepository;
+import com.mwu.aitok.service.video.repository.VideoRepository;
+import com.mwu.aitok.service.video.repository.VideoSensitiveRepository;
+
 import com.mwu.aitok.service.video.service.*;
 import com.mwu.aitok.service.video.service.cache.VideoRedisBatchCache;
 import com.mwu.aitokcommon.cache.annotations.RedissonLock;
@@ -46,7 +50,6 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.apache.commons.collections4.CollectionUtils;
-import org.checkerframework.checker.units.qual.N;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -512,6 +515,7 @@ public class IVideoServiceImpl implements IVideoService {
      *
      * @param videoId
      */
+    // TODO also need delete the video file from minio or oss
     @Transactional
     @Override
     public boolean deleteVideoByVideoId(String videoId) {
@@ -839,7 +843,7 @@ public class IVideoServiceImpl implements IVideoService {
             return false;
         }
         Video dbVideo = videoRepository.findById(Long.valueOf(updateVideoDTO.getVideoId())).orElse(null);
-        if (StringUtils.isNotNull(dbVideo) && UserContext.getUserId().equals(dbVideo.getUserId())) {
+        if (StringUtils.isNotNull(dbVideo) && GetUserId.getUserId().equals(dbVideo.getUserId())) {
 
             Video video = videoRepository.findById(Long.valueOf(updateVideoDTO.getVideoId())).orElse(null);
             if (video == null) {

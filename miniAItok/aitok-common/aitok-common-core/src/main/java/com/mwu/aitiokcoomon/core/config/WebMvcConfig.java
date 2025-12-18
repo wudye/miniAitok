@@ -24,6 +24,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //        return new UserTokenInterceptor();
 //    }
 
+    /*
+    configurePathMatch 方法： 这个方法是用来配置 Spring MVC 的路径匹配规则的。
+    你的代码在这里调用了三次 configurePathMatch，分别针对 adminApi, webApi, 和 appApi。
+     */
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurePathMatch(configurer, webProperties.getAdminApi());
@@ -39,6 +43,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     private void configurePathMatch(PathMatchConfigurer configurer, WebProperties.Api api) {
         AntPathMatcher antPathMatcher = new AntPathMatcher(".");
+        /*
+        addPathPrefix(api.getPrefix(), ...)：这个方法的作用就是给满足特定条件的 Controller 添加一个统一的 URL 前缀。
+        clazz.isAnnotationPresent(RestController.class)：条件之一是这个类必须有 @RestController 注解。
+        antPathMatcher.match(api.getController(), clazz.getPackage().getName())：条件之二是这个类必须在 api.getController() 指定的包下。
+         */
         configurer.addPathPrefix(api.getPrefix(), clazz -> clazz.isAnnotationPresent(RestController.class)
                 && antPathMatcher.match(api.getController(), clazz.getPackage().getName())); // 仅仅匹配 controller 包
     }

@@ -1,6 +1,5 @@
 package com.mwu.aitok.service.video.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mwu.aitiokcoomon.core.utils.string.StringUtils;
 import com.mwu.aitok.model.member.domain.Member;
 import com.mwu.aitok.model.video.domain.Video;

@@ -1,11 +1,11 @@
-package com.mwu.aitok.service.creator.controller;
+package com.mwu.aitok.service.video.controller;
 
 import com.mwu.aitok.model.creator.dto.VideoPageDTO;
 import com.mwu.aitok.model.creator.dto.videoCompilationPageDTO;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
 import com.mwu.aitok.model.video.domain.Video;
 
-import com.mwu.aitok.service.creator.service.VideoQueryService;
+import com.mwu.aitok.service.video.creator.service.VideoQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

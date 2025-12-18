@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.creator.service.impl;
+package com.mwu.aitok.service.video.creator.service.impl;
 
 import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
@@ -11,7 +11,7 @@ import com.mwu.aitok.model.creator.vo.DashboardAmountVO;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
 import com.mwu.aitok.model.video.domain.Video;
 
-import com.mwu.aitok.service.creator.service.CreatorService;
+import com.mwu.aitok.service.video.creator.service.CreatorService;
 import com.mwu.aitok.service.video.repository.UserVideoCompilationRepository;
 import com.mwu.aitok.service.video.repository.VideoRepository;
 import com.mwu.aitok.service.video.repository.VideoSpecification;

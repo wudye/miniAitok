@@ -12,7 +12,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication(scanBasePackages = {"com.mwu.aitok.service.video", "com.mwu.aitokcommon", "com.mwu.aitiokcoomon"})
+@SpringBootApplication(scanBasePackages = {
+        "com.mwu.aitok.service.video",
+    "com.mwu.aitokcommon", 
+    "com.mwu.aitiokcoomon"
+})
 @EnableDiscoveryClient
 @EnableCacheConfig
 @EnableScheduling

@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.video.controller.app;
+package com.mwu.aitok.service.video.controller.temp_app;
 
 
 import com.mwu.aitiokcoomon.core.domain.R;

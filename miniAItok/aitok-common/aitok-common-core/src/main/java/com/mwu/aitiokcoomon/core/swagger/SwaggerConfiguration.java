@@ -20,8 +20,8 @@ public class SwaggerConfiguration {
 //    private ApiInfo buildApiInfo() {
 //        Contact contact = new Contact("mwu", "", "");
 //        return new ApiInfoBuilder()
-//                .title("七牛短视频-平台管理API文档")
-//                .description("七牛短视频api")
+//                .title("aitok-平台管理API文档")
+//                .description("aitokapi")
 //                .contact(contact)
 //                .version("1.0.0").build();
 //    }

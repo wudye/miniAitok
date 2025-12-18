@@ -5,7 +5,6 @@ import com.mwu.aitok.model.video.domain.VideoTag;
 import com.mwu.aitok.service.video.repository.VideoTagRepository;
 import com.mwu.aitok.service.video.service.VideoTagService;
 import jakarta.annotation.Resource;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

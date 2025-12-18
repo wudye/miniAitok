@@ -35,7 +35,6 @@ public class VideoPublishDto  {
     // 视频合集id
     private Long compilationId;
 
-    private Long id;
 
 
     /**
@@ -85,20 +84,12 @@ public class VideoPublishDto  {
      * 创建者
      */
     private String createBy;
-    /**
-     * 创建时间
-     */
 
-    private LocalDateTime createTime;
     /**
      * 更新者
      */
     private String updateBy;
-    /**
-     * 更新时间
-     */
 
-    private LocalDateTime updateTime;
 
 
 }

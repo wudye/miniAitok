@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.creator.service;
+package com.mwu.aitok.service.video.creator.service;
 
 
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;

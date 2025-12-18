@@ -1,7 +1,5 @@
 package com.mwu.aitok.service.video.service.impl;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mwu.aitiokcoomon.core.utils.string.StringUtils;
 import com.mwu.aitok.model.video.domain.UserVideoCompilationRelation;
 import com.mwu.aitok.model.video.dto.CompilationVideoPageDTO;
 import com.mwu.aitok.model.video.vo.CompilationVideoVO;
@@ -14,9 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

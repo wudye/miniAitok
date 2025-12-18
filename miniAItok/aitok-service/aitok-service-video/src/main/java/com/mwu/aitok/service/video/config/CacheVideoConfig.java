@@ -3,7 +3,6 @@ package com.mwu.aitok.service.video.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Ticker;
-import io.grpc.Deadline;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -40,6 +39,15 @@ public class CacheVideoConfig {
     @Bean
     public CacheManager cacheManager(Ticker ticker) {
         SimpleCacheManager manager = new SimpleCacheManager();
+        /*
+           // 定义多个命名缓存
+        List<CaffeineCache> caches = List.of(
+            buildCache("videos", new CacheSpec(30, 1000), ticker),
+            buildCache("users", new CacheSpec(60, 500), ticker),
+            buildCache("debug", new CacheSpec(10, 100), ticker)  // 调试用缓存
+        );
+
+         */
         if (specs != null) {
             List<CaffeineCache> caches = specs.entrySet().stream()
                     .map(entry -> buildCache(entry.getKey(), entry.getValue(), ticker))

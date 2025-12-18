@@ -5,7 +5,6 @@ import com.mwu.aitok.model.video.domain.VideoTagRelation;
 import com.mwu.aitok.service.video.repository.VideoTagRelationRepository;
 import com.mwu.aitok.service.video.repository.VideoTagRepository;
 import com.mwu.aitok.service.video.service.IVideoTagRelationService;
-import com.mwu.aitok.service.video.service.VideoTagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

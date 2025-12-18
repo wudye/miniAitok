@@ -3,7 +3,7 @@ package com.mwu.aitokcommon.cache.ratelimiter.core.annotation;
 
 
 import com.mwu.aitokcommon.cache.ratelimiter.core.keyresolver.RateLimiterKeyResolver;
-import com.mwu.aitokcommon.cache.ratelimiter.core.keyresolver.impl.DefaultRateLimiterKeyResolver;
+import com.mwu.aitokcommon.cache.ratelimiter.core.keyresolver.impl.*;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

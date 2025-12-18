@@ -1,9 +1,7 @@
 package com.mwu.aitok.service.video.grpc;
 
-import com.mwu.aitiokcoomon.core.utils.bean.BeanCopyUtils;
 import com.mwu.aitok.*;
 import com.mwu.aitok.model.video.domain.Video;
-import com.mwu.aitok.model.video.domain.VideoImage;
 import com.mwu.aitok.model.video.domain.VideoPosition;
 import com.mwu.aitok.model.video.domain.VideoTag;
 import com.mwu.aitok.model.video.vo.UserModel;
@@ -11,13 +9,12 @@ import com.mwu.aitok.model.video.vo.UserModelField;
 import com.mwu.aitok.model.video.vo.UserVideoCompilationInfoVO;
 import com.mwu.aitok.model.video.vo.VideoVO;
 import com.mwu.aitok.service.video.repository.VideoRepository;
+
 import com.mwu.aitok.service.video.service.*;
 import com.mwu.aitok.service.video.service.cache.VideoRedisBatchCache;
 import io.grpc.stub.StreamObserver;
 import jakarta.annotation.Resource;
-import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.util.ArrayList;
 import java.util.List;
