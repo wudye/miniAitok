@@ -13,9 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class WebSocketBaseResp<T> {
 
-    /**
-     * @see com.niuyin.service.notice.enums.WebSocketMsgType
-     */
     private String type;
     private T msg;
 

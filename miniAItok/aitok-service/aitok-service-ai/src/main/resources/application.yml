@@ -28,7 +28,7 @@ spring:
       password: ${CONFIG_SERVER_PASSWORD:123456789}
 
   datasource:
-    url: jdbc:mysql://localhost:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://192.168.80.130:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: 123456789
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -59,13 +59,13 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: 192.168.80.130
       port: 6379
       password: 123456789
       database: 1
 
   elasticsearch:
-    uris: http://localhost:9200
+    uris: http://192.168.80.130:9200
     username: elastic
     password: 123456789
     connection-timeout: 5s
@@ -73,7 +73,7 @@ spring:
 
   rabbitmq:
    # virtual-host: /cheese
-    host: localhost
+    host: 192.168.80.130
     port: 5672
     username: aitok
     password: 123456789
@@ -141,7 +141,7 @@ minio:
   access-key: admin
   secret-key: 123456789
   bucketName: aitok-member
-  endpoint: http://localhost:9000
+  endpoint: http://192.168.80.130:9000
 
 
 

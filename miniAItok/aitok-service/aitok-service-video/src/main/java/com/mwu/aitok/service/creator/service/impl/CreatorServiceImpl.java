@@ -1,4 +1,4 @@
-package com.mwu.aitokservice.creator.service.impl;
+package com.mwu.aitok.service.creator.service.impl;
 
 import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
@@ -10,11 +10,11 @@ import com.mwu.aitok.model.creator.vo.DashboardAmountItem;
 import com.mwu.aitok.model.creator.vo.DashboardAmountVO;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
 import com.mwu.aitok.model.video.domain.Video;
-import com.mwu.aitokservice.creator.repository.UserVideoCompilationRepository;
-import com.mwu.aitokservice.creator.repository.VideoRepository;
 
-import com.mwu.aitokservice.creator.repository.VideoSpecification;
-import com.mwu.aitokservice.creator.service.CreatorService;
+import com.mwu.aitok.service.creator.service.CreatorService;
+import com.mwu.aitok.service.video.repository.UserVideoCompilationRepository;
+import com.mwu.aitok.service.video.repository.VideoRepository;
+import com.mwu.aitok.service.video.repository.VideoSpecification;
 import com.mwu.aitokstarter.file.service.MinioService;
 import com.mwu.aitolk.feign.behave.RemoteBehaveService;
 import jakarta.annotation.Resource;

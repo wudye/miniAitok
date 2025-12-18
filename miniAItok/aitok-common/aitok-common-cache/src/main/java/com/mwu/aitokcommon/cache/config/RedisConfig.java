@@ -13,6 +13,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.mwu.aitokcommon.cache.service.LockService;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +40,18 @@ public class RedisConfig {
     // 注入你在 JacksonConfig 中声明的 ObjectMapper bean
     private final ObjectMapper objectMapper;
 
+    @Value("${spring.redis.host:192.168.80.130}")
+    private String host;
+    @Value("${spring.redis.port:6379}")
+    private int port;
+    @Value("${spring.redis.password:123456789}")
+    private String password;
+    @Value("${spring.redis.database:1}")
+    private int database;
+
+
+
+
     public RedisConfig(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
@@ -46,10 +59,10 @@ public class RedisConfig {
     public RedisConnectionFactory redisConnectionFactory() {
         // 使用默认 host/port（localhost:6379），可通过 application.properties 覆盖
         LettuceConnectionFactory factory = new LettuceConnectionFactory();
-        factory.setDatabase(1);
-        factory.setHostName("localhost");
-        factory.setPort(6379);
-        factory.setPassword("123456789");
+        factory.setDatabase(database);
+        factory.setHostName(host);
+        factory.setPort(port);
+        factory.setPassword(password);
         return factory;
     }
 

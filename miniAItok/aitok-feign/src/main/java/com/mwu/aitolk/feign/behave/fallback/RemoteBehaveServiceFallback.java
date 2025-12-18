@@ -74,6 +74,16 @@ public class RemoteBehaveServiceFallback implements FallbackFactory<RemoteBehave
             public long countByVideoIdAndUserId(String videoId, long userId) {
                 return 0;
             }
+
+            @Override
+            public R<Long> selectVideoCommentAmount(Long userId) {
+                return null;
+            }
+
+            @Override
+            public R<Long> selectVideoCommentAmountAdd(Long userId) {
+                return null;
+            }
         };
     }
 }

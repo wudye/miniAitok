@@ -11,6 +11,7 @@ import com.mwu.aitok.model.notice.enums.ReceiveFlag;
 import com.mwu.aitok.model.notice.vo.NoticeVO;
 import com.mwu.aitok.model.video.domain.Video;
 import com.mwu.aitokcommon.cache.service.RedisService;
+import com.mwu.aitokservice.notice.controller.v1.GetUserId;
 import com.mwu.aitokservice.notice.repository.NoticeRepository;
 import com.mwu.aitokservice.notice.service.INoticeService;
 import jakarta.annotation.Resource;
@@ -54,7 +55,8 @@ public class NoticeServiceImpl  implements INoticeService {
      */
     @Override
     public Page<Notice> queryUserNoticePage(NoticePageDTO pageDTO) {
-        Long userId = UserContext.getUserId();
+      Long userId = GetUserId.getUserId();
+
 
         Pageable pageable = PageRequest.of(pageDTO.getPageNum() - 1, pageDTO.getPageSize(),
                 Sort.by(Sort.Order.desc("createTime")));
@@ -71,9 +73,10 @@ public class NoticeServiceImpl  implements INoticeService {
     @Override
     public Long getUnreadNoticeCount() {
 
+        Long userId = GetUserId.getUserId();
 
 
-        return noticeMapper.countByNoticeUserIdAndReceiveFlag(UserContext.getUserId(), ReceiveFlag.WAIT.getCode());
+        return noticeMapper.countByNoticeUserIdAndReceiveFlag(userId, ReceiveFlag.WAIT.getCode());
     }
 
     /**
@@ -89,8 +92,10 @@ public class NoticeServiceImpl  implements INoticeService {
         if (records.isEmpty()) {
             return PageData.emptyPage();
         }
+
         // 封装消息通知vo
         List<NoticeVO> noticeVOList = BeanCopyUtils.copyBeanList(records, NoticeVO.class);
+
         noticeVOList.forEach(v -> {
             // 获取操作用户信息
 
@@ -103,6 +108,7 @@ public class NoticeServiceImpl  implements INoticeService {
                 v.setNickName(member.getNickName());
                 v.setOperateAvatar(member.getAvatar());
             }
+
             // 获取视频封面
             if (!Objects.isNull(v.getVideoId())) {
                 VideoIdRequest videoIdRequest = VideoIdRequest.newBuilder().setVideoId(Long.parseLong(v.getVideoId())).build();
@@ -110,6 +116,7 @@ public class NoticeServiceImpl  implements INoticeService {
                 Video video = BeanCopyUtils.copyBean(videoResponse, Video.class);
                 v.setVideoCoverImage(video.getCoverImage());
             }
+
         });
         return PageData.genPageData(noticeVOList, noticeIPage.getTotalElements());
     }
@@ -138,7 +145,9 @@ public class NoticeServiceImpl  implements INoticeService {
 
         Pageable pageable = PageRequest.of(pageDTO.getPageNum() - 1, pageDTO.getPageSize(),
                 Sort.by(Sort.Order.desc("createTime")));
-        Page<Notice> page = noticeMapper.findAllByNoticeUserIdAndNoticeType(UserContext.getUserId(), pageDTO.getNoticeType(), pageable);
+        Long userId = GetUserId.getUserId();
+
+        Page<Notice> page = noticeMapper.findAllByNoticeUserIdAndNoticeType(userId, pageDTO.getNoticeType(), pageable);
         return page;
     }
 }

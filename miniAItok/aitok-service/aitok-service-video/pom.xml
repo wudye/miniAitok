@@ -92,6 +92,12 @@
             <groupId>com.agentsflex</groupId>
             <artifactId>agents-flex-core</artifactId>
             <version>1.0.0-rc.8</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>compile</scope>
         </dependency>
         <dependency>

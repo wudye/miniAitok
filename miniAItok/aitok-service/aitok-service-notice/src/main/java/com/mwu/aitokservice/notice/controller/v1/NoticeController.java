@@ -1,6 +1,7 @@
 package com.mwu.aitokservice.notice.controller.v1;
 
 
+import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.R;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitiokcoomon.core.utils.bean.BeanCopyUtils;
@@ -10,11 +11,14 @@ import com.mwu.aitok.model.member.domain.Member;
 import com.mwu.aitok.model.notice.domain.Notice;
 import com.mwu.aitok.model.notice.dto.NoticePageDTO;
 import com.mwu.aitok.model.notice.vo.NoticeVO;
+import com.mwu.aitok.model.notice.vo.WebSocketBaseResp;
 import com.mwu.aitok.model.video.domain.Video;
 import com.mwu.aitokcommon.cache.service.RedisService;
+import com.mwu.aitokservice.notice.enums.WebSocketMsgType;
 import com.mwu.aitokservice.notice.repository.NoticeRepository;
 import com.mwu.aitokservice.notice.service.INoticeService;
 import jakarta.annotation.Resource;
+import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.data.domain.Page;
@@ -44,6 +48,29 @@ public class NoticeController {
 
     @Resource
     NoticeRepository noticeMapper;
+
+
+
+
+    /**
+     * 未读消息数量
+     */
+    @GetMapping("/app/unreadCount")
+    public R<Long> unReadNoticeCount() {
+        return R.ok(noticeService.getUnreadNoticeCount());
+    }
+
+    /**
+     * 分页根据条件查询行为通知
+     *
+     * @param pageDTO
+     * @return
+     */
+    @PostMapping("/app/behavePage")
+    public PageData behaveNoticePage(@RequestBody NoticePageDTO pageDTO) {
+        return noticeService.getBehaveNoticePage(pageDTO);
+    }
+
 
 
     @GrpcClient("aitok-video")
@@ -160,11 +187,12 @@ public class NoticeController {
      * @param noticeId
      * @return
      */
-    @DeleteMapping("/{noticeId}")
-    public R<Boolean> delNotice(@PathVariable("noticeId") Long noticeId) {
+    @DeleteMapping("/delete")
+    public R<String> delNotice(@RequestParam("noticeId") String noticeId) {
 
-        noticeMapper.deleteByNoticeId(noticeId);
-        return R.ok(true);
+        Long n = Long.valueOf(noticeId);
+        noticeMapper.deleteByNoticeId(n);
+        return R.ok("finish delete");
     }
 
     /**
@@ -177,6 +205,24 @@ public class NoticeController {
 
         Long res = noticeMapper.countByNoticeIdAndReceiveFlag(notice.getNoticeId(), notice.getReceiveFlag());
         return R.ok(res);
+    }
+
+
+    @GetMapping("/ws/push")
+    public void pushNotice(@PathParam("msg") String msg) {
+        /*
+
+        WebSocketBaseResp<String> 的作用是标准化WebSocket消息格式，而不是直接发送简单的字符串。
+        {
+          "code": 1001,
+          "message": "success",
+          "data": "hello",
+          "timestamp": 1642345678901
+        }
+
+         */
+        WebSocketBaseResp<String> res = WebSocketBaseResp.build(WebSocketMsgType.NOTICE_UNREAD_COUNT.getCode(), msg);
+        WebSocketServer.sendOneMessage(GetUserId.getUserId(), res);
     }
 
 }

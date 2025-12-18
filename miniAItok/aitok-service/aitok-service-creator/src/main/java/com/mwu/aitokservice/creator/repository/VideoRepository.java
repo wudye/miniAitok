@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// TODO use the grpc to call these methods from video module to avoid bean definition conflict
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Long> , JpaSpecificationExecutor<Video> {
     
@@ -108,7 +109,7 @@ public interface VideoRepository extends JpaRepository<Video, Long> , JpaSpecifi
             nativeQuery = true)
     Long selectVideoLikeAmountAdd(@Param("userId") Long userId);
 
-    @Query(value = "SELECT COUNT(vuc.id) " +
+    @Query(value = "SELECT COUNT(vuc.comment_id) " +
             "FROM video_user_comment vuc " +
             "JOIN video v ON vuc.video_id = v.video_id " +
             "WHERE v.user_id = :userId",
@@ -159,7 +160,7 @@ public interface VideoRepository extends JpaRepository<Video, Long> , JpaSpecifi
                     "  UNION ALL " +
                     "  SELECT day + INTERVAL 1 DAY FROM dates WHERE day < CURDATE() " +
                     ") " +
-                    "SELECT COALESCE(COUNT(vuc.id), 0) AS comment_count " +
+                    "SELECT COALESCE(COUNT(vuc.comment_id), 0) AS comment_count " +
                     "FROM dates d " +
                     "LEFT JOIN video_user_comment vuc " +
                     "  ON DATE(vuc.create_time) = d.day " +

@@ -18,7 +18,6 @@ import javax.swing.plaf.PanelUI;
 public class NoticePageDTO  {
     private Integer pageNum;
     private Integer pageSize;
-    private Notice notice;
 
     private Long noticeId;
     /**

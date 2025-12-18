@@ -1,16 +1,14 @@
-package com.mwu.aitokservice.creator.service;
+package com.mwu.aitok.service.creator.service;
 
 import com.mwu.aitok.model.creator.dto.VideoPageDTO;
 import com.mwu.aitok.model.creator.dto.videoCompilationPageDTO;
 import com.mwu.aitok.model.video.domain.UserVideoCompilation;
 import com.mwu.aitok.model.video.domain.Video;
-import com.mwu.aitokservice.creator.repository.UserVideoCompilationRepository;
-import com.mwu.aitokservice.creator.repository.VideoRepository;
-import com.mwu.aitokservice.creator.repository.VideoSpecification;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
+
+import com.mwu.aitok.service.video.repository.UserVideoCompilationRepository;
+import com.mwu.aitok.service.video.repository.VideoRepository;
+import com.mwu.aitok.service.video.repository.VideoSpecification;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -24,6 +24,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -153,6 +154,19 @@ public class VideoUserCommentController {
 
         return R.ok(true);
     }
+
+
+    @GetMapping("/countRemote/{userId}")
+    public R<Long> selectVideoCommentAmount(@PathVariable("userId") Long userId) {
+        return R.ok(videoUserCommentRepository.selectVideoCommentAmount(userId));
+    }
+
+    @GetMapping("/countRemoteAdd/{userId}")
+    public R<Long> selectVideoCommentAmountAdd(@PathVariable("userId") Long userId) {
+        return R.ok(videoUserCommentRepository.selectVideoCommentAmountAdd(userId));
+    }
+
+
 
 }
 

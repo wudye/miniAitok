@@ -1,4 +1,4 @@
-package com.mwu.aitokservice.creator.controller;
+package com.mwu.aitok.service.creator.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

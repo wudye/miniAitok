@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * notice交换机
+ * notice 消息队列配置
  */
 @Configuration
 public class NoticeDirectConfig {

@@ -9,6 +9,7 @@ import com.mwu.aitokservice.notice.enums.HeartCheckMsgEnums;
 import com.mwu.aitokservice.notice.enums.WebSocketMsgType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -20,7 +21,7 @@ class WebSocketTask {
     /**
      * 每30秒进行一次websocket心跳检测
      */
-//    @Scheduled(fixedRate = 1000 * 30)
+   @Scheduled(fixedRate = 1000 * 30)
     public void wsHeartCheck() {
         int num = 0;
         try {

@@ -22,3 +22,14 @@
 
     
 # creator module, multipart upload for video
+# notice moduele, websocket
+    client connect → /websocket/123
+                ↓
+    WebSocketServer.onOpen() → sessionPool.put(123, session)
+                ↓
+    Controller api → WebSocketServer.sendMessage(123, "消息")
+                ↓
+    by session sends message to client
+                ↓
+    onMessage to handle the client message
+                

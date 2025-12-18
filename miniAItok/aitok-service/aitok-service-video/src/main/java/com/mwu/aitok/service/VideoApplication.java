@@ -1,52 +1,31 @@
-package com.mwu.aitokservice.creator;
+package com.mwu.aitok.service;
 
-
-import com.mwu.aitiokcoomon.core.annotations.EnableUserTokenInterceptor;
 import com.mwu.aitokcommon.cache.annotations.EnableCacheConfig;
 import com.mwu.aitolk.feign.config.FeignConfig;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-/**
- * CreatorApplication
- *
- * @AUTHOR: mwu
- * @DATE: 2023/12/4
- **/
-@SpringBootApplication(scanBasePackages = {"com.mwu.aitokservice.creator", "com.mwu.aitokcommon", "com.mwu.aitiokcoomon"})
+@SpringBootApplication(scanBasePackages = {"com.mwu.aitok.service.video", "com.mwu.aitokcommon", "com.mwu.aitiokcoomon"})
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.mwu.aitolk.feign", defaultConfiguration = {FeignConfig.class})
 @EnableCacheConfig
 @EnableScheduling
 @EnableAsync
-@EnableCaching
-@EntityScan(basePackages = {"com.mwu.aitok.model"})
-@EnableUserTokenInterceptor
-public class CreatorApplication implements CommandLineRunner {
+@EntityScan({"com.mwu.aitok.model.video.domain", "com.mwu.aitok.model.social.domain"})
+@EnableJpaRepositories("com.mwu.aitok.service.video.repository")
+@EnableFeignClients(basePackages = "com.mwu.aitolk.feign")
+//@ConfigurationPropertiesScan("com.mwu.aitokstarter.file")
+@ConfigurationPropertiesScan(basePackages = "com.mwu.aitiokcoomon.core.compont")
 
+public class VideoApplication implements CommandLineRunner {
     public static void main(String[] args) {
-        SpringApplication.run(CreatorApplication.class, args);
-    }
-
-    /**
-     * mq的消息转换器防止乱码
-     */
-    @Bean
-    public MessageConverter jacksonMessageConverter() {
-        //   Jackson2JsonMessageConverter  专门配置RabbitMQ消息的JSON转换
-        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
-        converter.setCreateMessageIds(true);
-        return converter;
+        org.springframework.boot.SpringApplication.run(VideoApplication.class, args);
     }
 
 

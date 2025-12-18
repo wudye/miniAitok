@@ -64,5 +64,10 @@ public interface RemoteBehaveService {
 
     @GetMapping("/api/v1/app/favorite/count/{videoId}/{userId}")
     long countByVideoIdAndUserId(@PathVariable String videoId, @PathVariable long userId);
+
+    @GetMapping("/countRemote/{userId}")
+    public R<Long> selectVideoCommentAmount(@PathVariable("userId") Long userId) ;
+    @GetMapping("/countRemoteAdd/{userId}")
+    public R<Long> selectVideoCommentAmountAdd(@PathVariable("userId") Long userId) ;
 }
 

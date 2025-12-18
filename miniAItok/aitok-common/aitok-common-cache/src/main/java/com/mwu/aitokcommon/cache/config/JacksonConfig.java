@@ -19,6 +19,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+// 配置HTTP接口、缓存、Redis等的JSON序列化
+// - 日期时间格式化
+// - 字符串去空格
+// - 忽略null值
+// - 忽略未知属性
 @Configuration
 public class JacksonConfig {
 

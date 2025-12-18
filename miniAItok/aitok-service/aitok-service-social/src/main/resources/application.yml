@@ -24,7 +24,7 @@ spring:
       password: ${CONFIG_SERVER_PASSWORD:123456789}
 
   datasource:
-    url: jdbc:mysql://localhost:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://192.168.80.130:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: 123456789
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -47,13 +47,13 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: 192.168.80.130
       port: 6379
       password: 123456789
       database: 1
 
   elasticsearch:
-    uris: http://localhost:9200
+    uris: http://192.168.80.130:9200
     username: elastic
     password: 123456789
     connection-timeout: 5s
@@ -61,7 +61,7 @@ spring:
 
   rabbitmq:
    # virtual-host: /cheese
-    host: localhost
+    host: 192.168.80.130
     port: 5672
     username: aitok
     password: 123456789
@@ -86,7 +86,7 @@ spring:
   #交互的高层 API。主要职责包括发送/接收消息、进行消息转换（对象到消息、消息到对象）、处理确认回调和返回消息、以及支持重试与事务等
 logging:
   file:
-    path: ./logs/aitok-member
+    path: ./logs/aitok-notice
   level:
     root: info
 
@@ -111,7 +111,7 @@ minio:
   access-key: admin
   secret-key: 123456789
   bucketName: aitok-member
-  endpoint: http://localhost:9000
+  endpoint: http://192.168.80.130:9000
 
 
 

@@ -2,7 +2,7 @@ package com.mwu.aitokservice.recommend;
 
 import com.mwu.aitokcommon.cache.annotations.EnableCacheConfig;
 import com.mwu.aitolk.feign.config.FeignConfig;
-;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,6 +32,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
         "com.mwu.aitokservice.recommend.repository" // 推荐仓库包
 })
 public class RecommendApplication implements CommandLineRunner {
+
     public static void main(String[] args) {
         SpringApplication.run(RecommendApplication.class, args);
     }
