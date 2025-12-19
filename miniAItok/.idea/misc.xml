@@ -7,6 +7,19 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/aitok-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/aitok-service/aitok-service-creator/pom.xml" />
+      </set>
+    </option>
+    <option name="ignoredPathMasks">
+      <list>
+        <option value="*/target/*" />
+        <option value="*/logs/*" />
+        <option value="*/.git/*" />
+      </list>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+<div id="messages"></div>
+
+<script>
+    const userId = 2; // 你的用户ID
+    const ws = new WebSocket(`ws://localhost:18010/websocket/${userId}`);
+
+    ws.onopen = function(event) {
+        console.log("Connected to WebSocket");
+        document.getElementById("messages").innerHTML += "<p>Connected!</p>";
+    };
+
+    ws.onmessage = function(event) {
+        console.log("Received:", event.data);
+        document.getElementById("messages").innerHTML +=
+            `<p>Received: ${event.data}</p>`;
+    };
+
+    ws.onclose = function(event) {
+        console.log("Disconnected");
+        document.getElementById("messages").innerHTML += "<p>Disconnected!</p>";
+    };
+
+    ws.onerror = function(error) {
+        console.error("WebSocket Error:", error);
+    };
+</script>
+</body>
+</html>

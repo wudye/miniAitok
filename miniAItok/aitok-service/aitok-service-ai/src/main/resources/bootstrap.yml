@@ -1,0 +1,10 @@
+# This file is loaded before application.yml and is used to configure
+# properties needed to connect to the Config Server.
+
+spring:
+  config:
+    import: "optional:configserver:http://localhost:8001"
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}
+      password: ${CONFIG_SERVER_PASSWORD:123456789}

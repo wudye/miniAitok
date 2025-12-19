@@ -1,0 +1,207 @@
+import request from '@/utils/request'
+
+// 评论分页树
+export function videoCommentPageList(data: any) {
+    return request({
+        url: '/behave/api/v1/comment/tree',
+        method: 'post',
+        data: data
+    })
+}
+
+// 添加评论
+export function addVideoComment(data: any) {
+    return request({
+        url: '/behave/api/v1/comment',
+        method: 'post',
+        data: data
+    })
+}
+
+// 视频点赞
+export function likeVideo(videoId: string) {
+    return request({
+        url: '/behave/api/v1/like/' + videoId,
+        method: 'get'
+    })
+}
+
+// 分页查询我喜欢的视频
+export function videoLikePage(data: any) {
+    return request({
+        url: '/behave/api/v1/like/mylikepage',
+        method: 'post',
+        data: data
+    })
+}
+
+// 分页查询我收藏的视频
+export function videoFavoritePage(data: any) {
+    return request({
+        url: '/behave/api/v1/favorite/mypage',
+        method: 'post',
+        data: data
+    })
+}
+
+// 回复评论
+export function replayVideoComment(data: any) {
+    return request({
+        url: '/behave/api/v1/comment/replay',
+        method: 'post',
+        data: data
+    })
+}
+
+// 删除评论
+export function deleteVideoComment(commentId: string) {
+    return request({
+        url: '/behave/api/v1/comment/' + commentId,
+        method: 'delete',
+    })
+}
+
+// 我的喜欢数
+export function myLikeCount() {
+    return request({
+        url: '/behave/api/v1/like/likeCount',
+        method: 'get',
+    })
+}
+
+// 我的收藏数
+export function myFavoriteCount() {
+    return request({
+        url: '/behave/api/v1/favorite/favoriteCount',
+        method: 'get',
+    })
+}
+
+//查询用户收藏夹列表
+export function myFavoriteList() {
+    return request({
+        url: '/behave/api/v1/userFavorite/list',
+        method: 'get',
+    })
+}
+
+//查询用户点赞列表
+export function personVideoLikePage(data: any) {
+    return request({
+        url: '/behave/api/v1/like/personLikePage',
+        method: 'post',
+        data: data
+    })
+}
+
+//查询用户点赞列表
+export function createFavorite(data: any) {
+    return request({
+        url: '/behave/api/v1/userFavorite',
+        method: 'post',
+        data: data
+    })
+}
+
+// 用户仅仅收藏视频
+export function onlyFavoriteVideo(videoId: string) {
+    return request({
+        url: '/behave/api/v1/favorite/' + videoId,
+        method: 'GET',
+    })
+}
+
+
+// 用户仅仅收藏视频
+export function userUnFavoriteVideo(videoId: string) {
+    return request({
+        url: '/behave/api/v1/favorite/unFavorite/' + videoId,
+        method: 'PUT',
+    })
+}
+
+
+// 收藏视频到收藏夹
+export function favoriteVideoToCollection(data: any) {
+    return request({
+        url: '/behave/api/v1/userFavoriteVideo',
+        method: 'POST',
+        data: data
+    })
+}
+
+// 查询视频在用户哪些收藏夹
+export function videoInWhoseCollection(videoId: string) {
+    return request({
+        url: '/behave/api/v1/userFavoriteVideo/' + videoId,
+        method: 'GET',
+    })
+}
+
+// 查询收藏夹详情集合
+export function collectionInfoList() {
+    return request({
+        url: '/behave/api/v1/userFavorite/infoList',
+        method: 'GET',
+    })
+}
+
+// 分页收藏夹详情
+export function collectionInfoPage(data: any) {
+    return request({
+        url: '/behave/api/v1/userFavorite/infoPage',
+        method: 'POST',
+        data: data
+    })
+}
+
+// 更新收藏夹信息
+export function updateFavorite(data: any) {
+    return request({
+        url: '/behave/api/v1/userFavorite',
+        method: 'PUT',
+        data: data
+    })
+}
+
+// 删除收藏夹
+export function deleteFavorite(favoriteId: string) {
+    return request({
+        url: '/behave/api/v1/userFavorite/' + favoriteId,
+        method: 'DELETE',
+    })
+}
+
+// 同步视频观看行为埋点
+export function syncViewBehave(videoId: string) {
+    return request({
+        url: '/behave/api/v1/userVideoBehave/syncViewBehave/' + videoId,
+        method: 'get',
+    })
+}
+
+// 视频笔记分页
+export function videoNotePage(data: any) {
+    return request({
+        url: '/behave/api/v1/videoNote/page',
+        method: 'post',
+        data: data
+    })
+}
+
+// 视频笔记
+export function addVideoNote(data: any) {
+    return request({
+        url: '/behave/api/v1/videoNote',
+        method: 'post',
+        data: data
+    })
+}
+
+// 视频笔记
+export function getVideoNote(noteId: string) {
+    return request({
+        url: '/behave/api/v1/videoNote/' + noteId,
+        method: 'get'
+    })
+}
