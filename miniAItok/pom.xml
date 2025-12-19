@@ -28,6 +28,7 @@
         <module>aitok-model</module>
         <module>aitok-gateway-server</module>
         <module>aitok-grpc-server</module>
+        <module>demo-ai</module>
     </modules>
 
     <properties>

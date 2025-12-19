@@ -37,6 +37,15 @@ public class RateLimiterAspect {
         this.rateLimiterRedisDAO = rateLimiterRedisDAO;
     }
 
+    /*
+    @Before → 目标方法 → 程序继续
+
+
+    目标方法 → @After → 程序继续
+
+    @Around（前半部分）→ 目标方法 → @Around（后半部分）→ 程序继续
+
+     */
     @Before("@annotation(rateLimiter)")
     public void beforePointCut(JoinPoint joinPoint, RateLimiter rateLimiter) {
         // 获得 IdempotentKeyResolver 对象

@@ -77,59 +77,59 @@ public class AdminModelRoleController {
 
     // ========== 角色管理 ==========
 
-    @PostMapping("/create")
-    @Operation(summary = "创建智能体")
-    public R<Long> createModelRole(@Valid @RequestBody ModelRoleSaveDTO dto) {
-        return R.ok(modelRoleService.createModelRole(dto));
-    }
-
-    @PutMapping("/update")
-    @Operation(summary = "更新智能体")
-    public R<Boolean> updateModelRole(@Valid @RequestBody ModelRoleSaveDTO dto) {
-        modelRoleService.updateModelRole(dto);
-        return R.ok(true);
-    }
-
-    @PutMapping("/updateState")
-    @Operation(summary = "更新模型状态")
-    public R<Boolean> updateApiKey(@Valid @RequestBody ModelRoleStateDTO dto) {
-        modelRoleService.updateModelRoleState(dto);
-        return R.ok(true);
-    }
-
-    public record ModelRoleStateDTO(
-            @Schema(description = "编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "23538")
-            @NotNull(message = "编号不能为空")
-            Long id,
-
-            @Schema(description = "状态", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
-            @NotNull(message = "状态不能为空")
-            String stateFlag
-    ) {
-    }
-
-    @DeleteMapping("/delete")
-    @Operation(summary = "删除智能体")
-    @Parameter(name = "id", description = "编号", required = true)
-    public R<Boolean> deleteModelRole(@RequestParam("id") Long id) {
-        modelRoleService.deleteModelRole(id);
-        return R.ok(true);
-    }
-
-    @GetMapping("/get")
-    @Operation(summary = "获得智能体")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
-    public R<ModelAgentDO> getModelRole(@RequestParam("id") Long id) {
-        ModelAgentDO chatRole = modelRoleService.getModelRole(id);
-        return R.ok(chatRole);
-    }
-
-    @GetMapping("/page")
-    @Operation(summary = "获得智能体分页")
-    public R<PageData<ModelAgentDO>> getChatRolePage(@Valid ModelRolePageDTO pageDTO) {
-        PageData<ModelAgentDO> pageResult = modelRoleService.getModelRolePage(pageDTO);
-        return R.ok(pageResult);
-    }
+//    @PostMapping("/create")
+//    @Operation(summary = "创建智能体")
+//    public R<Long> createModelRole(@Valid @RequestBody ModelRoleSaveDTO dto) {
+//        return R.ok(modelRoleService.createModelRole(dto));
+//    }
+//
+//    @PutMapping("/update")
+//    @Operation(summary = "更新智能体")
+//    public R<Boolean> updateModelRole(@Valid @RequestBody ModelRoleSaveDTO dto) {
+//        modelRoleService.updateModelRole(dto);
+//        return R.ok(true);
+//    }
+//
+//    @PutMapping("/updateState")
+//    @Operation(summary = "更新模型状态")
+//    public R<Boolean> updateApiKey(@Valid @RequestBody ModelRoleStateDTO dto) {
+//        modelRoleService.updateModelRoleState(dto);
+//        return R.ok(true);
+//    }
+//
+//    public record ModelRoleStateDTO(
+//            @Schema(description = "编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "23538")
+//            @NotNull(message = "编号不能为空")
+//            Long id,
+//
+//            @Schema(description = "状态", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+//            @NotNull(message = "状态不能为空")
+//            String stateFlag
+//    ) {
+//    }
+//
+//    @DeleteMapping("/delete")
+//    @Operation(summary = "删除智能体")
+//    @Parameter(name = "id", description = "编号", required = true)
+//    public R<Boolean> deleteModelRole(@RequestParam("id") Long id) {
+//        modelRoleService.deleteModelRole(id);
+//        return R.ok(true);
+//    }
+//
+//    @GetMapping("/get")
+//    @Operation(summary = "获得智能体")
+//    @Parameter(name = "id", description = "编号", required = true, example = "1024")
+//    public R<ModelAgentDO> getModelRole(@RequestParam("id") Long id) {
+//        ModelAgentDO chatRole = modelRoleService.getModelRole(id);
+//        return R.ok(chatRole);
+//    }
+//
+//    @GetMapping("/page")
+//    @Operation(summary = "获得智能体分页")
+//    public R<PageData<ModelAgentDO>> getChatRolePage(@Valid ModelRolePageDTO pageDTO) {
+//        PageData<ModelAgentDO> pageResult = modelRoleService.getModelRolePage(pageDTO);
+//        return R.ok(pageResult);
+//    }
 
 
 }

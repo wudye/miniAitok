@@ -1,7 +1,7 @@
 package com.mwu.aitokservice.ai.mapper;
 
 import com.mwu.aitok.model.ai.domain.model.ApiKeyDO;
-;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

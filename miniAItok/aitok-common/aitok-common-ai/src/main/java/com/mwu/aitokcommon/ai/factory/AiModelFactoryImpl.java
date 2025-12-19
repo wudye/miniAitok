@@ -16,8 +16,8 @@ import com.alibaba.cloud.ai.dashscope.image.DashScopeImageModel;
 import com.azure.ai.openai.OpenAIClientBuilder;
 
 import com.mwu.aitiokcoomon.core.utils.spring.SpringUtils;
-import com.mwu.aitokcommon.ai.config.NiuyinAiAutoConfiguration;
-import com.mwu.aitokcommon.ai.config.NiuyinAiProperties;
+import com.mwu.aitokcommon.ai.config.TokAiAutoConfiguration;
+import com.mwu.aitokcommon.ai.config.TokAiProperties;
 import com.mwu.aitokcommon.ai.enums.AiPlatformEnum;
 import com.mwu.aitokcommon.ai.model.baichuan.BaiChuanChatModel;
 import com.mwu.aitokcommon.ai.model.deepseek.DeepSeekChatModel;
@@ -42,7 +42,6 @@ import org.springframework.ai.autoconfigure.ollama.OllamaAutoConfiguration;
 import org.springframework.ai.autoconfigure.openai.OpenAiAutoConfiguration;
 import org.springframework.ai.autoconfigure.qianfan.QianFanAutoConfiguration;
 import org.springframework.ai.autoconfigure.stabilityai.StabilityAiImageAutoConfiguration;
-import org.springframework.ai.autoconfigure.vectorstore.milvus.MilvusVectorStoreAutoConfiguration;
 import org.springframework.ai.autoconfigure.vectorstore.qdrant.QdrantVectorStoreAutoConfiguration;
 import org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration;
 import org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreProperties;
@@ -99,7 +98,6 @@ import redis.clients.jedis.JedisPooled;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -239,7 +237,7 @@ public class AiModelFactoryImpl implements AiModelFactory {
         String cacheKey = buildClientCacheKey(MidjourneyApi.class, AiPlatformEnum.MIDJOURNEY.getPlatform(), apiKey,
                 url);
         return (MidjourneyApi) CLIENT_CACHE.computeIfAbsent(cacheKey, k -> {
-            NiuyinAiProperties.MidjourneyProperties properties = SpringUtils.getBean(NiuyinAiProperties.class)
+            TokAiProperties.MidjourneyProperties properties = SpringUtils.getBean(TokAiProperties.class)
                     .getMidjourney();
             return new MidjourneyApi(url, apiKey, properties.getNotifyUrl());
         });
@@ -345,39 +343,39 @@ public class AiModelFactoryImpl implements AiModelFactory {
     }
 
     /**
-     * 可参考 {@link NiuyinAiAutoConfiguration#deepSeekChatModel(NiuyinAiProperties)}
+     * 可参考 {@link TokAiAutoConfiguration#deepSeekChatModel(TokAiProperties)}
      */
     private static DeepSeekChatModel buildDeepSeekChatModel(String apiKey) {
-        NiuyinAiProperties.DeepSeekProperties properties = new NiuyinAiProperties.DeepSeekProperties()
+        TokAiProperties.DeepSeekProperties properties = new TokAiProperties.DeepSeekProperties()
                 .setApiKey(apiKey);
-        return new NiuyinAiAutoConfiguration().buildDeepSeekChatModel(properties);
+        return new TokAiAutoConfiguration().buildDeepSeekChatModel(properties);
     }
 
     /**
-     * 可参考 {@link NiuyinAiAutoConfiguration#douBaoChatClient(NiuyinAiProperties)}
+     * 可参考 {@link TokAiAutoConfiguration#douBaoChatClient(TokAiProperties)}
      */
     private ChatModel buildDouBaoChatModel(String apiKey) {
-        NiuyinAiProperties.DouBaoProperties properties = new NiuyinAiProperties.DouBaoProperties()
+        TokAiProperties.DouBaoProperties properties = new TokAiProperties.DouBaoProperties()
                 .setApiKey(apiKey);
-        return new NiuyinAiAutoConfiguration().buildDouBaoChatClient(properties);
+        return new TokAiAutoConfiguration().buildDouBaoChatClient(properties);
     }
 
     /**
-     * 可参考 {@link NiuyinAiAutoConfiguration#hunYuanChatClient(NiuyinAiProperties)}
+     * 可参考 {@link TokAiAutoConfiguration#hunYuanChatClient(TokAiProperties)}
      */
     private ChatModel buildHunYuanChatModel(String apiKey, String url) {
-        NiuyinAiProperties.HunYuanProperties properties = new NiuyinAiProperties.HunYuanProperties()
+        TokAiProperties.HunYuanProperties properties = new TokAiProperties.HunYuanProperties()
                 .setBaseUrl(url).setApiKey(apiKey);
-        return new NiuyinAiAutoConfiguration().buildHunYuanChatClient(properties);
+        return new TokAiAutoConfiguration().buildHunYuanChatClient(properties);
     }
 
     /**
-     * 可参考 {@link NiuyinAiAutoConfiguration#siliconFlowChatClient(NiuyinAiProperties)}
+     * 可参考 {@link TokAiAutoConfiguration#siliconFlowChatClient(TokAiProperties)}
      */
     private ChatModel buildSiliconFlowChatModel(String apiKey) {
-        NiuyinAiProperties.SiliconFlowProperties properties = new NiuyinAiProperties.SiliconFlowProperties()
+        TokAiProperties.SiliconFlowProperties properties = new TokAiProperties.SiliconFlowProperties()
                 .setApiKey(apiKey);
-        return new NiuyinAiAutoConfiguration().buildSiliconFlowChatClient(properties);
+        return new TokAiAutoConfiguration().buildSiliconFlowChatClient(properties);
     }
 
     /**
@@ -420,23 +418,23 @@ public class AiModelFactoryImpl implements AiModelFactory {
     }
 
     /**
-     * 可参考 {@link NiuyinAiAutoConfiguration#xingHuoChatClient(NiuyinAiProperties)}
+     * 可参考 {@link TokAiAutoConfiguration#xingHuoChatClient(TokAiProperties)}
      */
     private static XingHuoChatModel buildXingHuoChatModel(String key) {
         String[] keys = StringUtils.split(key, '|');
         Assert.isTrue(keys.length == 2, "XingHuoChatClient 的密钥需要 (appKey|secretKey) 格式");
-        NiuyinAiProperties.XingHuoProperties properties = new NiuyinAiProperties.XingHuoProperties()
+        TokAiProperties.XingHuoProperties properties = new TokAiProperties.XingHuoProperties()
                 .setAppKey(keys[0]).setSecretKey(keys[1]);
-        return new NiuyinAiAutoConfiguration().buildXingHuoChatClient(properties);
+        return new TokAiAutoConfiguration().buildXingHuoChatClient(properties);
     }
 
     /**
-     * 可参考 {@link NiuyinAiAutoConfiguration#baiChuanChatClient(NiuyinAiProperties)}
+     * 可参考 {@link TokAiAutoConfiguration#baiChuanChatClient(TokAiProperties)}
      */
     private BaiChuanChatModel buildBaiChuanChatModel(String apiKey) {
-        NiuyinAiProperties.BaiChuanProperties properties = new NiuyinAiProperties.BaiChuanProperties()
+        TokAiProperties.BaiChuanProperties properties = new TokAiProperties.BaiChuanProperties()
                 .setApiKey(apiKey);
-        return new NiuyinAiAutoConfiguration().buildBaiChuanChatClient(properties);
+        return new TokAiAutoConfiguration().buildBaiChuanChatClient(properties);
     }
 
     /**

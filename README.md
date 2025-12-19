@@ -43,7 +43,7 @@ This project adopts Spring Cloud microservices architecture with the following c
 ## 📁 Project Structure
 
 ```
-aitok-ai/
+aitok/
 ├── docker/                    # Docker deployment configuration
 │   ├── mysql/                 # MySQL container configuration
 │   ├── redis/                 # Redis container configuration
@@ -80,7 +80,7 @@ aitok-ai/
 ### 1. 🎬 Video Service (aitok-service-video)
 
 **Core Features:**
-- Video upload and storage (supports Alibaba Cloud OSS and Qiniu Cloud)
+- Video upload and storage (based on minio)
 - Video transcoding processing (based on FFmpeg)
 - Video chunk upload
 - Video category management
@@ -288,7 +288,7 @@ mvn clean package -DskipTests
 3. **Start Services**
 ```bash
 # Start each service module sequentially
-mvn spring-boot:run -pl aitok-gateway
+mvn spring-boot:run -pl aitok-eureka, config, gateway server
 mvn spring-boot:run -pl aitok-service/aitok-service-member
 mvn spring-boot:run -pl aitok-service/aitok-service-video
 # ... other services
@@ -335,13 +335,6 @@ minio:
 ```
 ### Google Email Configuration
 ```yaml
-# Minio
-minio:
-    endpoint: your_endpoint
-    bucketName: your_bucket
-    accessKeyId: your_access_key
-    accessKeySecret: your_secret
-
 
 ```
 

@@ -7,6 +7,8 @@ import com.mwu.aitok.model.ai.dto.model.ApiKeyPageDTO;
 import com.mwu.aitok.model.ai.dto.model.ApiKeySaveDTO;
 import com.mwu.aitok.model.ai.dto.model.ApiKeyStateDTO;
 
+import java.util.List;
+
 /**
  * AI API 密钥表(AiApiKey)表服务接口
  *
@@ -28,4 +30,6 @@ public interface IApiKeyService {
     void updateApiKeyState(ApiKeyStateDTO dto);
 
     ApiKeyDO validateApiKey(Long id);
+
+    List<ApiKeyDO> list();
 }

@@ -19,6 +19,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * AI API 密钥表(AiApiKey)表服务实现类
@@ -81,5 +83,10 @@ public class ApiKeyServiceImpl  implements IApiKeyService {
             throw new RuntimeException("密钥已被禁用");
         }
         return apiKey;
+    }
+
+    @Override
+    public List<ApiKeyDO> list() {
+        return List.of();
     }
 }

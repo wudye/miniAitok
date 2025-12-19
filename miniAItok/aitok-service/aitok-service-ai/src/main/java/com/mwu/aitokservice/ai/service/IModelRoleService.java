@@ -25,7 +25,7 @@ public interface IModelRoleService {
 
     PageData<ModelAgentDO> getModelRolePage(ModelRolePageDTO pageDTO);
 
-    void updateModelRoleState(AdminModelRoleController.ModelRoleStateDTO dto);
+//    void updateModelRoleState(AdminModelRoleController.ModelRoleStateDTO dto);
 
     PageData<ModelAgentDO> getModelRolePageForWeb(WebModelRolePageDTO pageDTO);
 }

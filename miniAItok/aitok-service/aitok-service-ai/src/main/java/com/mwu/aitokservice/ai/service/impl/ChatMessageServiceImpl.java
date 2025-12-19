@@ -89,6 +89,10 @@ public class ChatMessageServiceImpl  implements IChatMessageService {
 
     @Override
     public Flux<R<ChatMessageVO>> sendChatMessageStream(ChatbotController.ChatRequest dto, Long userId) {
+
+
+
+
         // 1.1 校验对话存在
         ChatConversationDO conversation = chatConversationService.validateChatConversationExists(dto.conversationId());
         if (Objects.isNull(conversation) || Objects.equals(conversation.getUserId(), userId)) {

@@ -1,7 +1,7 @@
 
 
 server:
-  port: 180020
+  port: 18020
   servlet:
     encoding:
       enabled: true
@@ -20,12 +20,6 @@ spring:
     # 确保资源（如线程池、连接池等）能够被正确释放。timeout-per-shutdown-phase 指定了每个阶段的最大等待时间，超过该时间后，未完成的任务将被强制终止。
   lifecycle:
     timeout-per-shutdown-phase: 30s
-  config:
-    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
-  cloud:
-    config:
-      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
-      password: ${CONFIG_SERVER_PASSWORD:123456789}
 
   datasource:
     url: jdbc:mysql://192.168.80.130:3306/aitok?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
@@ -140,7 +134,7 @@ eureka:
 minio:
   access-key: admin
   secret-key: 123456789
-  bucketName: aitok-member
+  bucket: aitok-member
   endpoint: http://192.168.80.130:9000
 
 
@@ -175,21 +169,27 @@ spring:
   ai:
     vectorstore: # 向量存储
       redis:
+        #uri: redis://123456789@192.168.80.131:6379
         initialize-schema: true
         index: knowledge_index # Redis 中向量索引的名称：用于存储和检索向量数据的索引标识符，所有相关的向量搜索操作都会基于这个索引进行
         prefix: "knowledge_segment:" # Redis 中存储向量数据的键名前缀：这个前缀会添加到每个存储在 Redis 中的向量数据键名前，每个 document 都是一个 hash 结构
-      qdrant:
-        initialize-schema: true
-        collection-name: knowledge_segment # Qdrant 中向量集合的名称：用于存储向量数据的集合标识符，所有相关的向量操作都会在这个集合中进行
-        host: 127.0.0.1
-        port: 6334
-      milvus:
-        initialize-schema: true
-        database-name: default # Milvus 中数据库的名称
-        collection-name: knowledge_segment # Milvus 中集合的名称：用于存储向量数据的集合标识符，所有相关的向量操作都会在这个集合中进行
-        client:
-          host: 127.0.0.1
-          port: 19530
+
+      # 移除其他向量数据库配置注释掉即可
+      # qdrant:
+      #   initialize-schema: true
+      #   collection-name: knowledge_segment
+      #   host: 192.168.80.130
+      #   port: 6334
+
+      # milvus:
+      #   initialize-schema: true
+      #   database-name: default
+      #   collection-name: knowledge_segment
+      #   client:
+      #     host: 192.168.80.130
+      #     port: 19530
+
+
     qianfan: # 文心一言
       api-key: x0cuLZ7XsaTCU08vuJWO87Lg
       secret-key: R9mYF9dl9KASgi5RUq0FQt3wRisSnOcK
@@ -205,7 +205,7 @@ spring:
     ollama:
       base-url: http://127.0.0.1:11434
       chat:
-        model: llama3
+        model: deepseek-llm:7b
     stabilityai:
       api-key: sk-e53UqbboF8QJCscYvzJscJxJXoFcFg4iJjl1oqgE7baJETmx
     dashscope: # 通义千问
@@ -214,6 +214,7 @@ spring:
       api-key: xxxx
     moonshot: # 月之暗灭（KIMI）
       api-key: sk-abc
+
 
 niuyin:
   ai:
@@ -252,5 +253,4 @@ niuyin:
       enable: true
       #    base-url: https://suno-55ishh05u-status2xxs-projects.vercel.app
       base-url: http://127.0.0.1:3001
-
 

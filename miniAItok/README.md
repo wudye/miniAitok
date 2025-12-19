@@ -30,6 +30,14 @@
    update: redis and caffeine
    delete: Redis and Caffeine
    distributed lock with redisson build by annotation(RedissonLock) + aop(RedissonLockAspect)
+3. redission ratelimit
+   @RateLimiter 注解
+        ↓
+   RateLimiterAspect（AOP切面）
+        ↓
+   RateLimiterRedisDAO（数据访问层）
+        ↓
+   Redisson + Redis（分布式存储）
 ## common-ai
 # video module
     creator module  integrate to video module, multipart upload for video

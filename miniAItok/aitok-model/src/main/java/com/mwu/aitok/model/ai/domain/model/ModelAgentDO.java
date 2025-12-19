@@ -52,7 +52,7 @@ public class ModelAgentDO extends BaseDO {
      * 角色类别
      */
     //@TableField(typeHandler = LongListTypeHandler.class)
-            @OneToMany(mappedBy = "modelAgent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "modelAgent", cascade = CascadeType.ALL)
     private List<ModelAgentCategoryDO> categoryIds;
     /**
      * 角色描述
@@ -84,7 +84,7 @@ public class ModelAgentDO extends BaseDO {
      * 关联 {@link KnowledgeDO#getId()} 字段
      */
    // @TableField(typeHandler = LongListTypeHandler.class)
-    @OneToMany(mappedBy = "modelAgent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "modelAgent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<KnowledgeDO> knowledgeIds = new ArrayList<>();
     /**
      * 引用的工具编号列表

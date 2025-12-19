@@ -111,12 +111,12 @@ public class ModelRoleServiceImpl implements IModelRoleService {
         return PageData.page(page);
     }
 
-    @Override
-    public void updateModelRoleState(AdminModelRoleController.ModelRoleStateDTO dto) {
-        ModelAgentDO modelAgentDO = BeanCopyUtils.copyBean(dto, ModelAgentDO.class);
-        modelAgentDO.setId(dto.id());
-        modelRoleMapper.save(modelAgentDO);
-    }
+//    @Override
+//    public void updateModelRoleState(AdminModelRoleController.ModelRoleStateDTO dto) {
+//        ModelAgentDO modelAgentDO = BeanCopyUtils.copyBean(dto, ModelAgentDO.class);
+//        modelAgentDO.setId(dto.id());
+//        modelRoleMapper.save(modelAgentDO);
+//    }
 
     @Override
     public PageData<ModelAgentDO> getModelRolePageForWeb(WebModelRolePageDTO pageDTO) {

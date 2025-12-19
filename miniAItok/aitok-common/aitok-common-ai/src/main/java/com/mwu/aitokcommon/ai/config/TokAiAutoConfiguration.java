@@ -37,13 +37,13 @@ import org.springframework.context.annotation.Bean;
  * AI 自动配置
  */
 @AutoConfiguration
-@EnableConfigurationProperties({NiuyinAiProperties.class,
+@EnableConfigurationProperties({TokAiProperties.class,
         QdrantVectorStoreProperties.class, // 解析 Qdrant 配置
         RedisVectorStoreProperties.class, // 解析 Redis 配置
         MilvusVectorStoreProperties.class, MilvusServiceClientProperties.class // 解析 Milvus 配置
 })
 @Slf4j
-public class NiuyinAiAutoConfiguration {
+public class TokAiAutoConfiguration {
 
     @Bean
     public AiModelFactory aiModelFactory() {
@@ -54,12 +54,12 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.deepseek.enable", havingValue = "true")
-    public DeepSeekChatModel deepSeekChatModel(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.DeepSeekProperties properties = niuyinAiProperties.getDeepseek();
+    public DeepSeekChatModel deepSeekChatModel(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.DeepSeekProperties properties = niuyinAiProperties.getDeepseek();
         return buildDeepSeekChatModel(properties);
     }
 
-    public DeepSeekChatModel buildDeepSeekChatModel(NiuyinAiProperties.DeepSeekProperties properties) {
+    public DeepSeekChatModel buildDeepSeekChatModel(TokAiProperties.DeepSeekProperties properties) {
         if (StringUtils.isBlank(properties.getModel())) {
             properties.setModel(DeepSeekChatModel.MODEL_DEFAULT);
         }
@@ -81,12 +81,12 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.doubao.enable", havingValue = "true")
-    public DouBaoChatModel douBaoChatClient(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.DouBaoProperties properties = niuyinAiProperties.getDoubao();
+    public DouBaoChatModel douBaoChatClient(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.DouBaoProperties properties = niuyinAiProperties.getDoubao();
         return buildDouBaoChatClient(properties);
     }
 
-    public DouBaoChatModel buildDouBaoChatClient(NiuyinAiProperties.DouBaoProperties properties) {
+    public DouBaoChatModel buildDouBaoChatClient(TokAiProperties.DouBaoProperties properties) {
         if (StringUtils.isBlank(properties.getModel())) {
             properties.setModel(DouBaoChatModel.MODEL_DEFAULT);
         }
@@ -108,12 +108,12 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.siliconflow.enable", havingValue = "true")
-    public SiliconFlowChatModel siliconFlowChatClient(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.SiliconFlowProperties properties = niuyinAiProperties.getSiliconflow();
+    public SiliconFlowChatModel siliconFlowChatClient(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.SiliconFlowProperties properties = niuyinAiProperties.getSiliconflow();
         return buildSiliconFlowChatClient(properties);
     }
 
-    public SiliconFlowChatModel buildSiliconFlowChatClient(NiuyinAiProperties.SiliconFlowProperties properties) {
+    public SiliconFlowChatModel buildSiliconFlowChatClient(TokAiProperties.SiliconFlowProperties properties) {
         if (StringUtils.isBlank(properties.getModel())) {
             properties.setModel(SiliconFlowApiConstants.MODEL_DEFAULT);
         }
@@ -135,12 +135,12 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.hunyuan.enable", havingValue = "true")
-    public HunYuanChatModel hunYuanChatClient(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.HunYuanProperties properties = niuyinAiProperties.getHunyuan();
+    public HunYuanChatModel hunYuanChatClient(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.HunYuanProperties properties = niuyinAiProperties.getHunyuan();
         return buildHunYuanChatClient(properties);
     }
 
-    public HunYuanChatModel buildHunYuanChatClient(NiuyinAiProperties.HunYuanProperties properties) {
+    public HunYuanChatModel buildHunYuanChatClient(TokAiProperties.HunYuanProperties properties) {
         if (StringUtils.isBlank(properties.getModel())) {
             properties.setModel(HunYuanChatModel.MODEL_DEFAULT);
         }
@@ -167,12 +167,12 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.xinghuo.enable", havingValue = "true")
-    public XingHuoChatModel xingHuoChatClient(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.XingHuoProperties properties = niuyinAiProperties.getXinghuo();
+    public XingHuoChatModel xingHuoChatClient(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.XingHuoProperties properties = niuyinAiProperties.getXinghuo();
         return buildXingHuoChatClient(properties);
     }
 
-    public XingHuoChatModel buildXingHuoChatClient(NiuyinAiProperties.XingHuoProperties properties) {
+    public XingHuoChatModel buildXingHuoChatClient(TokAiProperties.XingHuoProperties properties) {
         if (StringUtils.isBlank(properties.getModel())) {
             properties.setModel(XingHuoChatModel.MODEL_DEFAULT);
         }
@@ -194,12 +194,12 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.baichuan.enable", havingValue = "true")
-    public BaiChuanChatModel baiChuanChatClient(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.BaiChuanProperties properties = niuyinAiProperties.getBaichuan();
+    public BaiChuanChatModel baiChuanChatClient(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.BaiChuanProperties properties = niuyinAiProperties.getBaichuan();
         return buildBaiChuanChatClient(properties);
     }
 
-    public BaiChuanChatModel buildBaiChuanChatClient(NiuyinAiProperties.BaiChuanProperties properties) {
+    public BaiChuanChatModel buildBaiChuanChatClient(TokAiProperties.BaiChuanProperties properties) {
         if (StringUtils.isBlank(properties.getModel())) {
             properties.setModel(BaiChuanChatModel.MODEL_DEFAULT);
         }
@@ -221,14 +221,14 @@ public class NiuyinAiAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.midjourney.enable", havingValue = "true")
-    public MidjourneyApi midjourneyApi(NiuyinAiProperties niuyinAiProperties) {
-        NiuyinAiProperties.MidjourneyProperties config = niuyinAiProperties.getMidjourney();
+    public MidjourneyApi midjourneyApi(TokAiProperties niuyinAiProperties) {
+        TokAiProperties.MidjourneyProperties config = niuyinAiProperties.getMidjourney();
         return new MidjourneyApi(config.getBaseUrl(), config.getApiKey(), config.getNotifyUrl());
     }
 
     @Bean
     @ConditionalOnProperty(value = "niuyin.ai.suno.enable", havingValue = "true")
-    public SunoApi sunoApi(NiuyinAiProperties niuyinAiProperties) {
+    public SunoApi sunoApi(TokAiProperties niuyinAiProperties) {
         return new SunoApi(niuyinAiProperties.getSuno().getBaseUrl());
     }
 

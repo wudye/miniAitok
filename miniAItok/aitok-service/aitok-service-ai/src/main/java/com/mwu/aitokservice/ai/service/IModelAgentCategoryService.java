@@ -5,6 +5,8 @@ import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitok.model.ai.domain.model.ModelAgentCategoryDO;
 import com.mwu.aitok.model.ai.dto.model.ModelAgentCategoryPageDTO;
 
+import java.util.List;
+
 /**
  * AI 智能体分类表(AiModelAgentCategory)表服务接口
  *
@@ -22,4 +24,6 @@ public interface IModelAgentCategoryService{
     void updateModelAgentCategory(ModelAgentCategoryDO dto);
 
     void deleteModelAgentCategory(Long id);
+
+    List<ModelAgentCategoryDO> list();
 }

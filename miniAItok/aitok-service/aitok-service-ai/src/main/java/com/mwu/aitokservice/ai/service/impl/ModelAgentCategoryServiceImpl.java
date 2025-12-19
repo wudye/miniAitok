@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * AI 智能体分类表(AiModelAgentCategory)表服务实现类
@@ -64,5 +65,10 @@ public class ModelAgentCategoryServiceImpl implements IModelAgentCategoryService
     @Override
     public void deleteModelAgentCategory(Long id) {
         modelAgentCategoryMapper.deleteById(id);
+    }
+
+    @Override
+    public List<ModelAgentCategoryDO> list() {
+        return List.of();
     }
 }

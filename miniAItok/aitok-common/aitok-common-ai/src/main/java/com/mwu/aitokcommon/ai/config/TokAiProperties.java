@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "niuyin.ai")
-public class NiuyinAiProperties {
+public class TokAiProperties {
 
     /**
      * DeepSeek

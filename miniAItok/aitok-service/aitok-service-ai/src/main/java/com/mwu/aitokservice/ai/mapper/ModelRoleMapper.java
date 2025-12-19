@@ -2,10 +2,8 @@ package com.mwu.aitokservice.ai.mapper;
 
 
 import com.mwu.aitok.model.ai.domain.model.ModelAgentDO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,9 +13,6 @@ import org.springframework.stereotype.Repository;
  * @since 2025-06-02 15:30:42
  */
 @Repository
-public interface ModelRoleMapper extends JpaRepository<ModelAgentDO, Long>, Specification<ModelAgentDO> {
+public interface ModelRoleMapper extends JpaRepository<ModelAgentDO, Long>, JpaSpecificationExecutor<ModelAgentDO> {
 
-
-    Page<ModelAgentDO> findAll(Specification specification, Pageable pageable);
 }
-

@@ -68,7 +68,7 @@ public class KnowledgeDO extends BaseDO {
      */
     private String stateFlag;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="ai_model_agent_id")
     private ModelAgentDO modelAgent;
 

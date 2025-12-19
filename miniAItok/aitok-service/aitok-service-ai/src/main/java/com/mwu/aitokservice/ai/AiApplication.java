@@ -5,8 +5,10 @@ import com.mwu.aitokcommon.cache.annotations.EnableCacheConfig;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * AiApplication
@@ -15,10 +17,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @AUTHOR: roydon
  * @DATE: 2025/3/15
  **/
+
 @SpringBootApplication(scanBasePackages = {"com.mwu.aitokservice.ai", "com.mwu.aitokcommon", "com.mwu.aitiokcoomon"})
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.mwu.aitolk.feign")
+@EntityScan(basePackages = { "com.mwu.aitok.model" })
 @EnableCacheConfig
+@EnableJpaRepositories(basePackages = {"com.mwu.aitokservice.**.mapper"})  // 扫描Repository接口
 public class AiApplication implements CommandLineRunner {
 
     public static void main(String[] args) {

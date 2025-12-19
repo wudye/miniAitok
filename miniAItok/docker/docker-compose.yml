@@ -1,15 +1,54 @@
 services:
+#  redis:
+#    image: redis:latest
+#    container_name: "aitok_redis"
+##    environment:
+##      - REDIS_PASSWORD=123456789
+#    command: [ "redis-server", "--save", "", "--appendonly", "no", "--requirepass", "123456789" ]
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - redis_aitok:/data
+#    restart: unless-stopped
+#
+
+
+
+  # Redis数据库（向量存储）
   redis:
-    image: redis:latest
+    image: latest
     container_name: "aitok_redis"
-#    environment:
-#      - REDIS_PASSWORD=123456789
-    command: [ "redis-server", "--save", "", "--appendonly", "no", "--requirepass", "123456789" ]
     ports:
       - "6379:6379"
+    command: [ "redis-server", "--save", "", "--appendonly", "yes", "--requirepass", "123456789" ]
     volumes:
-      - redis_aitok:/data
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
     restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Qdrant向量数据库
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: aitok-qdrant
+    ports:
+      - "6333:6333"  # HTTP API
+      - "6334:6334"  # gRPC API
+    volumes:
+      - qdrant-data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:6333/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   mysql:
     image: mysql:latest
