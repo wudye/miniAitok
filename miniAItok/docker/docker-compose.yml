@@ -1,0 +1,150 @@
+services:
+#  redis:
+#    image: redis:latest
+#    container_name: "aitok_redis"
+##    environment:
+##      - REDIS_PASSWORD=123456789
+#    command: [ "redis-server", "--save", "", "--appendonly", "no", "--requirepass", "123456789" ]
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - redis_aitok:/data
+#    restart: unless-stopped
+#
+
+
+
+  # Redis数据库（向量存储）
+  redis:
+    image: latest
+    container_name: "aitok_redis"
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--save", "", "--appendonly", "yes", "--requirepass", "123456789" ]
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Qdrant向量数据库
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: aitok-qdrant
+    ports:
+      - "6333:6333"  # HTTP API
+      - "6334:6334"  # gRPC API
+    volumes:
+      - qdrant-data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:6333/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mysql:
+    image: mysql:latest
+    container_name: aitok_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: aitok
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_aitok_data:/var/lib/mysql
+ #    - ./mysql:/docker-entrypoint-initdb.d
+    restart: always
+
+
+  elasticsearch:
+    image: elasticsearch:8.18.8
+    container_name: aitok_elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - ELASTIC_PASSWORD=123456789
+      - xpack.security.enabled=true
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - aitok_elastic_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+
+
+  es-init:
+    image: curlimages/curl:8.3.0
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTIC_PASSWORD=123456789
+    volumes:
+      - ./elastic/create-users.sh:/usr/local/bin/create-users.sh:ro
+    entrypoint: ["sh", "/usr/local/bin/create-users.sh"]
+    restart: "no"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.18.8
+    container_name: aitok_kibana
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_user
+      - ELASTICSEARCH_PASSWORD=123456789
+    ports:
+      - "5601:5601"
+
+  minio:
+    image: minio/minio:latest
+    container_name: aitok_minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=123456789
+      - MINIO_DEFAULT_BUCKETS=aitok-member
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_aitok:/data
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:4.2.1-management
+    container_name: aitok_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: aitok
+      RABBITMQ_DEFAULT_PASS: 123456789
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_logs:/var/log/rabbitmq
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: aitok_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb/data:/data/db
+    restart: unless-stopped
+
+volumes:
+  redis_aitok:
+  mysql_aitok_data:
+  rabbitmq_data:
+  rabbitmq_logs:
+  minio_aitok:
+  aitok_elastic_data:

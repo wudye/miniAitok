@@ -7,6 +7,7 @@
         <groupId>com.mwu</groupId>
         <artifactId>aitok-common</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>aitok-common-core</artifactId>
@@ -16,5 +17,256 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/ws.schild/jave-nativebin-win64 -->
+        <dependency>
+            <groupId>ws.schild</groupId>
+            <artifactId>jave-nativebin-win64</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ws.schild/jave-all-deps
+        The JAVE (Java Audio Video Encoder) library is Java wrapper on the ffmpeg project.
+         Developers can take take advantage of JAVE2 to transcode audio and video files
+         from a format to another. In example you can transcode an AVI file to a MPEG one,
+         you can change a DivX video stream into a (youtube like) Flash FLV one, you can convert
+         a WAV audio file to a MP3 or a Ogg Vorbis one, you can separate and transcode audio and
+         video tracks, you can resize videos, ...-->
+        <!--                <dependency>-->
+        <!--                    <groupId>ws.schild</groupId>-->
+        <!--                    <artifactId>jave-all-deps</artifactId>-->
+        <!--                    <version>3.5.0</version>-->
+        <!--                </dependency>-->
+
+        <dependency>
+            <groupId>ws.schild</groupId>
+            <artifactId>jave-all-deps</artifactId>
+            <version>3.5.0</version>
+            <exclusions>
+                <!--  排除windows 32位系统      -->
+                <exclusion>
+                    <groupId>ws.schild</groupId>
+                    <artifactId>jave-nativebin-win32</artifactId>
+                </exclusion>
+                <!--  排除linux 32位系统      -->
+                <exclusion>
+                    <groupId>ws.schild</groupId>
+                    <artifactId>jave-nativebin-linux32</artifactId>
+                </exclusion>
+                <!-- 排除Mac系统-->
+                <exclusion>
+                    <groupId>ws.schild</groupId>
+                    <artifactId>jave-nativebin-osx64</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.mwu</groupId>
+            <artifactId>aitok-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
+        <!-- SpringCloud Openfeign -->
+        <!--        层级：feign-okhttp 是 OpenFeign 的客户端实现（底层 HTTP client），属于低阶库；Spring Cloud OpenFeign ,-->
+        <!--        是对 OpenFeign 的 Spring Boot 集成（自动配置、注解驱动）。-->
+        <!--        使用方式：feign-okhttp 常以编程式 Feign.builder() 使用；,-->
+        <!--        Spring Cloud OpenFeign 通过 @FeignClient + 自动注入使用。-->
+        <!--        Spring 集成：Spring Cloud 提供自动化的编码器/解码器、契约、负载均衡、拦截器、-->
+        <!--        与 Spring MVC 的类型转换、与 Spring 容器的 Bean 管理等；直接用 feign-okhttp 需要自己组装这些。-->
+        <!--        选型建议：如果在 Spring Boot 应用中并希望用注解配置和自动化，-->
+        <!--        使用 Spring Cloud OpenFeign；如果做库或需要极简/自定义的 Feign 客户端，可只依赖 feign-okhttp。-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+
+        <!-- xml -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+
+        <!--        个用于 Java 的 JSON 序列化/反序列化库（把 Java 对象和 JSON 相互转换、支持 JSONPath、TypeReference 等，性能较高）。-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+
+        <!--        这是 Spring Boot 的注解处理器，用来在编译时为 @ConfigurationProperties（或其他相关注解）-->
+        <!--        生成配置元数据（输出到 META-INF/spring-configuration-metadata.json）-->
+        <!--        ，以便 IDE 提供属性自动补全和文档提示。它是编译时/开发时辅助工具，不是运行时依赖，-->
+        <!--        所以常标为 optional 或放在编译器的注解处理路径中，避免传递到最终运行时包。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
+        <!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.2.12</version>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-web</artifactId>-->
+        <!--        </dependency>-->
+        <!--        这是 Jakarta Servlet API 的依赖，提供 Servlet、HttpServlet、-->
+        <!--        Filter、ServletContext 等接口，用于构建基于 Servlet 的 Web 应用。jakarta.-->
+        <!--        .* 是 Jakarta EE（原 javax.* 的后续命名）。在 Spring Boot 项目中，S-->
+        <!--        ervlet API 通常由内嵌容器（Tomcat/Undertow）或运行时容器提供，建议在 pom.xml -->
+        <!--        中把该依赖设为 provided，以避免把 Servlet API 打包进应用或造成类冲突；-->
+        <!--        如果使用 spring-boot-starter-web，通常可以直接移除该依赖。-->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+
+        <!-- spring data redis & cache -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--  redis依赖commons-pool 这个依赖一定要添加  jedis need
+        change to lettuce does not need-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-pool2</artifactId>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <!--        jsoup is a Java library that simplifies working with real-world HTML and XML.-->
+        <!--        It offers an easy-to-use API for URL fetching, data parsing, extraction, -->
+        <!--        and manipulation using DOM API methods, CSS, and xpath selectors-->
+        <!--        . jsoup implements the WHATWG HTML5 specification, and parses HTML-->
+        <!--        to the same DOM as modern browsers.-->
+
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.21.1</version>
+        </dependency>
+
+
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <!-- https://mvnrepository.com/artifact/nl.basjes.parse.useragent/yauaa -->
+        <dependency>
+            <groupId>nl.basjes.parse.useragent</groupId>
+            <artifactId>yauaa</artifactId>
+            <version>7.32.0</version>
+        </dependency>
+
+        <!--
+        这是 ZXing 的依赖，用于生成与解析二维码/条码：core 包含核心编码/解码算法，
+        javase 提供与 Java SE 图像 I/O 的工具类（如 MatrixToImageWriter、
+        BufferedImageLuminanceSource）。下面示例演示生成并读取 QR 码
+        。如果在 Spring Boot 应用中使用，可考虑用 spring-boot-starter-qr-code 之类的集成库，简化配置与使用。
+        -->
+
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- io常用工具类
+        这是 Apache Commons IO 的依赖，提供一组常用的 I/O 工具类
+        （如 FileUtils、IOUtils、FilenameUtils 等）
+        ，用于简化文件与流的读取/写入/复制/删除、路径处理、字符编码处理等操作。
+        注意 pom.xml 中未指定版本，通常由父 POM 管理；若没有，请显式添加（例如 2.11.0）。
+         -->
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+        <!-- 文件上传工具类 -->
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+
+        <!-- excel工具 -->
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.7</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.7</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml
+        这是 SnakeYAML（YAML 解析器），作用简要说明：
+• 主要用途：解析和序列化 YAML 格式（例如读取 application.yml / application-{profile}.yml），
+或把 YAML 映射为 Java 的 Map / POJO。
+• 常见场景：Spring Boot 加载配置、读取外部 YAML 配置、手动将 YAML 转为对象以便处理。
+• 注意事项：Spring Boot 常会通过其依赖链提供 SnakeYAML，显式引入通常用于锁定版本或避免冲突；
+加载不受信任的 YAML 可能存在反序列化安全风险，生产环境应使用安全加载器（SafeConstructor / 限制类型）并指定明确的版本。
+
+        -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.4</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

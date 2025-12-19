@@ -21,12 +21,14 @@
         <module>aitok-eureka-server</module>
         <module>aitok-gateway</module>
         <module>aitok-feign</module>
-        <module>aitok-grpc-demo</module>
         <module>aitok-service</module>
         <module>aitok-common</module>
         <module>aitok-tools</module>
         <module>aitok-starter</module>
-        <module>aitok-modal</module>
+        <module>aitok-model</module>
+        <module>aitok-gateway-server</module>
+        <module>aitok-grpc-server</module>
+        <module>demo-ai</module>
     </modules>
 
     <properties>
@@ -44,6 +46,7 @@
         <commons.fileupload.version>1.6.0</commons.fileupload.version>
         <commons.collections.version>4.5.0</commons.collections.version>
         <commons.codec.version>1.18.0</commons.codec.version>
+        <lang3.version>3.19.0</lang3.version>
 
         <minio.version>8.6.0</minio.version>
 
@@ -53,6 +56,7 @@
         <UserAgentUtils.version>1.21</UserAgentUtils.version>
         <poi-ooxml.version>5.4.1</poi-ooxml.version>
         <zxing.version>3.5.3</zxing.version>
+        <springdoc.version>2.8.14</springdoc.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -105,7 +109,11 @@
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>2.20.0</version> <!-- 与项目 Jackson 版本保持一致 -->
+            </dependency>
 
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -198,6 +206,15 @@
                 <artifactId>javase</artifactId>
                 <version>${zxing.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
+
         </dependencies>
 
 

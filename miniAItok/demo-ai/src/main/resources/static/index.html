@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI多提供商聊天测试</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        select, input, button {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        select {
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        input[type="text"] {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .stream-btn {
+            background-color: #28a745;
+        }
+        
+        .stream-btn:hover {
+            background-color: #218838;
+        }
+        
+        .chat-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .ai-message {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+        
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .provider-info {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI多提供商聊天测试</h1>
+        
+        <div class="provider-info">
+            <strong>支持的AI提供商：</strong> 百度文心一言、智谱AI、OpenAI、Azure OpenAI、Ollama、通义千问、月之暗面、Stability AI、Minimax
+        </div>
+        
+        <div class="controls">
+            <select id="provider">
+                <option value="">选择AI提供商（默认OpenAI）</option>
+                <option value="qianfan">百度文心一言</option>
+                <option value="zhipuai">智谱AI</option>
+                <option value="openai">OpenAI</option>
+                <option value="azure">Azure OpenAI</option>
+                <option value="ollama">Ollama本地AI</option>
+                <option value="dashscope">通义千问</option>
+                <option value="moonshot">月之暗面</option>
+                <option value="stabilityai">Stability AI</option>
+                <option value="minimax">Minimax</option>
+            </select>
+            
+            <input type="text" id="messageInput" placeholder="输入您的问题..." 
+                   onkeypress="if(event.key === 'Enter') sendMessage()">
+            
+            <button onclick="sendMessage()">发送（同步）</button>
+            <button class="stream-btn" onclick="sendStreamMessage()">发送（流式）</button>
+        </div>
+        
+        <div id="chatContainer" class="chat-container"></div>
+        
+        <div style="text-align: center; color: #666; font-size: 12px;">
+            💡 流式模式会逐字显示回复，同步模式会等待完整回复后再显示
+        </div>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chatContainer');
+        const messageInput = document.getElementById('messageInput');
+        const providerSelect = document.getElementById('provider');
+        
+        function addMessage(content, isUser = false, isError = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : isError ? 'error' : 'ai-message'}`;
+            messageDiv.innerHTML = content;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function addLoadingMessage() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message ai-message loading';
+            loadingDiv.id = 'loading-message';
+            loadingDiv.textContent = 'AI正在思考中...';
+            chatContainer.appendChild(loadingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function removeLoadingMessage() {
+            const loadingMessage = document.getElementById('loading-message');
+            if (loadingMessage) {
+                loadingMessage.remove();
+            }
+        }
+        
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            const provider = providerSelect.value;
+            
+            if (!message) {
+                alert('请输入消息');
+                return;
+            }
+            
+            addMessage(message, true);
+            messageInput.value = '';
+            addLoadingMessage();
+            
+            try {
+                const response = await fetch('/api/ai/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        provider: provider
+                    })
+                });
+                
+                removeLoadingMessage();
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    addMessage(`错误: ${errorText}`, false, true);
+                    return;
+                }
+                
+                const aiResponse = await response.text();
+                addMessage(aiResponse);
+                
+            } catch (error) {
+                removeLoadingMessage();
+                addMessage(`网络错误: ${error.message}`, false, true);
+            }
+        }
+        
+        async function sendStreamMessage() {
+            const message = messageInput.value.trim();
+            const provider = providerSelect.value;
+            
+            if (!message) {
+                alert('请输入消息');
+                return;
+            }
+            
+            addMessage(message, true);
+            messageInput.value = '';
+            
+            // 创建AI回复消息容器
+            const aiMessageDiv = document.createElement('div');
+            aiMessageDiv.className = 'message ai-message';
+            aiMessageDiv.id = 'streaming-message';
+            chatContainer.appendChild(aiMessageDiv);
+            
+            try {
+                const response = await fetch('/api/ai/chat/stream', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        provider: provider
+                    })
+                });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    aiMessageDiv.className = 'message error';
+                    aiMessageDiv.textContent = `错误: ${errorText}`;
+                    return;
+                }
+                
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+                
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop(); // 保留最后一个不完整的行
+                    
+                    for (const line of lines) {
+                        if (line.trim()) {
+                            aiMessageDiv.textContent += line + ' ';
+                            chatContainer.scrollTop = chatContainer.scrollHeight;
+                        }
+                    }
+                }
+                
+                // 处理最后的数据
+                if (buffer.trim()) {
+                    aiMessageDiv.textContent += buffer;
+                }
+                
+            } catch (error) {
+                aiMessageDiv.className = 'message error';
+                aiMessageDiv.textContent = `网络错误: ${error.message}`;
+            }
+        }
+        
+        // 加载页面时显示欢迎消息
+        window.onload = function() {
+            addMessage('👋 欢迎使用AI多提供商聊天测试！选择一个AI提供商，然后开始聊天吧！', false);
+        };
+    </script>
+</body>
+</html>

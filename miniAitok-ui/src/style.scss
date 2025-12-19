@@ -1,0 +1,870 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: PingFang SC, "Helvetica Neue", "Microsoft YaHei", "AlimamaFangYuanTiVF-Thin", "AlibabaHealthFont2-45R", "DouyinSansBold", "AlimamaShuHeiTi-Bold", Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Arial, "Hiragino Sans GB", "微软雅黑", sans-serif;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  height: 100%;
+}
+
+ul > li {
+  list-style: none;
+}
+
+.video-card-transition {
+  background-color: rgba(242, 242, 243, 1);
+  box-shadow: 0 0 1px 0 grey;
+}
+
+a {
+  text-decoration: none
+}
+
+.w33 {
+  width: 33.33333%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w30 {
+  width: 30%;
+}
+
+.w70 {
+  width: 70%;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.w20 {
+  width: 20%;
+}
+
+.w80 {
+  width: 80%;
+}
+
+.c211 {
+  color: #d3d3d3;
+}
+
+.bgc211 {
+  background-color: #d3d3d3;
+}
+
+.bgc-primary-2 {
+  background-color: var(--niuyin-primary-color-2);
+}
+
+.bgc-primary-3 {
+  background-color: var(--niuyin-primary-color-3);
+}
+
+.bgc-primary-4 {
+  background-color: var(--niuyin-primary-color-4);
+}
+
+.bgc-primary-5 {
+  background-color: var(--niuyin-primary-color-5);
+}
+
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.w100p {
+  width: 100px;
+}
+
+.cbx {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1.6px 3.6px 0, rgba(0, 0, 0, 0.11) 0 0.3px 0.9px 0;
+}
+
+.mr-5r {
+  margin-right: 0.5rem;
+}
+
+.mr5px {
+  margin-right: 5px;
+}
+
+.ml5px {
+  margin-left: 5px;
+}
+
+.ml-5r {
+  margin-left: 0.5rem;
+}
+
+.ml1r {
+  margin-left: 1rem;
+}
+
+.icon-30 {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-36 {
+  width: 36px;
+  height: 36px;
+}
+
+.cw {
+  color: white;
+}
+
+.cg {
+  color: grey;
+}
+
+.cb {
+  color: black;
+}
+
+.cr {
+  color: red;
+}
+
+.fs5 {
+  font-size: 0.5rem;
+}
+
+.fs6 {
+  font-size: 0.6rem;
+}
+
+.fs7 {
+  font-size: 0.7rem;
+}
+
+.fs8 {
+  font-size: 0.8rem;
+}
+
+.fs9 {
+  font-size: 0.9rem;
+}
+
+.fw400 {
+  font-weight: 400;
+}
+
+.fw500 {
+  font-weight: 500;
+}
+
+.fw600 {
+  font-weight: 600;
+}
+
+.mtb5 {
+  margin: 0.5rem 0;
+}
+
+.mt1rem {
+  margin-top: 1rem;
+}
+
+.mtdot5rem {
+  margin-top: .5rem;
+}
+
+.mtb5px {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.lh-1-5 {
+  line-height: 1.5;
+}
+
+.lh-2 {
+  line-height: 2;
+}
+
+.tcm {
+  color: var(--niuyin-text-color)
+}
+
+.mb5 {
+  margin-bottom: 0.5rem;
+}
+
+.mb5px {
+  margin-bottom: 5px;
+}
+
+.mb10px {
+  margin-bottom: 10px;
+}
+
+.mb1rem {
+  margin-bottom: 1rem;
+}
+
+.mlr5 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.m5px {
+  margin: 5px;
+}
+
+.mlr8 {
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
+.p5px {
+  padding: 5px;
+}
+
+.p5-10 {
+  padding: 5px 10px;
+}
+
+.p10px {
+  padding: 10px;
+}
+
+.plr10px {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ptb10px {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pt1rem {
+  padding-top: 1rem;
+}
+
+.ptb1rem {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.plrb10 {
+  padding: 0 10px 10px 10px;
+}
+
+.p1rem {
+  padding: 1rem;
+}
+
+.w49 {
+  width: 49%;
+}
+
+.w24 {
+  width: 24%;
+}
+
+//.w33 {
+//  width: 33%;
+//}
+
+.mtlrb5 {
+  margin: 0.5rem;
+}
+
+.b-radius5 {
+  border-radius: 0.5rem;
+}
+
+.b-radius1 {
+  border-radius: 1rem;
+}
+
+.ml2 {
+  margin-left: 0.2rem;
+}
+
+.upload-bg {
+  background-color: var(--niuyin-upload-bg)
+}
+
+.aite {
+  cursor: pointer;
+}
+
+.el-skeleton__image {
+  border-radius: 1rem;
+}
+
+.backdrop-filter {
+  backdrop-filter: blur(10px);
+}
+
+.one-line {
+  /* 一行显示 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.two-line {
+  /* 两行显示 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.oh {
+  overflow: hidden;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.mw50 {
+  max-width: 100%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.wh100 {
+  width: 100%;
+  height: 100%;
+}
+
+.mwh100 {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.fs1rem {
+  font-size: 1rem;
+}
+
+.fs125 {
+  /*20px*/
+  font-size: 1.25rem;
+}
+
+.fs24px {
+  /*20px*/
+  font-size: 24px;
+}
+
+.wh20 {
+  width: 20px;
+  height: 20px;
+}
+
+.wh32 {
+  width: 32px;
+  height: 32px;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: start;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column;
+  /*align-items: center;*/
+  justify-content: center;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dn {
+  display: none;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tlc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.el-main {
+  padding: 0;
+  z-index: 1;
+}
+
+.el-upload {
+  width: 100%;
+}
+
+.niuyin-header {
+  .el-input__wrapper {
+    border-radius: 1rem 0 0 1rem;
+  }
+}
+
+.el-input__inner {
+  height: 38px;
+}
+
+.keyword-hint {
+  color: var(--niuyin-primary-color);
+  font-weight: bold;
+}
+
+.video-player {
+  .el-carousel__container {
+    height: 100% !important;
+  }
+}
+
+/*el抽屉drawer*/
+.el-drawer {
+  --el-drawer-bg-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/*el卡片card*/
+.el-card {
+  border: none;
+}
+
+.el-pagination button {
+  background-color: transparent;
+}
+
+.el-pagination {
+  margin: 0 0 2rem 0;
+  float: right;
+}
+
+.el-tabs {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.el-tabs__item {
+  background-color: transparent !important;
+}
+
+.el-tabs__item.is-active {
+  font-weight: 900;
+}
+
+.el-loading-mask {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  border-radius: 0.5rem;
+}
+
+.el-dialog {
+  margin: 3vh auto;
+  border-radius: 1rem;
+}
+
+.el-dialog__header {
+  margin: 0;
+  color: black;
+  display: flex;
+  justify-content: space-between
+}
+
+.el-dialog__body {
+  //height: 90%;
+  padding: 10px 20px 30px;
+}
+
+.custom-loading-svg {
+  justify-content: center;
+}
+
+.router-link-exact-active .tab-item {
+  backdrop-filter: blur(10px);
+  background-color: var(--bg-aside-a);
+  font-weight: 900;
+}
+
+.el-autocomplete {
+  width: 100%;
+}
+
+/*分割线背景色*/
+.el-divider__text {
+  background-color: transparent;
+}
+
+.el-popper {
+  border-radius: 1rem;
+}
+
+.avatar-uploader .el-upload {
+  height: 100%;
+  width: 100%;
+}
+
+/*高德地图页面美化*/
+.amap-sug-result {
+  border-radius: 0.4rem;
+  background-color: rgba(242, 242, 243, 0.5) !important;
+  backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0px 1px 1px 0 grey;
+}
+
+.el-vue-search-box-container {
+  background: rgba(242, 242, 243, 0.5) !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  width: 250px !important;
+
+  & input {
+    background: none;
+  }
+}
+
+.amap-ctrl-icon-layer, .amap-ctrl-list-layer {
+  background-color: rgba(242, 242, 243, 0.5) !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px);
+}
+
+.amap-controls .amap-hawkeye {
+  border-radius: 1rem 0 1rem 0 !important;
+}
+
+.amap-controls .amap-control {
+  background-color: rgba(242, 242, 243, 0.5) !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px);
+}
+
+/*平板适配*/
+@media (max-width: 992px) {
+
+}
+
+/*移动端适配*/
+/*
+@media (max-width: 500px) {
+  .video-card {
+    width: 49.5%;
+    height: 160px;
+  }
+}
+*/
+
+/*移动端适配*/
+@media (max-width: 520px) {
+  .dn-phone {
+    display: none !important;
+  }
+}
+
+.background-custom {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.text-hv-gold {
+  transition: all 0.3s ease;
+}
+
+.text-hv-gold:hover {
+  color: gold;
+  font-weight: bold;
+}
+
+.text-hv-primary {
+  transition: all 0.3s ease;
+}
+
+.text-hv-primary:hover {
+  color: var(--niuyin-primary-color);
+  font-weight: bold;
+}
+
+.hot-tag {
+  background: linear-gradient(268.09deg, rgb(240, 27, 91) 6.38%, rgb(255, 90, 68) 59.9%, rgb(255, 145, 19) 91.68%);
+}
+
+.icon1rem {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon1-5rem {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon32 {
+  width: 32px;
+  height: 32px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon64 {
+  width: 64px;
+  height: 64px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon2rem {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon3rem {
+  width: 3rem;
+  height: 3rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon4rem {
+  width: 4rem;
+  height: 4rem;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.operate-svg {
+  transition: all 0.3s linear, width 0.3s linear;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.operate-svg:hover {
+  transform: scale(1.1);
+}
+
+.wh5rem {
+  width: 5rem;
+  height: 5rem;
+}
+
+.wh1point25rem {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+html,
+div,
+.el-main {
+
+  // 滚动条整体部分
+  &::-webkit-scrollbar {
+    z-index: 10;
+    cursor: pointer;
+    overflow: hidden;
+    width: 5px;
+    height: 1px;
+  }
+
+  // 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  // 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
+  &::-webkit-scrollbar-thumb {
+    background: var(--niuyin-primary-color);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  // 边角，即两个滚动条的交汇处
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  // 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
+  &::-webkit-resizer {
+    display: none;
+  }
+}
+
+//*{
+//  scrollbar-color: #f2f2f4 transparent;
+//  scrollbar-color: rgb(64 64 180 / 74%) transparent;
+//  scrollbar-width: thin;
+//}
+
+.grid-3-1 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 3fr 1fr;
+}
+
+.grid-1-3 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 3fr;
+}
+
+.grid-2-8 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 2fr 8fr;
+}
+
+.grid-8-2 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 8fr 2fr;
+}
+
+.follow-right:after {
+  border-left: 2px solid var(--niuyin-text-color);
+  content: "";
+  height: 16px;
+  margin: 0 16px;
+  width: 0;
+}
+
+.follow-right-8:after {
+  border-left: 2px solid var(--niuyin-text-color);
+  content: "";
+  font-size: 0.8rem;
+  height: 0.8rem;
+  margin: 0 0.8rem;
+  width: 0;
+}
+
+.bdf {
+  backdrop-filter: blur(40px);
+}
+
+.hv-scale {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.hv-svg {
+  transition: transform 0.2s ease-in;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.text-clamp-2 {
+  display: -webkit-box; /* 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。 */
+  -webkit-box-orient: vertical; /* 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。 */
+  -webkit-line-clamp: 2; /* 用来限制在一个块元素显示的文本的行数。 */
+  overflow: hidden; /* 隐藏超出的内容 。 */
+  text-overflow: ellipsis; /* 用省略号(...)隐藏超出的内容 。 */
+}
+
+.text-clamp {
+  display: -webkit-box; /* 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。 */
+  -webkit-box-orient: vertical; /* 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。 */
+  -webkit-line-clamp: 1; /* 用来限制在一个块元素显示的文本的行数。 */
+  overflow: hidden; /* 隐藏超出的内容 。 */
+  text-overflow: ellipsis; /* 用省略号(...)隐藏超出的内容 。 */
+}
+
+.flex-center-nowrap {
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  align-items: center;
+}

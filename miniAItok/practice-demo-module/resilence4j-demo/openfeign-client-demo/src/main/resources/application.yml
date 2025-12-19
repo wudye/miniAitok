@@ -1,0 +1,26 @@
+# yaml
+resilience4j:
+  circuitbreaker:
+    instances:
+      ApiService:
+        register-health-indicator: true
+        sliding-window-size: 7
+        sliding-window-type: COUNT_BASED
+        minimum-number-of-calls: 1
+        wait-duration-in-open-state: 5s
+        permitted-number-of-calls-in-half-open-state: 6
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+  circuitbreaker:
+    enabled: true
+
+logging:
+  level:
+    root: info
+server:
+  port: 8080

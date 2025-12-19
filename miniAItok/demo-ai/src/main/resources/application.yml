@@ -1,0 +1,103 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: demo-ai
+  profiles:
+    active: dev
+  
+  # AI配置 - 使用您现有的配置
+  ai:
+    # AI服务提供商配置
+    qianfan: # 百度文心一言
+      api-key: x0cuLZ7XsaTCU08vuJWO87Lg
+      secret-key: R9mYF9dl9KASgi5RUq0FQt3wRisSnOcK
+      chat:
+        options:
+          model: ernie-bot-4
+          temperature: 0.7
+          max-tokens: 2000
+    
+    zhipuai: # 智谱 AI
+      api-key: 32f84543e54eee31f8d56b2bd6020573.3vh9idLJZ2ZhxDEs
+      chat:
+        options:
+          model: glm-4
+          temperature: 0.7
+          max-tokens: 2000
+    
+    openai: # OpenAI 官方
+      api-key: sk-aN6nWn3fILjrgLFT0fC4Aa60B72e4253826c77B29dC94f17
+      base-url: https://api.gptsapi.net
+      chat:
+        options:
+          model: gpt-3.5-turbo
+          temperature: 0.7
+          max-tokens: 2000
+    
+    azure:
+      openai:
+        endpoint: https://eastusprejade.openai.azure.com
+        api-key: xxx
+        deployment-name: gpt-35-turbo
+    
+    ollama: # Ollama本地AI
+      base-url: http://127.0.0.1:11434
+      chat:
+        model: llama3
+        options:
+          temperature: 0.7
+    
+    # dashscope: # 通义千问 - Spring AI 1.0.0-M6 可能不支持
+    #   api-key: sk-7d903764249848cfa912733146da12d1
+    #   chat:
+    #     options:
+    #       model: qwen-turbo
+    #       temperature: 0.7
+    #       max-tokens: 2000
+    
+    moonshot: # 月之暗面（KIMI）
+      api-key: sk-abc
+      chat:
+        options:
+          model: moonshot-v1-8k
+          temperature: 0.7
+          max-tokens: 2000
+    
+    stabilityai: # 图像生成
+      api-key: sk-e53UqbboF8QJCscYvzJscJxJXoFcFg4iJjl1oqgE7baJETmx
+    
+    minimax: # Minimax
+      api-key: xxxx
+      chat:
+        options:
+          model: abab6.5-chat
+          temperature: 0.7
+          max-tokens: 2000
+
+# 日志配置
+logging:
+  level:
+    com.mwu.aitokservice.ai.tempDemoAi: DEBUG
+    org.springframework.ai: DEBUG
+    org.springframework.web: DEBUG
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+
+
+# SpringDoc OpenAPI配置
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+  info:
+    title: AI Demo API
+    description: AI聊天演示服务API文档
+    version: 1.0.0

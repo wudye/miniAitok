@@ -7,6 +7,7 @@
         <groupId>com.mwu</groupId>
         <artifactId>miniAItok</artifactId>
         <version>1.0-SNAPSHOT</version>
+            <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>aitok-eureka-server</artifactId>
@@ -16,5 +17,17 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+    </dependencies>
 </project>
