@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *  AI 配置类
  */
 @Data
-@ConfigurationProperties(prefix = "niuyin.ai")
+@ConfigurationProperties(prefix = "aitok.ai")
 public class TokAiProperties {
 
     /**

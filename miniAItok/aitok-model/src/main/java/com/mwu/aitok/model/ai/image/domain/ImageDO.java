@@ -56,7 +56,7 @@ public class ImageDO extends BaseDO {
     private Integer height;
     /**
      * 绘画状态
-     * {@link com.niuyin.model.ai.image.enums.ImageStatusEnum.code}
+     * {@link com.aitok.model.ai.image.enums.ImageStatusEnum.code}
      */
     private String status;
     /**

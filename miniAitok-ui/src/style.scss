@@ -72,19 +72,19 @@ a {
 }
 
 .bgc-primary-2 {
-  background-color: var(--niuyin-primary-color-2);
+  background-color: var(--aitok-primary-color-2);
 }
 
 .bgc-primary-3 {
-  background-color: var(--niuyin-primary-color-3);
+  background-color: var(--aitok-primary-color-3);
 }
 
 .bgc-primary-4 {
-  background-color: var(--niuyin-primary-color-4);
+  background-color: var(--aitok-primary-color-4);
 }
 
 .bgc-primary-5 {
-  background-color: var(--niuyin-primary-color-5);
+  background-color: var(--aitok-primary-color-5);
 }
 
 .pr {
@@ -211,7 +211,7 @@ a {
 }
 
 .tcm {
-  color: var(--niuyin-text-color)
+  color: var(--aitok-text-color)
 }
 
 .mb5 {
@@ -312,7 +312,7 @@ a {
 }
 
 .upload-bg {
-  background-color: var(--niuyin-upload-bg)
+  background-color: var(--aitok-upload-bg)
 }
 
 .aite {
@@ -467,7 +467,7 @@ a {
   width: 100%;
 }
 
-.niuyin-header {
+.aitok-header {
   .el-input__wrapper {
     border-radius: 1rem 0 0 1rem;
   }
@@ -478,7 +478,7 @@ a {
 }
 
 .keyword-hint {
-  color: var(--niuyin-primary-color);
+  color: var(--aitok-primary-color);
   font-weight: bold;
 }
 
@@ -651,7 +651,7 @@ a {
 }
 
 .text-hv-primary:hover {
-  color: var(--niuyin-primary-color);
+  color: var(--aitok-primary-color);
   font-weight: bold;
 }
 
@@ -763,7 +763,7 @@ div,
 
   // 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
   &::-webkit-scrollbar-thumb {
-    background: var(--niuyin-primary-color);
+    background: var(--aitok-primary-color);
     cursor: pointer;
     border-radius: 5px;
   }
@@ -810,7 +810,7 @@ div,
 }
 
 .follow-right:after {
-  border-left: 2px solid var(--niuyin-text-color);
+  border-left: 2px solid var(--aitok-text-color);
   content: "";
   height: 16px;
   margin: 0 16px;
@@ -818,7 +818,7 @@ div,
 }
 
 .follow-right-8:after {
-  border-left: 2px solid var(--niuyin-text-color);
+  border-left: 2px solid var(--aitok-text-color);
   content: "";
   font-size: 0.8rem;
   height: 0.8rem;

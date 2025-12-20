@@ -59,7 +59,6 @@ public class MemberInfoServiceImpl implements MemberInfoService {
                MemberInfo memberInfo1 = optionalMemberInfo.get();
                memberInfo1.setBackImage(memberInfo.getBackImage());
                memberInfo1.setDescription(memberInfo.getDescription());
-               System.out.println(memberInfo.getBirthday());
                memberInfo1.setBirthday(memberInfo.getBirthday());
                memberInfo1.setProvince(memberInfo.getProvince());
                memberInfo1.setCity(memberInfo.getCity());

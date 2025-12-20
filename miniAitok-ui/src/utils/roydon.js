@@ -3,7 +3,7 @@
  */
 import CryptoJS from 'crypto-js'
 
-const aes_secret = "niuyin"
+const aes_secret = "aitok"
 
 /**
  * 加密

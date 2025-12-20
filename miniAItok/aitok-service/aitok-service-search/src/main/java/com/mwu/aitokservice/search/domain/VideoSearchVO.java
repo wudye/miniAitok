@@ -1,4 +1,4 @@
-package com.mwu.aitokservice.search.domain;//package com.niuyin.service.search.domain;
+package com.mwu.aitokservice.search.domain;//package com.aitok.service.search.domain;
 //
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //import lombok.Data;
@@ -8,7 +8,7 @@ package com.mwu.aitokservice.search.domain;//package com.niuyin.service.search.d
 //
 //import java.util.Date;
 //
-//import static com.niuyin.service.search.constant.ESIndexConstants.INDEX_VIDEO;
+//import static com.aitok.service.search.constant.ESIndexConstants.INDEX_VIDEO;
 //
 ///**
 // * VideoSearchVO

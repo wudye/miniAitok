@@ -1,4 +1,4 @@
-package com.mwu.aitok.model.recommend.domain;//package com.niuyin.model.recommend.domain;
+package com.mwu.aitok.model.recommend.domain;//package com.aitok.model.recommend.domain;
 //
 //import com.baomidou.mybatisplus.annotation.IdType;
 //import com.baomidou.mybatisplus.annotation.TableId;

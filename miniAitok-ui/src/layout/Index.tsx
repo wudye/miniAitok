@@ -39,12 +39,12 @@ export default function Index(): JSX.Element {
   }, [])
 
   function initTheme() {
-    const themeClass = isDark ? 'niuyin-dark' : 'niuyin-light'
+    const themeClass = isDark ? 'aitok-dark' : 'aitok-light'
     document.documentElement.className = themeClass
   }
 
   function handleThemeChange(dark: boolean) {
-    const themeClass = dark ? 'niuyin-dark' : 'niuyin-light'
+    const themeClass = dark ? 'aitok-dark' : 'aitok-light'
     document.documentElement.className = themeClass
   }
 
@@ -60,18 +60,18 @@ export default function Index(): JSX.Element {
       'background-color: gold ; color: pink ;text-shadow: 3px 1px 3px black ; font-weight: bolder ; border-radius: 10px;font-size: 30px ;padding: 10px 100px;'
     )
     console.log(
-      '%chttps://github.com/niuyin-server',
+      '%chttps://github.com/aitok-server',
       'background-color: pink ; color: white ; font-weight: bold ; border-radius: 6px;padding:5px 10px;font-size: 16px ; font-style: italic ; text-decoration: underline ; font-family: \'american typewriter\' ; text-shadow: 1px 2px 3px black ;'
     )
-    console.group('%cniuyin产品列表', 'background-color: #e0005a ; color: #ffffff ; font-weight: bold ; padding: 4px ;')
-    console.log('niuyin-web')
-    console.log('niuyin-creator')
-    console.log('niuyin-android')
+    console.group('%caitok产品列表', 'background-color: #e0005a ; color: #ffffff ; font-weight: bold ; padding: 4px ;')
+    console.log('aitok-web')
+    console.log('aitok-creator')
+    console.log('aitok-android')
     console.groupEnd()
   }
 
   return (
-    <div className={`min-h-screen flex flex-col relative ${isDark ? 'niuyin-dark bg-gradient-to-br from-gray-950 via-slate-900 to-gray-900 text-white' : 'niuyin-light bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 text-gray-900'}`}>
+    <div className={`min-h-screen flex flex-col relative ${isDark ? 'aitok-dark bg-gradient-to-br from-gray-950 via-slate-900 to-gray-900 text-white' : 'aitok-light bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 text-gray-900'}`}>
       {/* Enhanced background with animated blobs */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30" style={{ backgroundImage: 'var(--global-bg-img)' }} />

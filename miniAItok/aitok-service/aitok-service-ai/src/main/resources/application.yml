@@ -216,7 +216,7 @@ spring:
       api-key: sk-abc
 
 
-niuyin:
+aitok:
   ai:
     deep-seek: # DeepSeek
       enable: true

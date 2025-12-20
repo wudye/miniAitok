@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.video.util;//package com.niuyin.service.video.util;
+package com.mwu.aitok.service.video.util;//package com.aitok.service.video.util;
 //
 //import javax.crypto.Cipher;
 //import java.security.*;

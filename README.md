@@ -288,7 +288,8 @@ mvn clean package -DskipTests
 3. **Start Services**
 ```bash
 # Start each service module sequentially
-mvn spring-boot:run -pl aitok-eureka, config, gateway server
+
+mvn spring-boot:run -pl aitok-grpc, eureka, config, gateway server
 mvn spring-boot:run -pl aitok-service/aitok-service-member
 mvn spring-boot:run -pl aitok-service/aitok-service-video
 # ... other services

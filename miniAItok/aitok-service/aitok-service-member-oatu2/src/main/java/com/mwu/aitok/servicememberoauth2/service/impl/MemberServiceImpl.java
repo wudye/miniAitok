@@ -106,8 +106,7 @@ public class MemberServiceImpl implements MemberService {
         try {
             Member saved =  memberRepository.save(member);
             String msg = saved.getUserId().toString();
-            System.out.println("Registered user ID: " + msg);
-            System.out.println("Sending message to RabbitMQ for user ID: " + msg);
+
             rabbitTemplate.convertAndSend(BEHAVE_EXCHANGE, CREATE_ROUTING_KEY, msg);
             System.out.println("Sent message to RabbitMQ: " + msg);
 

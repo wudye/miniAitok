@@ -54,4 +54,6 @@
     by session sends message to client
                 ↓
     onMessage to handle the client message
-                
+
+请求 → [Rate Limiter] → [Anti-Repeat Submit] → [Retry] → 业务逻辑
+(入口层)         (业务层)              (服务层)

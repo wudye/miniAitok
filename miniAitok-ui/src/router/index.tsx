@@ -96,7 +96,7 @@ export const AppRouter = (): JSX.Element => {
             <Route path="category/:categoryId" element={<CategoryVideo />} />
 
             <Route path="cooperation" element={<Cooperation />} />
-            <Route path="niuyinGithub" element={<NiuyinGithub />} />
+            <Route path="aitokGithub" element={<aitokGithub />} />
 
             <Route path="ai" element={<AICurrent />}>
               <Route index element={<Navigate to="chat" replace />} />

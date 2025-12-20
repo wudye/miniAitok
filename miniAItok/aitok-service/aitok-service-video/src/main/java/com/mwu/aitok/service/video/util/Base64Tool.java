@@ -1,4 +1,4 @@
-package com.mwu.aitok.service.video.util;//package com.niuyin.service.video.util;
+package com.mwu.aitok.service.video.util;//package com.aitok.service.video.util;
 //
 //import org.apache.commons.codec.binary.Base64;
 //import sun.misc.BASE64Decoder;

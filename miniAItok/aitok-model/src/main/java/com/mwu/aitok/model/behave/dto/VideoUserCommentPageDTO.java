@@ -16,7 +16,7 @@ public class VideoUserCommentPageDTO {
     /**
      * 视频查询排序（0发布时间，1点赞数）
      *
-     * @see com.niuyin.model.common.enums.VideoCommentPageOrderEnum
+     * @see com.aitok.model.common.enums.VideoCommentPageOrderEnum
      */
     private String orderBy;
     private Integer pageNum = 1;

@@ -8,15 +8,15 @@ package com.mwu.aitok.service.video.constants;
  **/
 public class QiniuVideoOssConstants {
     /**
-     * 原始视频 niuyin-service-video 临时域名
+     * 原始视频 aitok-service-video 临时域名
      */
     public static final String VIDEO_ORIGIN_PREFIX_URL = "http://s4vqrd8fr.hn-bkt.clouddn.com/";
     /**
-     * 2K视频转码域名 niuyin-service-video-2k
+     * 2K视频转码域名 aitok-service-video-2k
      */
     public static final String VIDEO_PREFIX_URL_2K = "http://s4vq4byfr.hn-bkt.clouddn.com/";
     /**
-     * 视频截图域名 niuyin-service-video-frame
+     * 视频截图域名 aitok-service-video-frame
      */
     public static final String VIDEO_FRAME_PREFIX_URL = "http://s4vqiae4k.hn-bkt.clouddn.com/";
 

@@ -1,4 +1,4 @@
-package com.mwu.aitokservice.search.constant;//package com.niuyin.service.search.constant;
+package com.mwu.aitokservice.search.constant;//package com.aitok.service.search.constant;
 //
 ///**
 // * ESIndexConstants

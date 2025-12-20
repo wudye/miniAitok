@@ -52,7 +52,7 @@ public abstract class VideoNote implements Serializable {
     /**
      * 状态：0默认1禁止2删除
      *
-     * @see com.niuyin.model.behave.enums.VideoNoteDelFlagEnum
+     * @see com.aitok.model.behave.enums.VideoNoteDelFlagEnum
      */
     private String delFlag;
 

@@ -1,4 +1,4 @@
-package com.mwu.aitokservice.recommend.service;//package com.niuyin.service.recommend.service;
+package com.mwu.aitokservice.recommend.service;//package com.aitok.service.recommend.service;
 //
 //import java.util.*;
 //

@@ -2,7 +2,7 @@ package com.mwu.aitokservice.social.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-;
+
 import com.mwu.aitiokcoomon.core.context.UserContext;
 import com.mwu.aitiokcoomon.core.domain.vo.PageData;
 import com.mwu.aitiokcoomon.core.utils.bean.BeanCopyUtils;

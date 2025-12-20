@@ -35,11 +35,22 @@ public class JwtService {
         Path dir = Path.of(System.getProperty("user.home"), ".aitok");
         Files.createDirectories(dir);
         Path keyFile = dir.resolve("jwt-rsa-jwk.json");
+        //跨平台兼容性:
+        //Windows: C:\Users\<username>\.aitok\jwt-rsa-jwk.json
+        //Linux/Mac: /home/<username>/.aitok/jwt-rsa-jwk.json
 
         if (Files.exists(keyFile)) {
             String json = Files.readString(keyFile);
+            // 使用 Nimbus JOSE + JWT 库解析 JSON 为 RSAKey 对象
             rsaJWK = RSAKey.parse(json);
         } else {
+            /*
+            使用 Java 标准库创建 RSA 密钥对生成器
+            设置密钥长度为 2048 位（当前安全标准）
+            生成公钥和私钥对
+            构造 JWK 格式的 RSAKey 对象
+            为密钥分配唯一标识符（UUID）
+             */
             KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
             gen.initialize(2048);
             KeyPair kp = gen.generateKeyPair();
@@ -55,7 +66,7 @@ public class JwtService {
 
     // 现有的通用方法，生成 JWT（返回值写法避免直接重复片段）
     public String createToken(Map<String, Object> customClaims) throws Exception {
-        JWSSigner signer = new RSASSASigner(rsaJWK.toPrivateKey());
+        JWSSigner signer = new RSASSASigner(rsaJWK.toPrivateKey()); // 使用已存在的私钥
         Instant now = Instant.now();
 
         JWTClaimsSet.Builder claimsBuilder = new JWTClaimsSet.Builder()
@@ -76,14 +87,27 @@ public class JwtService {
 
         JWTClaimsSet claims = claimsBuilder.build();
 
+        //获取公钥 RSAKey publicRSAKey = (RSAKey) jwkSet.getKeyByKeyId(keyId);
         JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS256)
-                .keyID(rsaJWK.getKeyID())
+                .keyID(rsaJWK.getKeyID()) //  使用密钥ID标识签名者
                 .type(JOSEObjectType.JWT)
                 .build();
 
+        // / 使用私钥签名 JWT
         SignedJWT signedJWT = new SignedJWT(header, claims);
         signedJWT.sign(signer);
         String token = signedJWT.serialize();
+        /*
+        / RSAKey 序列化后的 JWK 格式示例
+            {
+              "kty": "RSA",
+              "use": "sig",
+              "kid": "abc123def456",
+              "n": "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx4...",
+              "e": "AQAB",
+              "d": "X4cTteJY_gn4FYPsXB8rdXix5vwsg1FLN5E3EaG6RJoVH-HLLKD9..."
+            }
+         */
         return token;
     }
 

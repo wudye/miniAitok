@@ -43,7 +43,7 @@ export default function Aside({ siteTitle = '芝士学爆' }: { siteTitle?: stri
   const tabsBottomList: TabItem[] = [
     { id: 1, name: 'AI', link: '/ai/chat', icon: <FiMessageSquare size={24} /> },
     { id: 2, name: '商务合作', link: '/cooperation', icon: <FiCornerUpRight size={24} /> },
-    { id: 3, name: '源码地址', link: '/niuyinGithub', icon: <FiGithub size={24} /> },
+    { id: 3, name: '源码地址', link: '/aitokGithub', icon: <FiGithub size={24} /> },
   ]
 
   useEffect(() => {

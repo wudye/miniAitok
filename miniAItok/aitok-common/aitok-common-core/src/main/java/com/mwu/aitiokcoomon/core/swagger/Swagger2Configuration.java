@@ -16,7 +16,7 @@ public class Swagger2Configuration {
 //                .groupName("1.0")
 //                .select()
 //                //这里指定Controller扫描包路径
-//                .apis(RequestHandlerSelectors.basePackage("com.niuyin"))
+//                .apis(RequestHandlerSelectors.basePackage("com.aitok"))
 //                .paths(PathSelectors.any())
 //                .build();
 //        return docket;
