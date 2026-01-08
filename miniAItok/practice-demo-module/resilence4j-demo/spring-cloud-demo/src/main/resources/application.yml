@@ -1,0 +1,38 @@
+# 断路器配置
+resilience4j.circuitbreaker:
+  instances:
+    # 配置服务
+    backendA:
+      registerHealthIndicator: true
+      slidingWindowSize: 100
+    backendB:
+      registerHealthIndicator: true
+    # 滑动窗口类型：COUNT_BASED 基于计数的滑动窗口, TIME_BASED 基于计时的滑动窗口
+    slidingWindowType: TIME_BASED
+      # 滑动窗口大小
+    slidingWindowSize: 10
+    # 当 circuitbreaker 处于 HalfOpen 允许通过的请求数量
+    permittedNumberOfCallsInHalfOpenState: 3
+    recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
+
+
+# 时间限流
+resilience4j.timelimiter:
+  instances:
+    backendA:
+      timeoutDuration: 2s
+      cancelRunningFuture: true
+    backendB:
+      timeoutDuration: 1s
+      cancelRunningFuture: false
+resilience4j.thread-pool-bulkhead:
+  instances:
+    backendA:
+      # 配置最大线程数
+      maxThreadPoolSize: 1
+      # 核心线程数
+      coreThreadPoolSize: 1
+resilience4j.bulkhead:
+  instances:
+    backendB:
+      maxConcurrentCalls: 10

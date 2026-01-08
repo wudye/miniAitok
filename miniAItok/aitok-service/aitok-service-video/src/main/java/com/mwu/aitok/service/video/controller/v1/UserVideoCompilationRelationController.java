@@ -1,0 +1,22 @@
+package com.mwu.aitok.service.video.controller.v1;
+
+import com.mwu.aitok.service.video.service.IUserVideoCompilationRelationService;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 用户视频合集与视频关联表(UserVideoCompilationRelation)表控制层
+ *
+ * @author mwu
+ * @since 2023-12-08 20:21:11
+ */
+@RestController
+@RequestMapping("/api/v1/userVideoCompilationRelation")
+public class UserVideoCompilationRelationController {
+
+    @Resource
+    private IUserVideoCompilationRelationService userVideoCompilationRelationService;
+
+}
+

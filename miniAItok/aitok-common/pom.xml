@@ -7,10 +7,14 @@
         <groupId>com.mwu</groupId>
         <artifactId>miniAItok</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <packaging>pom</packaging>
     <modules>
         <module>aitok-common-core</module>
+        <module>aitok-common-cache</module>
+
+        <module>aitok-common-ai</module>
     </modules>
     <artifactId>aitok-common</artifactId>
 

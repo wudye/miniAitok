@@ -1,0 +1,66 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: aitok-demo-ai
+  
+  # AI配置 - 复用您现有的配置
+  ai:
+    vectorstore: # 向量存储
+      redis:
+        initialize-schema: true
+        index: knowledge_index
+        prefix: "knowledge_segment:"
+      qdrant:
+        initialize-schema: true
+        collection-name: knowledge_segment
+        host: 127.0.0.1
+        port: 6334
+      milvus:
+        initialize-schema: true
+        database-name: default
+        collection-name: knowledge_segment
+        client:
+          host: 127.0.0.1
+          port: 19530
+    
+    qianfan: # 文心一言
+      api-key: x0cuLZ7XsaTCU08vuJWO87Lg
+      secret-key: R9mYF9dl9KASgi5RUq0FQt3wRisSnOcK
+    
+    zhipuai: # 智谱 AI
+      api-key: 32f84543e54eee31f8d56b2bd6020573.3vh9idLJZ2ZhxDEs
+    
+    openai: # OpenAI 官方
+      api-key: sk-aN6nWn3fILjrgLFT0fC4Aa60B72e4253826c77B29dC94f17
+      base-url: https://api.gptsapi.net
+    
+    azure: # OpenAI 微软
+      openai:
+        endpoint: https://eastusprejade.openai.azure.com
+        api-key: xxx
+    
+    ollama:
+      base-url: http://127.0.0.1:11434
+      chat:
+        model: llama3
+    
+    stabilityai:
+      api-key: sk-e53UqbboF8QJCscYvzJscJxJXoFcFg4iJjl1oqgE7baJETmx
+    
+    dashscope: # 通义千问
+      api-key: sk-7d903764249848cfa912733146da12d1
+    
+    minimax: # Minimax
+      api-key: xxxx
+    
+    moonshot: # 月之暗面（KIMI）
+      api-key: sk-abc
+
+# 日志配置
+logging:
+  level:
+    com.mwu.aitokservice.ai.tempDemoAi: DEBUG
+    org.springframework.ai: DEBUG
+    root: INFO

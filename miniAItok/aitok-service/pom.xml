@@ -7,9 +7,23 @@
         <groupId>com.mwu</groupId>
         <artifactId>miniAItok</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+
     </parent>
 
     <artifactId>aitok-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>aitok-service-member-oatu2</module>
+        <module>aitok-service-video</module>
+        <module>aitok-service-behave</module>
+        <module>aitok-service-creator</module>
+        <module>aitok-service-notice</module>
+        <module>aitok-service-recommend</module>
+        <module>aitok-service-search</module>
+        <module>aitok-service-social</module>
+        <module>aitok-service-ai</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

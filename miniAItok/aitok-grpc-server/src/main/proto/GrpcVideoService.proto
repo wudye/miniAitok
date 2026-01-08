@@ -1,0 +1,201 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.mwu.aitok;
+
+option java_package = "com.mwu.aitok";
+
+
+message ApiSyncVideoTagStackRequest {
+  string  video_id = 1;
+  repeated  int64  tag_ids = 2;
+}
+
+message VideoIdRequest {
+   int64  video_id = 1;
+}
+
+message ApiSyncVideoTagStackResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+
+message VideoResponse {
+   int64  video_id = 1;
+   int64 user_id = 2;
+   string video_title = 3;
+   string video_desc = 4;
+   string cover_image = 5;
+   string video_url =6 ;
+   int64 view_num = 7;
+   int64 like_num = 8;
+   int64 favorites_num = 9;
+   string publish_type = 10;
+   string show_type = 11;
+   string position_flag = 12;
+   string audits_status = 13;
+   string video_info = 14;
+   string del_flag = 15;
+
+}
+
+message VideoListResponse {
+  repeated VideoResponse video_list = 1;
+}
+
+message VideoIdListRequest {
+   repeated int64 video_ids = 1;
+}
+
+
+message VideoImagesResponse {
+
+   string image_url = 1;
+
+}
+message VideoImagesListResponse {
+  repeated VideoImagesResponse video_images_list = 1;
+}
+
+
+message ApiWeatherLikeVideoRequest {
+   int64 user_id = 1;
+   int64 video_id = 2;
+}
+
+message ApiWeatherLikeVideoResponse {
+  bool liked = 1;
+  string message = 2;
+}
+
+message VideoTagResponse {
+   int64 tag_id = 1;
+   string tag = 2;
+}
+
+message VideoTagListResponse {
+  repeated VideoTagResponse video_tag_list = 1;
+}
+
+message TagsIdListResponse {
+  repeated int64 tag_ids = 1;
+}
+
+message ModeRequest {
+    int64 tag_id = 1;
+}
+
+message UserModelRequest {
+   int64 user_id = 1;
+   repeated  int64  tag_ids = 2;
+    double score = 3;
+
+}
+
+message  FollowVideoFeedRequest {
+   int64 user_id = 1;
+   repeated int64 follow_ids = 2;
+}
+
+message VideoVORequest {
+  int64 login_user_id = 1;
+  repeated string video_ids = 2;
+}
+
+message VideoVOResponse{
+
+  int64 commentNum = 1;
+  int64 userNickName = 2;
+  string userAvatar = 3;
+  bool weatherLike  = 4;
+  bool weatherFavorite = 5;
+ bool  weatherFollow = 6;
+  repeated string tags = 7;
+  repeated string mageList = 8;
+  int64 positionId = 9;
+  string  videoId = 10;
+  double longitude = 11;
+  double latitude = 12;
+  string province = 13;
+  string city = 14;
+  string cityCode = 15;
+  string district = 16;
+  string township = 17;
+  string adcode = 18;
+  string address = 19;
+  string status = 20;
+  double hotScore = 21;
+  int64 id = 22;
+  int64 userId = 23;
+  string videoTitle = 24;
+  string videoDesc = 25;
+  string coverImage = 26;
+  string videoUrl = 27;
+  int64 viewNum = 28;
+  int64 likeNum = 29;
+  int64 favoritesNum = 30;
+  string publishType = 31;
+  string showType = 32;
+  string positionFlag = 33;
+  string auditsStatus = 34;
+  string videoInfo = 35;
+  string delFlag = 36;
+
+}
+
+message VideoVOListResponse {
+  repeated VideoVOResponse video_vo_list = 1;
+}
+
+message VideoPositionResponse{
+  int64 positionId = 1;
+  string  videoId = 2;
+  double longitude = 3;
+  double latitude = 4;
+  string province = 5;
+  string city = 6;
+  string cityCode = 7;
+  string district = 8;
+  string township = 9;
+  string adcode = 10;
+  string address = 11;
+  string status = 12;
+  double hotScore = 13;
+
+}
+
+message UserVideoCompilationInfoVOResponse{
+  int64 playCount = 1;
+  int64 favoriteCount = 2;
+  int64 videoCount = 3;
+  bool weatherFollow = 4;
+  int64 compilationId = 5;
+  int64 userId = 6;
+  string title = 7;
+  string description = 8;
+  string coverImage = 9;
+}
+
+service VideoService {
+    rpc apiSyncVideoTagStack(ApiSyncVideoTagStackRequest) returns (ApiSyncVideoTagStackResponse);
+    rpc apiGetVideoByVideoId(VideoIdRequest) returns (VideoResponse);
+    rpc apiGetVideoListByVideoIds(VideoIdListRequest) returns (VideoListResponse);
+    rpc apiGetVideoImagesByVideoId(VideoIdRequest) returns (VideoImagesListResponse);
+    rpc apiWeatherLikeVideo(ApiWeatherLikeVideoRequest) returns (ApiWeatherLikeVideoResponse);
+    rpc apiWeatherFavoriteVideo(ApiWeatherLikeVideoRequest) returns (ApiWeatherLikeVideoResponse);
+
+    rpc queryVideoTagsByVideoId(VideoIdRequest) returns (VideoTagListResponse);
+    rpc apiGetVideoTagIds(VideoIdRequest) returns (TagsIdListResponse);
+
+    rpc apiUpdateUserModel(UserModelRequest) returns (ApiWeatherLikeVideoResponse);
+
+    rpc apiInitFollowVideoFeed(FollowVideoFeedRequest) returns (ApiWeatherLikeVideoResponse);
+
+    rpc apiGetVideoVOListByVideoIds(VideoVORequest) returns (VideoVOListResponse);
+
+    rpc apiGetVideoPositionByVideoId(VideoIdRequest) returns (VideoPositionResponse);
+    rpc apiGetUserVideoCompilationInfoVO(VideoIdRequest) returns (UserVideoCompilationInfoVOResponse);
+    rpc apiGetVideoTagStack(VideoIdRequest) returns (TagsIdListResponse);
+
+}

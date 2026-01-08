@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-ai/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-common/aitok-common-oauth2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-config-server/src/main/java" charset="UTF-8" />
@@ -9,18 +14,60 @@
     <file url="file://$PROJECT_DIR$/aitok-eureka-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-feign/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-feign/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-gateway-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/deme1-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/demi1-grpc-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/demo1-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/demo1-user-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/demo1-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/demo1-userservice-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo1/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-demo/demo2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-grpc-demo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-grpc-demo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-grpc-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-modal/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-modal/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-ai/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-behave/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-creator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-member-oatu2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-member/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-notice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-recommend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-social/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/aitok-service-video/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-service/temp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-starter/aitok-starter-email/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-starter/aitok-starter-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aitok-starter/aitok-starter-video/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-tools/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aitok-tools/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-ai/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo-ai/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo.md/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/main-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/main-demo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/openfeign-apiservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/openfeign-client-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/spring-cloud-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/spring-cloud-feign-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-demo/user-service-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/resilence4j-userservice-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/practice-demo-module/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

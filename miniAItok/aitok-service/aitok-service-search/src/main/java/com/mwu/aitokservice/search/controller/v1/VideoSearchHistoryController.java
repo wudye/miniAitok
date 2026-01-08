@@ -1,0 +1,31 @@
+package com.mwu.aitokservice.search.controller.v1;
+
+import com.mwu.aitiokcoomon.core.domain.R;
+import com.mwu.aitokservice.search.service.VideoSearchHistoryService;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * VideoSearchHistoryController
+ *
+ * @AUTHOR: mwu
+ * @DATE: 2023/10/31
+ **/
+@RestController
+@RequestMapping("/api/v1/history")
+public class VideoSearchHistoryController {
+
+    @Resource
+    private VideoSearchHistoryService videoSearchHistoryService;
+
+    @GetMapping("/load")
+    public R<?> findUserSearch() {
+        return R.ok(videoSearchHistoryService.findAllSearch());
+    }
+
+    @DeleteMapping("/del/{id}")
+    public R<?> delUserSearch(@PathVariable("id") String id) {
+        return R.ok(videoSearchHistoryService.delSearchHistory(id));
+    }
+
+}

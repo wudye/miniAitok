@@ -1,0 +1,69 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package com.mwu.demo1.userservice.api;
+
+message UserGetRequest {
+  int32 id = 1;
+}
+
+
+
+message UserGetResponse {
+  int32 id = 1;
+  string name = 2;
+  int32 gender = 3;
+}
+
+// 批量请求：传入多个 id
+message UserBatchGetRequest {
+  repeated int32 ids = 1;
+}
+// 批量响应：返回多个用户
+message UserBatchGetResponse {
+  repeated UserGetResponse users = 1;
+}
+
+// Map 响应示例：key 为 id，value 为用户对象
+message UserMapGetResponse {
+  map<int32, UserGetResponse> users_by_id = 1;
+}
+
+// 简单的分页请求示例
+message UserListRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+
+message UserListResponse {
+  repeated UserGetResponse users = 1;
+  string next_page_token = 2;
+}
+
+message UserCreateRequest {
+  string name = 1;
+  int32 gender = 2;
+}
+
+message UserCreateResponse {
+  int32 id = 1;
+}
+
+service UserService {
+
+  rpc get(UserGetRequest) returns (UserGetResponse);
+
+  rpc BatchGet(UserBatchGetRequest) returns (UserBatchGetResponse);
+
+  // 服务器流式返回（按用户逐条发送）
+  rpc StreamGet(UserBatchGetRequest) returns (stream UserGetResponse);
+
+  // 返回 map 格式
+  rpc BatchGetMap(UserBatchGetRequest) returns (UserMapGetResponse);
+
+  // 分页列举
+  rpc ListUsers(UserListRequest) returns (UserListResponse);
+
+  rpc create(UserCreateRequest) returns (UserCreateResponse);
+
+}

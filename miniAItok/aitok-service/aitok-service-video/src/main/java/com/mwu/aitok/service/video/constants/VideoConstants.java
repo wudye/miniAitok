@@ -1,0 +1,14 @@
+package com.mwu.aitok.service.video.constants;
+
+/**
+ * VideoConstants
+ *
+ * @AUTHOR: mwu
+ * @DATE: 2023/11/11
+ **/
+public class VideoConstants {
+
+    // 标签最大不超过五个
+    public static final int VIDEO_TAG_LIMIT = 5;
+
+}

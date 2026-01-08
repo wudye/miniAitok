@@ -1,0 +1,209 @@
+package com.mwu.aitok.service.video.service;
+
+import com.mwu.aitiokcoomon.core.domain.vo.PageData;
+import com.mwu.aitok.model.common.dto.PageDTO;
+import com.mwu.aitok.model.video.domain.Video;
+import com.mwu.aitok.model.video.dto.UpdateVideoDTO;
+import com.mwu.aitok.model.video.dto.VideoFeedDTO;
+import com.mwu.aitok.model.video.dto.VideoPageDto;
+import com.mwu.aitok.model.video.dto.VideoPublishDto;
+import com.mwu.aitok.model.video.vo.HotVideoVO;
+import com.mwu.aitok.model.video.vo.RelateVideoVO;
+import com.mwu.aitok.model.video.vo.VideoUploadVO;
+import com.mwu.aitok.model.video.vo.VideoVO;
+import com.mwu.aitok.model.video.vo.app.VideoInfoVO;
+import com.mwu.aitok.model.video.vo.app.VideoRecommendVO;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+/**
+ * 视频表(Video)表服务接口
+ *
+ * @author mwu
+ * @since 2023-10-25 20:33:11
+ */
+public interface IVideoService  {
+
+    /**
+     * 上传视频文件，返回文件url
+     *
+     * @param file
+     * @return
+     */
+    VideoUploadVO uploadVideo(MultipartFile file) throws Exception;
+
+    /**
+     * 发布视频
+     *
+     * @param videoPublishDto
+     * @return
+     */
+    String videoPublish(VideoPublishDto videoPublishDto);
+
+    /**
+     * 分页我的视频
+     *
+     * @param pageDto
+     * @return
+     */
+    Page<Video> queryMyVideoPage(VideoPageDto pageDto);
+
+    PageData queryMyVideoPageForApp(VideoPageDto pageDto);
+
+    /**
+     * 分页用户视频
+     *
+     * @param pageDto
+     * @return
+     */
+    Page<Video> queryUserVideoPage(VideoPageDto pageDto);
+
+    /**
+     * 视频feed接口
+     *
+     * @param videoFeedDTO createTime
+     * @return video
+     */
+    List<VideoVO> feedVideo(VideoFeedDTO videoFeedDTO);
+
+    /**
+     * 根据ids查询视频
+     *
+     * @param videoIds
+     * @return
+     */
+    List<Video> queryVideoByVideoIds(List<String> videoIds);
+
+    /**
+     * 删除视频
+     *
+     * @param videoId
+     */
+    boolean deleteVideoByVideoId(String videoId);
+
+    boolean deleteVideoByUser(String videoId);
+
+    /**
+     * 筛选大于ctime的视频数据
+     *
+     * @param ctime
+     * @return
+     */
+    List<Video> getVideoListLtCreateTime(LocalDateTime ctime);
+
+    /**
+     * 视频算分
+     *
+     * @param videoList
+     * @return
+     */
+    List<HotVideoVO> computeHotVideoScore(List<Video> videoList);
+
+    /**
+     * 视频总获赞量
+     *
+     * @param userId
+     * @return
+     */
+    Long getVideoLikeAllNumByUserId(Long userId);
+
+    /**
+     * 查询用户作品数量
+     *
+     * @return
+     */
+    Long queryUserVideoCount();
+
+    /**
+     * 查询用户的作品
+     *
+     * @param pageDto
+     * @return
+     */
+    Page<Video> queryMemberVideoPage(VideoPageDto pageDto);
+
+    /**
+     * 热门视频查询
+     *
+     * @param pageDTO
+     * @return
+     */
+    PageData getHotVideos(PageDTO pageDTO);
+
+    List<VideoVO> pushVideoList();
+
+    /**
+     * 更新视频
+     */
+    boolean updateVideo(UpdateVideoDTO updateVideoDTO);
+
+    /**
+     * 根据视频ids查询
+     *
+     * @param videoIds
+     * @return
+     */
+    List<Video> listByVideoIds(List<String> videoIds);
+
+    /**
+     * 获取视频图文
+     *
+     * @param videoId
+     * @return
+     */
+    String[] getVideoImages(String videoId);
+
+    /**
+     * 获取用户所有视频
+     *
+     * @param userId
+     * @return
+     */
+    List<Video> getUserAllVideo(Long userId);
+
+    /**
+     * 获取所有未删除的视频
+     *
+     * @return
+     */
+    List<Video> getAllUnDeletedVideo();
+
+    /**
+     * 相关视频推荐
+     *
+     * @param videoId
+     * @return
+     */
+    List<RelateVideoVO> getRelateVideoList(String videoId);
+
+    List<VideoRecommendVO> pushAppVideoList();
+
+    VideoInfoVO getVideoInfoForApp(String videoId);
+
+    /**
+     * 同步视频详情到db
+     *
+     * @param videoId
+     */
+    void updateVideoInfo(String videoId);
+
+    /**
+     * 封装videoVO
+     *
+     * @param videoIds
+     * @return
+     */
+    List<VideoVO> packageVideoVOByVideoIds(Long loginUserId, List<String> videoIds);
+
+    List<Video> exitsByVideoIds(List<String> videoIds);
+
+    VideoVO getVideoVOById(String videoId);
+
+    List<Video> listByIds(List<String> videoIds);
+}

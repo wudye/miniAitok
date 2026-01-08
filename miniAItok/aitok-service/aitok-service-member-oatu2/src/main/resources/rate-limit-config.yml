@@ -1,0 +1,35 @@
+# 登录限流配置
+login:
+  rate-limit:
+    # 用户名限流：5次失败锁定15分钟
+    user:
+      max-attempts: 5
+      window-minutes: 15
+      lock-duration-minutes: 15
+    
+    # IP限流：3次失败锁定30分钟
+    ip:
+      max-attempts: 3
+      window-minutes: 15
+      lock-duration-minutes: 30
+    
+    # API接口限流：每分钟最多3次请求（按IP）
+    api:
+      window-seconds: 60
+      max-requests: 3
+
+# 注册限流配置
+register:
+  rate-limit:
+    # IP限流：每小时最多5次注册请求
+    ip:
+      window-hours: 1
+      max-requests: 5
+
+# 其他API限流配置
+api:
+  rate-limit:
+    # 通用API限流：每分钟最多100次请求
+    general:
+      window-seconds: 60
+      max-requests: 100

@@ -1,0 +1,132 @@
+
+
+server:
+  port: 8008
+
+
+spring:
+  application:
+    name: gateway
+  config:
+    import: "optional:configserver:http://localhost:8001"   # 指向你的 config server
+  cloud:
+    config:
+      username: ${CONFIG_SERVER_USER:admin}                # 从环境变量注入，默认 admin
+      password: ${CONFIG_SERVER_PASSWORD:123456789}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      default-filters:
+#        - name: StripPrefix
+#          args:
+#            parts: 0
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 100
+            redis-rate-limiter.burstCapacity: 200
+            redis-rate-limiter.requestedTokens: 1
+            key-resolver: "#{@userKeyResolver}"
+            # 设置 TTL（单位：秒）
+            redis-rate-limiter.expire-after-write: 60 # 2 hours
+        - name: CircuitBreaker
+          args:
+            name: default
+            fallbackUri: forward:/fallback/default
+      routes:
+        - id: member
+        #  uri: http://localhost:18002  # 确保服务名正确
+          uri: lb://AITOK-MEMBER
+          predicates:
+            - Path=/member/**
+          filters:
+            - StripPrefix=1
+        - id: video
+        #  uri: http://localhost:18004  # 确保服务名正确
+          uri: lb://AITOK-VIDEO
+          predicates:
+            - Path=/video/**
+          filters:
+            - StripPrefix=1
+        - id: creator
+          #  uri: http://localhost:18008  # 确保服务名正确
+          uri: lb://AITOK-CREATOR
+          predicates:
+            - Path=/creator/**
+          filters:
+            - StripPrefix=1
+        - id: temp-route
+          uri: lb://TEST-CLIENT-TEMP  # 确保服务名正确
+          predicates:
+            - Path=/temp/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@userKeyResolver}"
+                # 设置 TTL（单位：秒）
+                redis-rate-limiter.expire-after-write: 60
+            - name: CircuitBreaker
+              args:
+                name: cb-account
+                fallbackUri: forward:/fallback/account
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456789
+      database: 1
+# database 指定了 Redis 的数据库编号。Redis 默认支持多个逻辑数据库（编号从 0 开始），这里选择了第 1 个数据库（编号为 1）。这允许应用程序在 Redis 中隔离数据。
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+  timelimiter:
+    instances:
+      default:
+        timeoutDuration: 5s   # 网关对下游调用的最大等待时间，设置比客户端更短
+
+
+logging:
+  file:
+    path: ./logs/aitok-gateway
+  level:
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: DEBUG
+    org.springframework.cloud.gateway.filter: DEBUG
+    org.springframework.cloud.gateway.filter.ratelimit: DEBUG
+    org.springframework.cloud.gateway.filter.factory: DEBUG
+    io.github.resilience4j: DEBUG
+    org.springframework.web.server: DEBUG
+
+oauth2:
+  resourceserver:
+    jwt:
+      jwk-set-uri: http://localhost:18002/member/test/.well-known/jwks.json
+
+app:
+  jwt:
+    issuer: http://localhost:18002/    # 与签发 JWT 的服务 issuer 保持一致
+    audience: aitok-gateway
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/# 可选，若不校验可留空
